@@ -1,8 +1,6 @@
-## openplotter-myapp
+## openplotter-dashboards
 
-This is a template to help create apps for OpenPlotter. 
-
-> Please, read these comments to edit this file and remove them in your app.
+OpenPltter app to manage dashboards. 
 
 ### Installing
 
@@ -10,43 +8,32 @@ This is a template to help create apps for OpenPlotter.
 
 Install [openplotter-settings](https://github.com/openplotter/openplotter-settings) for **production** and just install this app from *OpenPlotter Apps* tab.
 
-> Your app should be aproved by OpenPlotter team and added to the openplotter-settings main app. It should be written for python3. 
-
 #### For development
-
-> Put here all the info needed to install, edit and propose changes to your app.
 
 Install [openplotter-settings](https://github.com/openplotter/openplotter-settings) for **development**.
 
-> Any OpenPlotter app must have openplotter-settings installed
+Install dependencies:
 
-Install openplotter-myapp dependencies:
+`sudo apt install grafana influxdb`
 
-`sudo apt install foo bar`
+Clone the repository:
 
-Clone openplotter-myapp:
+`git clone https://github.com/openplotter/openplotter-dashboards`
 
-`git clone https://github.com/openplotter/openplotter-myapp`
+Make your changes and install:
 
-Make your changes and test them installing the app:
-
-`cd openplotter-myapp`
 `sudo python3 setup.py install`
 
-Pull request your changes to github and we will check and add them to the next version of the [Debian package](https://launchpad.net/~openplotter/+archive/ubuntu/openplotter/).
+Run:
 
-> Once approved we will add your app to the OpenPlotter PPA repository. Please provide any important info necessary to OpenPlotter team to create the Debian package.
+`openplotter-dashboards`
+
+Pull request your changes to github and we will check and add them to the next version of the [Debian package](https://launchpad.net/~openplotter/+archive/ubuntu/openplotter/).
 
 ### Documentation
 
 https://openplotter.readthedocs.io
 
-> Please add a chapter to OpenPlotter documentation with the info to use your app: https://github.com/openplotter/docs
-
 ### Support
 
 http://forum.openmarine.net/forumdisplay.php?fid=1
-
-> Feel free to use openmarine.net forum to give support for your app.
-
-> Thanks for contributing!!!

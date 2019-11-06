@@ -1,4 +1,4 @@
 include LICENSE
 include README.md
-recursive-include openplotterMyapp/data *
-recursive-include openplotterMyapp/locale *
+recursive-include openplotterDashboards/data *
+recursive-include openplotterDashboards/locale *
