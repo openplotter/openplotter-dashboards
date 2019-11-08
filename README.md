@@ -12,10 +12,6 @@ Install [openplotter-settings](https://github.com/openplotter/openplotter-settin
 
 Install [openplotter-settings](https://github.com/openplotter/openplotter-settings) for **development**.
 
-Install dependencies:
-
-`sudo apt install grafana influxdb`
-
 Clone the repository:
 
 `git clone https://github.com/openplotter/openplotter-dashboards`

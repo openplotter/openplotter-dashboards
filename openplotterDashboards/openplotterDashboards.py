@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 
-import wx, os, webbrowser, subprocess, sys
+import wx, os, webbrowser, subprocess, sys, time
 import wx.richtext as rt
 
 from openplotterSettings import conf
@@ -33,14 +33,14 @@ class MyFrame(wx.Frame):
 		self.appsDict = []
 
 		app = {
-		'name': 'Influxdb / Grafana',
+		'name': 'Influxdb/Chronograf/Kapacitor/Grafana',
 		'show': "http://localhost:3001",
 		'edit': self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/serverConfiguration/plugins/signalk-to-influxdb',
 		'included': 'no',
 		'plugin': 'signalk-to-influxdb',
-		'install': 'installInfluxdbGrafana',
-		'uninstall': 'uninstallInfluxdbGrafana',
-		'settings': 'settingsInfluxdbGrafana',
+		'install': self.platform.admin+' python3 '+self.currentdir+'/installInfluxdbGrafana.py',
+		'uninstall': self.platform.admin+' python3 '+self.currentdir+'/uninstallInfluxdbGrafana.py',
+		'settings': 'http://localhost:8888',
 		}
 		self.appsDict.append(app)
 
@@ -49,9 +49,9 @@ class MyFrame(wx.Frame):
 		'show': self.platform.http+'localhost:'+self.platform.skPort+'/plugins/signalk-node-red/redApi/ui/',
 		'edit': self.platform.http+'localhost:'+self.platform.skPort+'/plugins/signalk-node-red/redAdmin/',
 		'included': 'no',
-		'plugin': '@signalk/signalk-node-red',
-		'install': 'installNoderedDashboard',
-		'uninstall': 'uninstallNoderedDashboard',
+		'plugin': 'node-red-dashboard',
+		'install': self.platform.admin+' python3 '+self.currentdir+'/installNoderedDashboard.py',
+		'uninstall': self.platform.admin+' python3 '+self.currentdir+'/uninstallNoderedDashboard.py',
 		'settings': '',
 		}
 		self.appsDict.append(app)
@@ -62,8 +62,8 @@ class MyFrame(wx.Frame):
 		'edit': '',
 		'included': 'no',
 		'plugin': '@mxtommy/kip',
-		'install': 'installKip',
-		'uninstall': 'uninstallKip',
+		'install': self.platform.admin+' python3 '+self.currentdir+'/installKip.py',
+		'uninstall': self.platform.admin+' python3 '+self.currentdir+'/uninstallKip.py',
 		'settings': '',
 		}
 		self.appsDict.append(app)
@@ -112,6 +112,9 @@ class MyFrame(wx.Frame):
 		self.Bind(wx.EVT_TOOL, self.OnToolInstall, toolInstall)
 		toolUninstall= self.toolbar1.AddTool(103, _('Uninstall'), wx.Bitmap(self.currentdir+"/data/uninstall.png"))
 		self.Bind(wx.EVT_TOOL, self.OnToolUninstall, toolUninstall)
+		self.toolbar1.AddSeparator()
+		self.refreshButton = self.toolbar1.AddTool(104, _('Refresh'), wx.Bitmap(self.currentdir+"/data/refresh.png"))
+		self.Bind(wx.EVT_TOOL, self.OnRefreshButton, self.refreshButton)
 
 		self.notebook = wx.Notebook(self)
 		self.notebook.Bind(wx.EVT_NOTEBOOK_PAGE_CHANGED, self.onTabChange)
@@ -132,7 +135,6 @@ class MyFrame(wx.Frame):
 		self.SetSizer(vbox)
 
 		self.pageApps()
-		self.onListAppsDeselected()
 		self.pageOutput()
 
 		maxi = self.conf.get('GENERAL', 'maximize')
@@ -171,8 +173,8 @@ class MyFrame(wx.Frame):
 
 	def pageApps(self):
 		self.listApps = wx.ListCtrl(self.apps, -1, style=wx.LC_REPORT | wx.LC_SINGLE_SEL | wx.LC_HRULES, size=(-1,200))
-		self.listApps.InsertColumn(0, _('Name'), width=300)
-		self.listApps.InsertColumn(1, _('status'), width=300)
+		self.listApps.InsertColumn(0, _('Name'), width=320)
+		self.listApps.InsertColumn(1, _('status'), width=370)
 		self.listApps.Bind(wx.EVT_LIST_ITEM_SELECTED, self.onListAppsSelected)
 		self.listApps.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.onListAppsDeselected)
 
@@ -189,72 +191,89 @@ class MyFrame(wx.Frame):
 		sizer.Add(self.toolbar2, 0)
 		self.apps.SetSizer(sizer)
 
+		self.OnRefreshButton()
+
+	def OnRefreshButton(self, event=0):
+		self.notebook.ChangeSelection(0)
+		self.listApps.DeleteAllItems()
 		for i in self.appsDict:
 			item = self.listApps.InsertItem(0, i['name'])
-			if i['included'] == 'yes': self.listApps.SetItem(item, 1, _('installed'))
-			elif self.platform.isSKpluginInstalled(i['plugin']): self.listApps.SetItem(item, 1, _('installed'))
+			if self.platform.skPort:
+				if i['included'] == 'yes': self.listApps.SetItem(item, 1, _('installed'))
+				elif self.platform.isSKpluginInstalled(i['plugin']): self.listApps.SetItem(item, 1, _('installed'))
+				else:
+					self.listApps.SetItem(item, 1, _('not installed'))
+					self.listApps.SetItemBackgroundColour(item,(200,200,200))
 			else:
 				self.listApps.SetItem(item, 1, _('not installed'))
 				self.listApps.SetItemBackgroundColour(item,(200,200,200))
+		self.onListAppsDeselected()
 
 	def OnToolInstall(self, e):
-		pass
+		if self.platform.skPort: 
+			index = self.listApps.GetFirstSelected()
+			if index == -1: return
+			apps = list(reversed(self.appsDict))
+			name = apps[index]['name']
+			command = apps[index]['install']
+			if not command:
+				self.ShowStatusBarRED(_('This dashboard can not be installed'))
+				return
+			msg = _('Are you sure you want to install ')+name+_(' and its dependencies?')
+			dlg = wx.MessageDialog(None, msg, _('Question'), wx.YES_NO | wx.NO_DEFAULT | wx.ICON_EXCLAMATION)
+			if dlg.ShowModal() == wx.ID_YES:
+				self.logger.Clear()
+				self.notebook.ChangeSelection(1)
+				popen = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, shell=True)
+				for line in popen.stdout:
+					if not 'Warning' in line and not 'WARNING' in line:
+						self.logger.WriteText(line)
+						self.ShowStatusBarYELLOW(_('Installing dashboard, please wait... ')+line)
+						self.logger.ShowPosition(self.logger.GetLastPosition())
+				self.OnRefreshButton()
+				self.restart_SK(0)
+			dlg.Destroy()
+		else: 
+			self.ShowStatusBarRED(_('Please install "Signal K Installer" OpenPlotter app'))
+			self.OnToolSettings()
 
 	def OnToolUninstall(self, e):
-		pass
-
-	def OnInstallButton(self,e):
 		index = self.listApps.GetFirstSelected()
 		if index == -1: return
 		apps = list(reversed(self.appsDict))
-		package = apps[index]['package']
-		script = self.currentdir+'/'+apps[index]['install']
-		msg = _('Are you sure you want to install ')+package+_(' and its dependencies?')
+		name = apps[index]['name']
+		command = apps[index]['uninstall']
+		if not command:
+			self.ShowStatusBarRED(_('This dashboard can not be uninstalled'))
+			return
+		msg = _('Are you sure you want to uninstall ')+name+_(' and its dependencies?')
 		dlg = wx.MessageDialog(None, msg, _('Question'), wx.YES_NO | wx.NO_DEFAULT | wx.ICON_EXCLAMATION)
 		if dlg.ShowModal() == wx.ID_YES:
 			self.logger.Clear()
 			self.notebook.ChangeSelection(1)
-			command = self.platform.admin+' python3 '+script+' '+package
 			popen = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, shell=True)
 			for line in popen.stdout:
 				if not 'Warning' in line and not 'WARNING' in line:
 					self.logger.WriteText(line)
-					self.ShowStatusBarYELLOW(_('Installing package, please wait... ')+line)
+					self.ShowStatusBarYELLOW(_('Uninstalling dashboard, please wait... ')+line)
 					self.logger.ShowPosition(self.logger.GetLastPosition())
-			dlg.Destroy()
-			self.readApps()
-		else: dlg.Destroy()
+			self.OnRefreshButton()
+			self.restart_SK(0)
+		dlg.Destroy()
 
-	def OnUninstallButton(self,e):
-		index = self.listApps.GetFirstSelected()
-		if index == -1: return
-		apps = list(reversed(self.appsDict))
-		package = apps[index]['package']
-		msg = _('Are you sure you want to uninstall ')+package+_(' and its dependencies?')
-		dlg = wx.MessageDialog(None, msg, _('Question'), wx.YES_NO | wx.NO_DEFAULT | wx.ICON_EXCLAMATION)
-		if dlg.ShowModal() == wx.ID_YES:
-			self.logger.Clear()
-			self.notebook.ChangeSelection(1)
-			command = self.platform.admin+' apt -y autoremove '+package
-			popen = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, shell=True)
-			for line in popen.stdout:
-				self.logger.WriteText(line)
-				self.ShowStatusBarYELLOW(_('Uninstalling packages, please wait... ')+line)
-				self.logger.ShowPosition(self.logger.GetLastPosition())
-			self.ShowStatusBarGREEN(_('Done'))
-			dlg.Destroy()
-			self.readApps()
-		else: dlg.Destroy()
-		
+	def restart_SK(self, msg):
+		if msg == 0: msg = _('Restarting Signal K server... ')
+		seconds = 12
+		for i in range(seconds, 0, -1):
+			self.ShowStatusBarYELLOW(msg+str(i))
+			time.sleep(1)
+		self.ShowStatusBarGREEN(_('Signal K server restarted'))
+
 	def OnSettingsButton(self, e):
 		index = self.listApps.GetFirstSelected()
 		if index == -1: return
 		apps = list(reversed(self.appsDict))
-		dlg = eval(apps[index]['settings'])()
-		res = dlg.ShowModal()
-		if res == wx.ID_OK:
-			pass
-		dlg.Destroy()
+		webbrowser.open(apps[index]['settings'], new=2)
 
 	def OnEditButton(self, e):
 		index = self.listApps.GetFirstSelected()
@@ -296,31 +315,6 @@ class MyFrame(wx.Frame):
 		self.toolbar2.EnableTool(204,False)
 		self.toolbar2.EnableTool(201,False)
 		self.toolbar2.EnableTool(202,False)
-
-################################################################################
-
-class settingsInfluxdbGrafana(wx.Dialog):
-	def __init__(self):
-		wx.Dialog.__init__(self, None, title=_('Port'), size=(200,150))
-		panel = wx.Panel(self)
-		self.port = wx.SpinCtrl(panel, 101, min=4000, max=65536, initial=50000)
-		#self.port.SetValue(int(port))
-
-		cancelBtn = wx.Button(panel, wx.ID_CANCEL)
-		okBtn = wx.Button(panel, wx.ID_OK)
-
-		hbox = wx.BoxSizer(wx.HORIZONTAL)
-		hbox.Add(cancelBtn, 1, wx.ALL | wx.EXPAND, 10)
-		hbox.Add(okBtn, 1, wx.ALL | wx.EXPAND, 10)
-
-		vbox = wx.BoxSizer(wx.VERTICAL)
-		vbox.Add(self.port, 1, wx.ALL | wx.EXPAND, 10)
-		vbox.Add(hbox, 0, wx.EXPAND, 0)
-
-		panel.SetSizer(vbox)
-		self.Centre() 
-
-################################################################################
 
 def main():
 	app = wx.App()
