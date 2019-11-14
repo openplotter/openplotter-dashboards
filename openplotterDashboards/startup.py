@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 # This file is part of Openplotter.
-# Copyright (C) 2019 by xxxx <https://github.com/xxxx/openplotter-myapp>
-#                     
+# Copyright (C) 2019 by Sailoog <https://github.com/openplotter/openplotter-dashboards>
+#                  
 # Openplotter is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 2 of the License, or
@@ -17,46 +17,84 @@
 
 import time, os, subprocess, sys
 from openplotterSettings import language
+from openplotterSettings import platform
 
-# This class will be always called at startup. You should start here only GUI programs. Non GUI progrmas should be started as a services, see setup.py and myappPostInstall.py
 class Start():
 	def __init__(self, conf, currentLanguage):
 		self.conf = conf
 		currentdir = os.path.dirname(__file__)
-		language.Language(currentdir,'openplotter-myapp',currentLanguage)
-		# "self.initialMessage" will be printed at startup if it has content. If not, the function "start" will not be called. Use trasnlatable text: _('Starting My App...')
+		language.Language(currentdir,'openplotter-dashboards',currentLanguage)
 		self.initialMessage = ''
 
-	# this funtion will be called only if "self.initialMessage" has content.
 	def start(self):
-		green = '' # green messages will be printed in green after the "self.initialMessage"
-		black = '' # black messages will be printed in black after the green message
-		red = '' # red messages will be printed in red in a new line
+		green = ''
+		black = ''
+		red = ''
 
-		# start here any GUI program that needs to be started at startup and set the messages.
-
-		time.sleep(2) # "check" function is called after "start" function, so if we start any program here we should wait some seconds before checking it. 
 		return {'green': green,'black': black,'red': red}
 
-# This class is called after "start" function and when the user checks the system
 class Check():
 	def __init__(self, conf, currentLanguage):
 		self.conf = conf
 		currentdir = os.path.dirname(__file__)
-		language.Language(currentdir,'openplotter-myapp',currentLanguage)
-		# "self.initialMessage" will be printed when checking the system. If it is empty the function check will not be called. Use trasnlatable text: _('Checking My App...')
-		self.initialMessage = _('Checking My App dummy sensors...')
+		language.Language(currentdir,'openplotter-dashboards',currentLanguage)
+		self.platform = platform.Platform()
+		self.nodeRed = self.platform.isSKpluginInstalled('node-red-dashboard')
+		self.influx = self.platform.isSKpluginInstalled('signalk-to-influxdb')
+
+		if self.nodeRed or self.influx: self.initialMessage = _('Checking Dashboards...')
+		else: self.initialMessage = ''
 
 	def check(self):
-		green = '' # green messages will be printed in green after the "self.initialMessage"
-		black = '' # black messages will be printed in black after the green message
-		red = '' # red messages will be printed in red in a new line
+		green = ''
+		black = ''
+		red = ''
 
-		# check any feature and set the messages
-		try:
-			subprocess.check_output(['systemctl', 'is-active', 'openplotter-myapp-read.service']).decode(sys.stdin.encoding)
-			green = _('running')
-		except: black = _('not running')
+		if self.nodeRed:
+			if self.platform.isSKpluginEnabled('signalk-node-red') or not os.path.exists(self.platform.skDir+'/plugin-config-data/signalk-node-red.json'):
+				txt = 'Node-Red enabled'
+				if not black: black = txt
+				else: black += ' | '+txt
+			else:
+				txt = _('Node-Red is disabled. Please enable it in Signal K -> Server -> Plugin Config -> Node Red -> Active')
+				if not red: red = txt
+				else: red += '\n'+txt
+
+		if self.influx:
+			if self.platform.isSKpluginEnabled('signalk-to-influxdb'):
+				txt = 'signalk-to-influxdb plugin enabled'
+				if not black: black = txt
+				else: black += ' | '+txt
+			else:
+				txt = _('signalk-to-influxdb plugin is disabled. Please enable it in Signal K -> Server -> Plugin Config -> InfluxDb writer -> Active')
+				if not red: red = txt
+				else: red += '\n'+txt
+			try:
+				subprocess.check_output(['systemctl', 'is-active', 'influxdb.service']).decode(sys.stdin.encoding)
+				txt = 'Influxdb running'
+				if not black: black = txt
+				else: black += ' | '+txt
+			except:
+				txt = _('Influxdb is not running')
+				if not red: red = txt
+				else: red += '\n'+txt
+			try:
+				subprocess.check_output(['systemctl', 'is-active', 'kapacitor.service']).decode(sys.stdin.encoding)
+				txt = 'Kapacitor running'
+				if not black: black = txt
+				else: black += ' | '+txt
+			except:
+				txt = _('Kapacitor is not running')
+				if not red: red = txt
+				else: red += '\n'+txt
+			try:
+				subprocess.check_output(['systemctl', 'is-active', 'grafana-server.service']).decode(sys.stdin.encoding)
+				txt = 'Grafana running'
+				if not black: black = txt
+				else: black += ' | '+txt
+			except:
+				txt = _('Grafana is not running')
+				if not red: red = txt
+				else: red += '\n'+txt
 
 		return {'green': green,'black': black,'red': red}
-
