@@ -32,22 +32,34 @@ class MyFrame(wx.Frame):
 
 		self.appsDict = []
 
+		edit = ''
+		install = ''
+		uninstall = ''
+		if self.platform.skPort:
+			edit = self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/serverConfiguration/plugins/signalk-to-influxdb'
+			install = self.platform.admin+' python3 '+self.currentdir+'/installInfluxdbGrafana.py'
+			uninstall = self.platform.admin+' python3 '+self.currentdir+'/uninstallInfluxdbGrafana.py'			
 		app = {
 		'name': 'Influxdb/Chronograf/Kapacitor/Grafana',
 		'show': "http://localhost:3001",
-		'edit': self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/serverConfiguration/plugins/signalk-to-influxdb',
+		'edit': edit,
 		'included': 'no',
 		'plugin': 'signalk-to-influxdb',
-		'install': self.platform.admin+' python3 '+self.currentdir+'/installInfluxdbGrafana.py',
-		'uninstall': self.platform.admin+' python3 '+self.currentdir+'/uninstallInfluxdbGrafana.py',
+		'install': install,
+		'uninstall': uninstall,
 		'settings': 'http://localhost:8888',
 		}
 		self.appsDict.append(app)
 
+		show = ''
+		edit = ''
+		if self.platform.skPort:
+			show = self.platform.http+'localhost:'+self.platform.skPort+'/plugins/signalk-node-red/redApi/ui/'
+			edit = self.platform.http+'localhost:'+self.platform.skPort+'/plugins/signalk-node-red/redAdmin/'
 		app = {
 		'name': 'Node-Red Dashboard',
-		'show': self.platform.http+'localhost:'+self.platform.skPort+'/plugins/signalk-node-red/redApi/ui/',
-		'edit': self.platform.http+'localhost:'+self.platform.skPort+'/plugins/signalk-node-red/redAdmin/',
+		'show': show,
+		'edit': edit,
 		'included': 'no',
 		'plugin': 'node-red-dashboard',
 		'install': self.platform.admin+' python3 '+self.currentdir+'/installNoderedDashboard.py',
@@ -56,9 +68,12 @@ class MyFrame(wx.Frame):
 		}
 		self.appsDict.append(app)
 
+		show = ''
+		if self.platform.skPort:
+			show = self.platform.http+'localhost:'+self.platform.skPort+'/@mxtommy/kip/'
 		app = {
 		'name': 'Kip',
-		'show': self.platform.http+'localhost:'+self.platform.skPort+'/@mxtommy/kip/',
+		'show': show,
 		'edit': '',
 		'included': 'no',
 		'plugin': '@mxtommy/kip',
@@ -68,9 +83,12 @@ class MyFrame(wx.Frame):
 		}
 		self.appsDict.append(app)
 
+		show = ''
+		if self.platform.skPort:
+			show = self.platform.http+'localhost:'+self.platform.skPort+'/@signalk/sailgauge/'
 		app = {
 		'name': 'Sail Gauge',
-		'show': self.platform.http+'localhost:'+self.platform.skPort+'/@signalk/sailgauge/',
+		'show': show,
 		'edit': '',
 		'included': 'yes',
 		'plugin': '',
@@ -80,9 +98,12 @@ class MyFrame(wx.Frame):
 		}
 		self.appsDict.append(app)
 
+		show = ''
+		if self.platform.skPort:
+			show = self.platform.http+'localhost:'+self.platform.skPort+'/@signalk/instrumentpanel/'
 		app = {
 		'name': 'Instrument Panel',
-		'show': self.platform.http+'localhost:'+self.platform.skPort+'/@signalk/instrumentpanel/',
+		'show': show,
 		'edit': '',
 		'included': 'yes',
 		'plugin': '',
@@ -167,7 +188,7 @@ class MyFrame(wx.Frame):
 		url = "/usr/share/openplotter-doc/dashboards/dashboards_app.html"
 		webbrowser.open(url, new=2)
 
-	def OnToolSettings(self, event): 
+	def OnToolSettings(self, event=0): 
 		subprocess.call(['pkill', '-f', 'openplotter-settings'])
 		subprocess.Popen('openplotter-settings')
 

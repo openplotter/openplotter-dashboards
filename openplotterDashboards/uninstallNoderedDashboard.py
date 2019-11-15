@@ -28,7 +28,7 @@ def main():
 
 	try:
 		platform2 = platform.Platform()
-		subprocess.call(['npm', 'uninstall', '--verbose', 'node-red-dashboard', '--save'], cwd = platform2.skDir+'/red')
+		subprocess.call(['npm', 'uninstall', '--verbose', 'node-red-dashboard', '--save'], cwd = platform2.skDir)
 		
 		subprocess.call(['systemctl', 'stop', 'signalk.service'])
 		subprocess.call(['systemctl', 'stop', 'signalk.socket'])

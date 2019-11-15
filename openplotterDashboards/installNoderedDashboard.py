@@ -29,9 +29,7 @@ def main():
 	try:
 		platform2 = platform.Platform()
 		subprocess.call(['npm', 'i', '--verbose', '@signalk/signalk-node-red'], cwd = platform2.skDir)
-		if not os.path.exists(platform2.skDir+'/red'):
-			os.mkdir(platform2.skDir+'/red')
-		subprocess.call(['npm', 'i', '--verbose', 'node-red-dashboard'], cwd = platform2.skDir+'/red')
+		subprocess.call(['npm', 'i', '--verbose', 'node-red-dashboard'], cwd = platform2.skDir)
 		subprocess.call(['chown', '-R', conf2.user, platform2.skDir])
 		
 		subprocess.call(['systemctl', 'stop', 'signalk.service'])
