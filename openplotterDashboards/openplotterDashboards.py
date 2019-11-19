@@ -129,11 +129,6 @@ class MyFrame(wx.Frame):
 		toolSettings = self.toolbar1.AddTool(106, _('Settings'), wx.Bitmap(self.currentdir+"/data/settings.png"))
 		self.Bind(wx.EVT_TOOL, self.OnToolSettings, toolSettings)
 		self.toolbar1.AddSeparator()
-		toolInstall= self.toolbar1.AddTool(102, _('Install'), wx.Bitmap(self.currentdir+"/data/install.png"))
-		self.Bind(wx.EVT_TOOL, self.OnToolInstall, toolInstall)
-		toolUninstall= self.toolbar1.AddTool(103, _('Uninstall'), wx.Bitmap(self.currentdir+"/data/uninstall.png"))
-		self.Bind(wx.EVT_TOOL, self.OnToolUninstall, toolUninstall)
-		self.toolbar1.AddSeparator()
 		self.refreshButton = self.toolbar1.AddTool(104, _('Refresh'), wx.Bitmap(self.currentdir+"/data/refresh.png"))
 		self.Bind(wx.EVT_TOOL, self.OnRefreshButton, self.refreshButton)
 
@@ -195,7 +190,7 @@ class MyFrame(wx.Frame):
 	def pageApps(self):
 		self.listApps = wx.ListCtrl(self.apps, -1, style=wx.LC_REPORT | wx.LC_SINGLE_SEL | wx.LC_HRULES, size=(-1,200))
 		self.listApps.InsertColumn(0, _('Name'), width=320)
-		self.listApps.InsertColumn(1, _('status'), width=370)
+		self.listApps.InsertColumn(1, _('status'), width=365)
 		self.listApps.Bind(wx.EVT_LIST_ITEM_SELECTED, self.onListAppsSelected)
 		self.listApps.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.onListAppsDeselected)
 
@@ -206,6 +201,12 @@ class MyFrame(wx.Frame):
 		self.Bind(wx.EVT_TOOL, self.OnEditButton, self.editButton)
 		self.showButton = self.toolbar2.AddTool(202, _('Show'), wx.Bitmap(self.currentdir+"/data/show.png"))
 		self.Bind(wx.EVT_TOOL, self.OnShowButton, self.showButton)
+		toolInstall= self.toolbar2.AddTool(203, _('Install'), wx.Bitmap(self.currentdir+"/data/install.png"))
+		self.Bind(wx.EVT_TOOL, self.OnToolInstall, toolInstall)
+		toolUninstall= self.toolbar2.AddTool(205, _('Uninstall'), wx.Bitmap(self.currentdir+"/data/uninstall.png"))
+		self.Bind(wx.EVT_TOOL, self.OnToolUninstall, toolUninstall)
+
+		self.toolbar3 = wx.ToolBar(self.apps, style=wx.TB_TEXT | wx.TB_VERTICAL)
 
 		sizer = wx.BoxSizer(wx.HORIZONTAL)
 		sizer.Add(self.listApps, 1, wx.EXPAND, 0)
@@ -322,17 +323,17 @@ class MyFrame(wx.Frame):
 		if not valid: return
 		self.onListAppsDeselected()
 		if self.listApps.GetItemBackgroundColour(i) != (200,200,200):
-			self.toolbar1.EnableTool(102,True)
-			self.toolbar1.EnableTool(103,True)
+			self.toolbar2.EnableTool(203,True)
+			self.toolbar2.EnableTool(205,True)
 			apps = list(reversed(self.appsDict))
 			if apps[i]['settings']: self.toolbar2.EnableTool(204,True)
 			if apps[i]['edit']: self.toolbar2.EnableTool(201,True)
 			if apps[i]['show']: self.toolbar2.EnableTool(202,True)
-		else: self.toolbar1.EnableTool(102,True)
+		else: self.toolbar2.EnableTool(203,True)
 
 	def onListAppsDeselected(self, event=0):
-		self.toolbar1.EnableTool(102,False)
-		self.toolbar1.EnableTool(103,False)
+		self.toolbar2.EnableTool(203,False)
+		self.toolbar2.EnableTool(205,False)
 		self.toolbar2.EnableTool(204,False)
 		self.toolbar2.EnableTool(201,False)
 		self.toolbar2.EnableTool(202,False)
