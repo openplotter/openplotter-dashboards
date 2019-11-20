@@ -201,6 +201,7 @@ class MyFrame(wx.Frame):
 		self.Bind(wx.EVT_TOOL, self.OnEditButton, self.editButton)
 		self.showButton = self.toolbar2.AddTool(202, _('Show'), wx.Bitmap(self.currentdir+"/data/show.png"))
 		self.Bind(wx.EVT_TOOL, self.OnShowButton, self.showButton)
+		self.toolbar2.AddSeparator()
 		toolInstall= self.toolbar2.AddTool(203, _('Install'), wx.Bitmap(self.currentdir+"/data/install.png"))
 		self.Bind(wx.EVT_TOOL, self.OnToolInstall, toolInstall)
 		toolUninstall= self.toolbar2.AddTool(205, _('Uninstall'), wx.Bitmap(self.currentdir+"/data/uninstall.png"))
