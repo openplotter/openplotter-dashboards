@@ -1,0 +1,151 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: openplotter\n"
+"POT-Creation-Date: 2019-11-14 17:47+0100\n"
+"PO-Revision-Date: 2019-12-16 13:03+0100\n"
+"Last-Translator: \n"
+"Language-Team: Swedish\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ../../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Crowdin-Project: openplotter\n"
+"X-Crowdin-Language: sv-SE\n"
+"X-Crowdin-File: openplotter-dashboards.po\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: installInfluxdbGrafana.py:57 installKip.py:39 installNoderedDashboard.py:42
+#: uninstallInfluxdbGrafana.py:48 uninstallKip.py:38
+#: uninstallNoderedDashboard.py:38
+msgid "DONE"
+msgstr "Klar"
+
+#: installInfluxdbGrafana.py:58 installKip.py:40 installNoderedDashboard.py:43
+#: uninstallInfluxdbGrafana.py:49 uninstallKip.py:39
+#: uninstallNoderedDashboard.py:39
+msgid "FAILED: "
+msgstr "Felaktiga: "
+
+#: openplotterDashboards.py:95
+msgid "Dashboards"
+msgstr "Instrumentbräda"
+
+#: openplotterDashboards.py:105
+msgid "Help"
+msgstr "Hjälp"
+
+#: openplotterDashboards.py:108 openplotterDashboards.py:182
+msgid "Settings"
+msgstr "Inställningar"
+
+#: openplotterDashboards.py:111
+msgid "Install"
+msgstr "Installera"
+
+#: openplotterDashboards.py:113
+msgid "Uninstall"
+msgstr "Avinstallera"
+
+#: openplotterDashboards.py:116
+msgid "Refresh"
+msgstr "Uppdatera"
+
+#: openplotterDashboards.py:123
+msgid "Apps"
+msgstr "Appar"
+
+#: openplotterDashboards.py:176
+msgid "Name"
+msgstr "Namn"
+
+#: openplotterDashboards.py:177
+msgid "status"
+msgstr "status"
+
+#: openplotterDashboards.py:184
+msgid "Edit"
+msgstr "Editera"
+
+#: openplotterDashboards.py:186
+msgid "Show"
+msgstr "Visa"
+
+#: openplotterDashboards.py:202 openplotterDashboards.py:203
+msgid "installed"
+msgstr "installerade"
+
+#: openplotterDashboards.py:205 openplotterDashboards.py:208
+msgid "not installed"
+msgstr "ej installerade"
+
+#: openplotterDashboards.py:220
+msgid "This dashboard can not be installed"
+msgstr "Denna instrumentpanel kan ej installeras"
+
+#: openplotterDashboards.py:222
+msgid "Are you sure you want to install "
+msgstr "Är du säker på att du vill installera "
+
+#: openplotterDashboards.py:222 openplotterDashboards.py:249
+msgid " and its dependencies?"
+msgstr " och dess paket-beroenden?"
+
+#: openplotterDashboards.py:223 openplotterDashboards.py:250
+msgid "Question"
+msgstr "Fråga"
+
+#: openplotterDashboards.py:231
+msgid "Installing dashboard, please wait... "
+msgstr "Installerar instrumentpanel, vänligen vänta... "
+
+#: openplotterDashboards.py:237
+msgid "Please install \"Signal K Installer\" OpenPlotter app"
+msgstr "Vänligen installera \"Signal K Installer\" OpenPlotter app"
+
+#: openplotterDashboards.py:247
+msgid "This dashboard can not be uninstalled"
+msgstr "Denna instrumentpanel kan inte avinstalleras"
+
+#: openplotterDashboards.py:249
+msgid "Are you sure you want to uninstall "
+msgstr "Är du säker på att du vill avinstallera "
+
+#: openplotterDashboards.py:258
+msgid "Uninstalling dashboard, please wait... "
+msgstr "Avinstallerar instrumentpanel, vänligen vänta... "
+
+#: openplotterDashboards.py:265
+msgid "Restarting Signal K server... "
+msgstr "Startar om Signal K server... "
+
+#: openplotterDashboards.py:270
+msgid "Signal K server restarted"
+msgstr "Signal K server har startats om"
+
+#: startup.py:45
+msgid "Checking Dashboards..."
+msgstr "Kontrollerar instrumentpaneler..."
+
+#: startup.py:59
+msgid "Node-Red is disabled. Please enable it in Signal K -> Server -> Plugin Config -> Node Red -> Active"
+msgstr "Node-Red är inte aktiverad. Vänligen aktivera den i Signal K -> Server -> Plugin Config -> Node Red -> Active"
+
+#: startup.py:69
+msgid "signalk-to-influxdb plugin is disabled. Please enable it in Signal K -> Server -> Plugin Config -> InfluxDb writer -> Active"
+msgstr "signalk-to-influxdb pluginen är inte aktiverad. Vänligen aktivera den i Signal K -> Server -> Plugin Config -> InfluxDb writer -> Active"
+
+#: startup.py:78
+msgid "Influxdb is not running"
+msgstr "Influxdb är inte startad"
+
+#: startup.py:87
+msgid "Kapacitor is not running"
+msgstr "Kapacitor är inte startad"
+
+#: startup.py:96
+msgid "Grafana is not running"
+msgstr "Grafana -processen är inte startad"

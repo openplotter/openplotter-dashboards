@@ -1,0 +1,151 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: openplotter\n"
+"POT-Creation-Date: 2019-11-14 17:47+0100\n"
+"PO-Revision-Date: 2019-12-16 12:41+0100\n"
+"Last-Translator: \n"
+"Language-Team: Dutch\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ../../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Crowdin-Project: openplotter\n"
+"X-Crowdin-Language: nl\n"
+"X-Crowdin-File: openplotter-dashboards.po\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: installInfluxdbGrafana.py:57 installKip.py:39 installNoderedDashboard.py:42
+#: uninstallInfluxdbGrafana.py:48 uninstallKip.py:38
+#: uninstallNoderedDashboard.py:38
+msgid "DONE"
+msgstr "KLAAR"
+
+#: installInfluxdbGrafana.py:58 installKip.py:40 installNoderedDashboard.py:43
+#: uninstallInfluxdbGrafana.py:49 uninstallKip.py:39
+#: uninstallNoderedDashboard.py:39
+msgid "FAILED: "
+msgstr "MISLUKT: "
+
+#: openplotterDashboards.py:95
+msgid "Dashboards"
+msgstr "Dashboards"
+
+#: openplotterDashboards.py:105
+msgid "Help"
+msgstr "Help"
+
+#: openplotterDashboards.py:108 openplotterDashboards.py:182
+msgid "Settings"
+msgstr "Instellingen"
+
+#: openplotterDashboards.py:111
+msgid "Install"
+msgstr "Installeren"
+
+#: openplotterDashboards.py:113
+msgid "Uninstall"
+msgstr "De-installeren"
+
+#: openplotterDashboards.py:116
+msgid "Refresh"
+msgstr "Verversen"
+
+#: openplotterDashboards.py:123
+msgid "Apps"
+msgstr "Apps"
+
+#: openplotterDashboards.py:176
+msgid "Name"
+msgstr "Naam"
+
+#: openplotterDashboards.py:177
+msgid "status"
+msgstr "status"
+
+#: openplotterDashboards.py:184
+msgid "Edit"
+msgstr "Bewerken"
+
+#: openplotterDashboards.py:186
+msgid "Show"
+msgstr "Weergeven"
+
+#: openplotterDashboards.py:202 openplotterDashboards.py:203
+msgid "installed"
+msgstr "geïnstalleerd"
+
+#: openplotterDashboards.py:205 openplotterDashboards.py:208
+msgid "not installed"
+msgstr "niet geïnstalleerd"
+
+#: openplotterDashboards.py:220
+msgid "This dashboard can not be installed"
+msgstr "Dit dashboard kan niet worden geïnstalleerd"
+
+#: openplotterDashboards.py:222
+msgid "Are you sure you want to install "
+msgstr "Weet u zeker dat u wilt installeren "
+
+#: openplotterDashboards.py:222 openplotterDashboards.py:249
+msgid " and its dependencies?"
+msgstr " en zijn afhankelijkheden?"
+
+#: openplotterDashboards.py:223 openplotterDashboards.py:250
+msgid "Question"
+msgstr "Vraag"
+
+#: openplotterDashboards.py:231
+msgid "Installing dashboard, please wait... "
+msgstr "Dashboard installeren, even geduld... "
+
+#: openplotterDashboards.py:237
+msgid "Please install \"Signal K Installer\" OpenPlotter app"
+msgstr "Installeer \"Signal K Installeer\" OpenPlotter app"
+
+#: openplotterDashboards.py:247
+msgid "This dashboard can not be uninstalled"
+msgstr "Dit dashboard kan niet worden verwijderd"
+
+#: openplotterDashboards.py:249
+msgid "Are you sure you want to uninstall "
+msgstr "Weet u zeker dat u dit wilt deïnstalleren "
+
+#: openplotterDashboards.py:258
+msgid "Uninstalling dashboard, please wait... "
+msgstr "Dashboard verwijderen, even geduld... "
+
+#: openplotterDashboards.py:265
+msgid "Restarting Signal K server... "
+msgstr "Signal K server wordt herstart... "
+
+#: openplotterDashboards.py:270
+msgid "Signal K server restarted"
+msgstr "Signal K server herstart"
+
+#: startup.py:45
+msgid "Checking Dashboards..."
+msgstr "Dashboards controleren..."
+
+#: startup.py:59
+msgid "Node-Red is disabled. Please enable it in Signal K -> Server -> Plugin Config -> Node Red -> Active"
+msgstr "Node-Red is uitgeschakeld. Activeer het in Signal K -> Server -> Plugin Config -> Node Rode -> Actief"
+
+#: startup.py:69
+msgid "signalk-to-influxdb plugin is disabled. Please enable it in Signal K -> Server -> Plugin Config -> InfluxDb writer -> Active"
+msgstr "signak-to-influxdb plugin is uitgeschakeld. Activeer het in Signal K -> Server -> Plugin Config -> InfluxDb writer -> Actief"
+
+#: startup.py:78
+msgid "Influxdb is not running"
+msgstr "Influxdb is niet actief"
+
+#: startup.py:87
+msgid "Kapacitor is not running"
+msgstr "Kapacitor wordt niet uitgevoerd"
+
+#: startup.py:96
+msgid "Grafana is not running"
+msgstr "Grafana wordt niet uitgevoerd"

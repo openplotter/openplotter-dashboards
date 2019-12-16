@@ -1,0 +1,151 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: openplotter\n"
+"POT-Creation-Date: 2019-11-14 17:47+0100\n"
+"PO-Revision-Date: 2019-12-16 13:01+0100\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ../../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Crowdin-Project: openplotter\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: openplotter-dashboards.po\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: installInfluxdbGrafana.py:57 installKip.py:39 installNoderedDashboard.py:42
+#: uninstallInfluxdbGrafana.py:48 uninstallKip.py:38
+#: uninstallNoderedDashboard.py:38
+msgid "DONE"
+msgstr "HECHO"
+
+#: installInfluxdbGrafana.py:58 installKip.py:40 installNoderedDashboard.py:43
+#: uninstallInfluxdbGrafana.py:49 uninstallKip.py:39
+#: uninstallNoderedDashboard.py:39
+msgid "FAILED: "
+msgstr "ERROR: "
+
+#: openplotterDashboards.py:95
+msgid "Dashboards"
+msgstr "Cuadros de instrumentos"
+
+#: openplotterDashboards.py:105
+msgid "Help"
+msgstr "Ayuda"
+
+#: openplotterDashboards.py:108 openplotterDashboards.py:182
+msgid "Settings"
+msgstr "Ajustes"
+
+#: openplotterDashboards.py:111
+msgid "Install"
+msgstr "Instalar"
+
+#: openplotterDashboards.py:113
+msgid "Uninstall"
+msgstr "Desinstalar"
+
+#: openplotterDashboards.py:116
+msgid "Refresh"
+msgstr "Actualizar"
+
+#: openplotterDashboards.py:123
+msgid "Apps"
+msgstr "Apps"
+
+#: openplotterDashboards.py:176
+msgid "Name"
+msgstr "Nombre"
+
+#: openplotterDashboards.py:177
+msgid "status"
+msgstr "estado"
+
+#: openplotterDashboards.py:184
+msgid "Edit"
+msgstr "Editar"
+
+#: openplotterDashboards.py:186
+msgid "Show"
+msgstr "Mostrar"
+
+#: openplotterDashboards.py:202 openplotterDashboards.py:203
+msgid "installed"
+msgstr "instalado"
+
+#: openplotterDashboards.py:205 openplotterDashboards.py:208
+msgid "not installed"
+msgstr "no instalado"
+
+#: openplotterDashboards.py:220
+msgid "This dashboard can not be installed"
+msgstr "Este panel no puede ser instalado"
+
+#: openplotterDashboards.py:222
+msgid "Are you sure you want to install "
+msgstr "¿Está seguro de que desea instalar "
+
+#: openplotterDashboards.py:222 openplotterDashboards.py:249
+msgid " and its dependencies?"
+msgstr " ¿y sus dependencias?"
+
+#: openplotterDashboards.py:223 openplotterDashboards.py:250
+msgid "Question"
+msgstr "Pregunta"
+
+#: openplotterDashboards.py:231
+msgid "Installing dashboard, please wait... "
+msgstr "Instalando tablero, por favor espere... "
+
+#: openplotterDashboards.py:237
+msgid "Please install \"Signal K Installer\" OpenPlotter app"
+msgstr "Por favor, instale la aplicación OpenPlotter \"Instalador de Signal K\""
+
+#: openplotterDashboards.py:247
+msgid "This dashboard can not be uninstalled"
+msgstr "Este panel no puede ser desinstalado"
+
+#: openplotterDashboards.py:249
+msgid "Are you sure you want to uninstall "
+msgstr "¿Seguro que quieres desinstalar "
+
+#: openplotterDashboards.py:258
+msgid "Uninstalling dashboard, please wait... "
+msgstr "Desinstalando tablero, por favor espere... "
+
+#: openplotterDashboards.py:265
+msgid "Restarting Signal K server... "
+msgstr "Reiniciando servidor Signal K... "
+
+#: openplotterDashboards.py:270
+msgid "Signal K server restarted"
+msgstr "Servidor Signal K reiniciado"
+
+#: startup.py:45
+msgid "Checking Dashboards..."
+msgstr "Comprobando paneles..."
+
+#: startup.py:59
+msgid "Node-Red is disabled. Please enable it in Signal K -> Server -> Plugin Config -> Node Red -> Active"
+msgstr "Node-Red está deshabilitado. Por favor, actívalo en Signal K -> Server -> Plugin Config -> Node Red -> Activo"
+
+#: startup.py:69
+msgid "signalk-to-influxdb plugin is disabled. Please enable it in Signal K -> Server -> Plugin Config -> InfluxDb writer -> Active"
+msgstr "signalk-to-influxdb plugin está deshabilitado. Por favor, actívalo en Signal K -> Server -> Plugin Config -> InfluxDb writer -> Activo"
+
+#: startup.py:78
+msgid "Influxdb is not running"
+msgstr "Influxdb no está en marcha"
+
+#: startup.py:87
+msgid "Kapacitor is not running"
+msgstr "Kapacitor no está en marcha"
+
+#: startup.py:96
+msgid "Grafana is not running"
+msgstr "Grafana no está en marcha"
