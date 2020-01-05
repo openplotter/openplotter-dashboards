@@ -16,15 +16,18 @@ Clone the repository:
 
 `git clone https://github.com/openplotter/openplotter-dashboards`
 
-Make your changes and install:
+Install:
 
-`sudo python3 setup.py install`
+```
+cd openplotter-dashboards
+sudo python3 setup.py install
+```
 
 Run:
 
 `openplotter-dashboards`
 
-Pull request your changes to github and we will check and add them to the next version of the [Debian package](https://launchpad.net/~openplotter/+archive/ubuntu/openplotter/).
+Make your changes and repeat installation steps to test. Pull request your changes to github and we will check and add them to the next version of the [Debian package](https://launchpad.net/~openplotter/+archive/ubuntu/openplotter/).
 
 ### Documentation
 
