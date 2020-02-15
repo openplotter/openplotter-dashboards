@@ -1,0 +1,15 @@
+Source: openplotter-dashboards
+Section: misc
+Priority: optional
+Maintainer: Sailoog <info@sailoog.com>
+Build-Depends: debhelper (>=9),dh-python,python3-all,python3-setuptools
+Standards-Version: 3.9.6
+Homepage: https://github.com/openplotter/openplotter-dashboards
+X-Python3-Version: >= 3.2
+
+Package: openplotter-dashboards
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}, ${python3:Depends}, openplotter-settings
+Description: OpenPltter app to manage dashboards
+ OpenPltter app to manage dashboards
