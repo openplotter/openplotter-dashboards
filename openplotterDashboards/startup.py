@@ -22,7 +22,7 @@ from openplotterSettings import platform
 class Start():
 	def __init__(self, conf, currentLanguage):
 		self.conf = conf
-		currentdir = os.path.dirname(__file__)
+		currentdir = os.path.dirname(os.path.abspath(__file__))
 		language.Language(currentdir,'openplotter-dashboards',currentLanguage)
 		self.initialMessage = ''
 
@@ -36,7 +36,7 @@ class Start():
 class Check():
 	def __init__(self, conf, currentLanguage):
 		self.conf = conf
-		currentdir = os.path.dirname(__file__)
+		currentdir = os.path.dirname(os.path.abspath(__file__))
 		language.Language(currentdir,'openplotter-dashboards',currentLanguage)
 		self.platform = platform.Platform()
 		self.nodeRed = self.platform.isSKpluginInstalled('node-red-dashboard')

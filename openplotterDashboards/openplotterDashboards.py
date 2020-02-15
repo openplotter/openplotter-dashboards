@@ -26,7 +26,7 @@ class MyFrame(wx.Frame):
 	def __init__(self):
 		self.conf = conf.Conf()
 		self.platform = platform.Platform()
-		self.currentdir = os.path.dirname(__file__)
+		self.currentdir = os.path.dirname(os.path.abspath(__file__))
 		currentLanguage = self.conf.get('GENERAL', 'lang')
 		self.language = language.Language(self.currentdir,'openplotter-dashboards',currentLanguage)
 

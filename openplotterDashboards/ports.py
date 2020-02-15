@@ -22,7 +22,7 @@ from openplotterSettings import platform
 class Ports:
 	def __init__(self,conf,currentLanguage):
 		self.conf = conf
-		currentdir = os.path.dirname(__file__)
+		currentdir = os.path.dirname(os.path.abspath(__file__))
 		language.Language(currentdir,'openplotter-dashboards',currentLanguage)
 		self.platform = platform.Platform()
 		self.connections = []
