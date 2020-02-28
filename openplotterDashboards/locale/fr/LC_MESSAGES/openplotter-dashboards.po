@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2019-11-14 17:47+0100\n"
-"PO-Revision-Date: 2019-12-16 12:48+0100\n"
+"PO-Revision-Date: 2020-02-28 11:18+0100\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -22,130 +22,130 @@ msgstr ""
 #: uninstallInfluxdbGrafana.py:48 uninstallKip.py:38
 #: uninstallNoderedDashboard.py:38
 msgid "DONE"
-msgstr ""
+msgstr "TERMINÉ"
 
 #: installInfluxdbGrafana.py:58 installKip.py:40 installNoderedDashboard.py:43
 #: uninstallInfluxdbGrafana.py:49 uninstallKip.py:39
 #: uninstallNoderedDashboard.py:39
 msgid "FAILED: "
-msgstr ""
+msgstr "ÉCHEC: "
 
 #: openplotterDashboards.py:95
 msgid "Dashboards"
-msgstr ""
+msgstr "Tableaux de bord"
 
 #: openplotterDashboards.py:105
 msgid "Help"
-msgstr ""
+msgstr "Aide"
 
 #: openplotterDashboards.py:108 openplotterDashboards.py:182
 msgid "Settings"
-msgstr ""
+msgstr "Paramètres"
 
 #: openplotterDashboards.py:111
 msgid "Install"
-msgstr ""
+msgstr "Installer"
 
 #: openplotterDashboards.py:113
 msgid "Uninstall"
-msgstr ""
+msgstr "Désinstaller"
 
 #: openplotterDashboards.py:116
 msgid "Refresh"
-msgstr ""
+msgstr "Actualiser"
 
 #: openplotterDashboards.py:123
 msgid "Apps"
-msgstr ""
+msgstr "Applis"
 
 #: openplotterDashboards.py:176
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #: openplotterDashboards.py:177
 msgid "status"
-msgstr ""
+msgstr "état"
 
 #: openplotterDashboards.py:184
 msgid "Edit"
-msgstr ""
+msgstr "Modifier"
 
 #: openplotterDashboards.py:186
 msgid "Show"
-msgstr ""
+msgstr "Afficher"
 
 #: openplotterDashboards.py:202 openplotterDashboards.py:203
 msgid "installed"
-msgstr ""
+msgstr "installé"
 
 #: openplotterDashboards.py:205 openplotterDashboards.py:208
 msgid "not installed"
-msgstr ""
+msgstr "non installé"
 
 #: openplotterDashboards.py:220
 msgid "This dashboard can not be installed"
-msgstr ""
+msgstr "Ce tableau de bord ne peut pas être installé"
 
 #: openplotterDashboards.py:222
 msgid "Are you sure you want to install "
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir installer "
 
 #: openplotterDashboards.py:222 openplotterDashboards.py:249
 msgid " and its dependencies?"
-msgstr ""
+msgstr " et ses dépendances?"
 
 #: openplotterDashboards.py:223 openplotterDashboards.py:250
 msgid "Question"
-msgstr ""
+msgstr "Question"
 
 #: openplotterDashboards.py:231
 msgid "Installing dashboard, please wait... "
-msgstr ""
+msgstr "Installation du tableau de bord, veuillez patienter... "
 
 #: openplotterDashboards.py:237
 msgid "Please install \"Signal K Installer\" OpenPlotter app"
-msgstr ""
+msgstr "Veuillez installer l'appli d'OpenPlotter \"Installateur Signal K\""
 
 #: openplotterDashboards.py:247
 msgid "This dashboard can not be uninstalled"
-msgstr ""
+msgstr "Ce tableau de bord ne peut pas être désinstallé"
 
 #: openplotterDashboards.py:249
 msgid "Are you sure you want to uninstall "
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir désinstaller "
 
 #: openplotterDashboards.py:258
 msgid "Uninstalling dashboard, please wait... "
-msgstr ""
+msgstr "Désinstallation du tableau de bord, veuillez patienter... "
 
 #: openplotterDashboards.py:265
 msgid "Restarting Signal K server... "
-msgstr ""
+msgstr "Redémarrage du serveur Signal K... "
 
 #: openplotterDashboards.py:270
 msgid "Signal K server restarted"
-msgstr ""
+msgstr "Serveur Signal K redémarré"
 
 #: startup.py:45
 msgid "Checking Dashboards..."
-msgstr ""
+msgstr "Vérification des tableaux de bord..."
 
 #: startup.py:59
 msgid "Node-Red is disabled. Please enable it in Signal K -> Server -> Plugin Config -> Node Red -> Active"
-msgstr ""
+msgstr "Node-Red est désactivé. Veuillez l'activer dans Signal K -> Server -> Plugin Config -> Node Red -> Active"
 
 #: startup.py:69
 msgid "signalk-to-influxdb plugin is disabled. Please enable it in Signal K -> Server -> Plugin Config -> InfluxDb writer -> Active"
-msgstr ""
+msgstr "le plugin signalk-to-influxdb est désactivé. Veuillez l'activer dans Signal K -> Server -> Plugin Config -> InfluxDb writer -> Active"
 
 #: startup.py:78
 msgid "Influxdb is not running"
-msgstr ""
+msgstr "Influxdb n'est pas en cours d'exécution"
 
 #: startup.py:87
 msgid "Kapacitor is not running"
-msgstr ""
+msgstr "Kapacitor n'est pas en cours d'exécution"
 
 #: startup.py:96
 msgid "Grafana is not running"
-msgstr ""
+msgstr "Grafana n'est pas en cours d'exécution"

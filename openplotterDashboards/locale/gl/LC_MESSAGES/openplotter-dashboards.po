@@ -2,19 +2,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2019-11-14 17:47+0100\n"
-"PO-Revision-Date: 2020-02-28 11:19+0100\n"
+"PO-Revision-Date: 2020-02-28 11:18+0100\n"
 "Last-Translator: \n"
-"Language-Team: Polish\n"
-"Language: pl\n"
+"Language-Team: Galician\n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-Basepath: ../../..\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Crowdin-Project: openplotter\n"
-"X-Crowdin-Language: pl\n"
+"X-Crowdin-Language: gl\n"
 "X-Crowdin-File: openplotter-dashboards.po\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -22,130 +22,130 @@ msgstr ""
 #: uninstallInfluxdbGrafana.py:48 uninstallKip.py:38
 #: uninstallNoderedDashboard.py:38
 msgid "DONE"
-msgstr "GOTOWE"
+msgstr ""
 
 #: installInfluxdbGrafana.py:58 installKip.py:40 installNoderedDashboard.py:43
 #: uninstallInfluxdbGrafana.py:49 uninstallKip.py:39
 #: uninstallNoderedDashboard.py:39
 msgid "FAILED: "
-msgstr "WYSTĄPIŁ BŁĄD: "
+msgstr ""
 
 #: openplotterDashboards.py:95
 msgid "Dashboards"
-msgstr "Panele wskaźników"
+msgstr ""
 
 #: openplotterDashboards.py:105
 msgid "Help"
-msgstr "Pomoc"
+msgstr ""
 
 #: openplotterDashboards.py:108 openplotterDashboards.py:182
 msgid "Settings"
-msgstr "Ustawienia"
+msgstr ""
 
 #: openplotterDashboards.py:111
 msgid "Install"
-msgstr "Zainstaluj"
+msgstr ""
 
 #: openplotterDashboards.py:113
 msgid "Uninstall"
-msgstr "Odinstaluj"
+msgstr ""
 
 #: openplotterDashboards.py:116
 msgid "Refresh"
-msgstr "Odśwież"
+msgstr ""
 
 #: openplotterDashboards.py:123
 msgid "Apps"
-msgstr "Aplikacje"
+msgstr ""
 
 #: openplotterDashboards.py:176
 msgid "Name"
-msgstr "Nazwa"
+msgstr ""
 
 #: openplotterDashboards.py:177
 msgid "status"
-msgstr "status"
+msgstr ""
 
 #: openplotterDashboards.py:184
 msgid "Edit"
-msgstr "Edytuj"
+msgstr ""
 
 #: openplotterDashboards.py:186
 msgid "Show"
-msgstr "Pokaż"
+msgstr ""
 
 #: openplotterDashboards.py:202 openplotterDashboards.py:203
 msgid "installed"
-msgstr "zainstalowane"
+msgstr ""
 
 #: openplotterDashboards.py:205 openplotterDashboards.py:208
 msgid "not installed"
-msgstr "nie zainstalowane"
+msgstr ""
 
 #: openplotterDashboards.py:220
 msgid "This dashboard can not be installed"
-msgstr "Ten panel wskaźników nie może zostać zainstalowany"
+msgstr ""
 
 #: openplotterDashboards.py:222
 msgid "Are you sure you want to install "
-msgstr "Jesteś pewien ze chcesz zainstalować "
+msgstr ""
 
 #: openplotterDashboards.py:222 openplotterDashboards.py:249
 msgid " and its dependencies?"
-msgstr " wraz z zależnościami?"
+msgstr ""
 
 #: openplotterDashboards.py:223 openplotterDashboards.py:250
 msgid "Question"
-msgstr "Pytanie"
+msgstr ""
 
 #: openplotterDashboards.py:231
 msgid "Installing dashboard, please wait... "
-msgstr "Instalowanie panela wskaźników, proszę czekać... "
+msgstr ""
 
 #: openplotterDashboards.py:237
 msgid "Please install \"Signal K Installer\" OpenPlotter app"
-msgstr "Proszę zainstaluj komponent OpenPlotter \"Signal K Installer\""
+msgstr ""
 
 #: openplotterDashboards.py:247
 msgid "This dashboard can not be uninstalled"
-msgstr "Ten panel wskaźników nie może zostać odinstalowany"
+msgstr ""
 
 #: openplotterDashboards.py:249
 msgid "Are you sure you want to uninstall "
-msgstr "Czy na pewno chcesz odinstalować "
+msgstr ""
 
 #: openplotterDashboards.py:258
 msgid "Uninstalling dashboard, please wait... "
-msgstr "Odinstalowywanie panela wskaźników, proszę czekać... "
+msgstr ""
 
 #: openplotterDashboards.py:265
 msgid "Restarting Signal K server... "
-msgstr "Ponowne uruchamianie serwera Signal K... "
+msgstr ""
 
 #: openplotterDashboards.py:270
 msgid "Signal K server restarted"
-msgstr "Serwer Signal K został uruchomiony ponownie"
+msgstr ""
 
 #: startup.py:45
 msgid "Checking Dashboards..."
-msgstr "Sprawdzanie komponentu Panele Wskaźników..."
+msgstr ""
 
 #: startup.py:59
 msgid "Node-Red is disabled. Please enable it in Signal K -> Server -> Plugin Config -> Node Red -> Active"
-msgstr "Narzędzie Node-Red jest wyłączone. Proszę włączyć go w Signal K -> Serwer -> Konfiguracja wtyczek -> Node-Red -> Aktywny"
+msgstr ""
 
 #: startup.py:69
 msgid "signalk-to-influxdb plugin is disabled. Please enable it in Signal K -> Server -> Plugin Config -> InfluxDb writer -> Active"
-msgstr "Wtyczka signalk-to-influxdb jest wyłączona. Proszę włączyć ją w Signal K -> Serwer -> Konfiguracja wtyczek -> InfluxDb writer -> Aktywny"
+msgstr ""
 
 #: startup.py:78
 msgid "Influxdb is not running"
-msgstr "Influxdb nie jest uruchomiony"
+msgstr ""
 
 #: startup.py:87
 msgid "Kapacitor is not running"
-msgstr "Kapacitor nie jest uruchomiony"
+msgstr ""
 
 #: startup.py:96
 msgid "Grafana is not running"
-msgstr "Grafana nie jest uruchomiona"
+msgstr ""
