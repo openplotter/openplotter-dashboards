@@ -21,7 +21,18 @@ import wx.richtext as rt
 from openplotterSettings import conf
 from openplotterSettings import language
 from openplotterSettings import platform
-from .version import version
+from wx.lib.mixins.listctrl import CheckListCtrlMixin, ListCtrlAutoWidthMixin
+
+if os.path.dirname(os.path.abspath(__file__))[0:4] == '/usr':
+	from .version import version
+else:
+	import version
+
+class CheckListCtrl(wx.ListCtrl, CheckListCtrlMixin, ListCtrlAutoWidthMixin):
+	def __init__(self, parent, height):
+		wx.ListCtrl.__init__(self, parent, -1, style=wx.LC_REPORT | wx.SUNKEN_BORDER, size=(650, height))
+		CheckListCtrlMixin.__init__(self)
+		ListCtrlAutoWidthMixin.__init__(self)
 
 class MyFrame(wx.Frame):
 	def __init__(self):
@@ -114,7 +125,11 @@ class MyFrame(wx.Frame):
 		}
 		self.appsDict.append(app)
 
-		wx.Frame.__init__(self, None, title=_('Dashboards')+' '+version, size=(800,444))
+		if os.path.dirname(os.path.abspath(__file__))[0:4] == '/usr': 
+			v = version
+		else: v = version.version
+
+		wx.Frame.__init__(self, None, title=_('Dashboards')+' '+v, size=(800,444))
 		self.SetFont(wx.Font(10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL))
 		icon = wx.Icon(self.currentdir+"/data/openplotter-dashboards.png", wx.BITMAP_TYPE_PNG)
 		self.SetIcon(icon)
@@ -136,15 +151,18 @@ class MyFrame(wx.Frame):
 		self.notebook = wx.Notebook(self)
 		self.notebook.Bind(wx.EVT_NOTEBOOK_PAGE_CHANGED, self.onTabChange)
 		self.apps = wx.Panel(self.notebook)
+		self.systemd = wx.Panel(self.notebook)		
 		self.output = wx.Panel(self.notebook)
 		self.notebook.AddPage(self.apps, _('Apps'))
+		self.notebook.AddPage(self.systemd, _('Process status'))
 		self.notebook.AddPage(self.output, '')
 		self.il = wx.ImageList(24, 24)
 		img0 = self.il.Add(wx.Bitmap(self.currentdir+"/data/dashboard.png", wx.BITMAP_TYPE_PNG))
 		img1 = self.il.Add(wx.Bitmap(self.currentdir+"/data/output.png", wx.BITMAP_TYPE_PNG))
 		self.notebook.AssignImageList(self.il)
 		self.notebook.SetPageImage(0, img0)
-		self.notebook.SetPageImage(1, img1)
+		self.notebook.SetPageImage(1, img0)
+		self.notebook.SetPageImage(2, img1)
 
 		vbox = wx.BoxSizer(wx.VERTICAL)
 		vbox.Add(self.toolbar1, 0, wx.EXPAND)
@@ -152,6 +170,7 @@ class MyFrame(wx.Frame):
 		self.SetSizer(vbox)
 
 		self.pageApps()
+		self.pageSystemd()		
 		self.pageOutput()
 
 		maxi = self.conf.get('GENERAL', 'maximize')
@@ -310,6 +329,87 @@ class MyFrame(wx.Frame):
 		if index == -1: return
 		apps = list(reversed(self.appsDict))
 		webbrowser.open(apps[index]['show'], new=2)
+		
+################################################################################
+
+	def pageSystemd(self):	
+		self.process = []
+		if self.platform.isSKpluginInstalled('signalk-to-influxdb'):
+			self.process = ['influxdb', 'grafana-server', 'kapacitor']
+
+		self.started = False
+		self.aStatusList = [_('inactive'),_('active')]
+		self.bStatusList = [_('dead'),_('running')] 
+
+		self.listSystemd = CheckListCtrl(self.systemd, 152)
+		self.listSystemd.InsertColumn(0, _('Autostart'), width=90)
+		self.listSystemd.InsertColumn(1, _('Process'), width=150)
+		self.listSystemd.InsertColumn(2, _('Status'), width=150)
+		self.listSystemd.InsertColumn(3, '  ', width=150)
+		
+		self.listSystemd.OnCheckItem = self.OnCheckItem
+
+		self.toolbar3 = wx.ToolBar(self.systemd, style=wx.TB_TEXT | wx.TB_VERTICAL)
+		self.start = self.toolbar3.AddTool(301, _('Start'), wx.Bitmap(self.currentdir+"/data/start.png"))
+		self.Bind(wx.EVT_TOOL, self.onStart, self.start)
+		self.stop = self.toolbar3.AddTool(302, _('Stop'), wx.Bitmap(self.currentdir+"/data/stop.png"))
+		self.Bind(wx.EVT_TOOL, self.onStop, self.stop)
+		self.restart = self.toolbar3.AddTool(303, _('Restart'), wx.Bitmap(self.currentdir+"/data/restart.png"))
+		self.Bind(wx.EVT_TOOL, self.onRestart, self.restart)	
+
+		sizer = wx.BoxSizer(wx.HORIZONTAL)
+		sizer.Add(self.listSystemd, 1, wx.EXPAND, 0)
+		sizer.Add(self.toolbar3, 0)
+
+		self.systemd.SetSizer(sizer)
+
+		self.set_listSystemd()
+		self.started = True
+
+	def set_listSystemd(self):
+		self.listSystemd.DeleteAllItems()
+		index = 1
+		for i in self.process:
+			if i:
+				index = self.listSystemd.InsertItem(sys.maxsize, '')
+				self.statusUpdate(i,index)
+
+	def statusUpdate(self, process, index): 
+		command = 'systemctl show ' + process + ' --no-page'
+		output = subprocess.check_output(command.split(),universal_newlines=True)
+		if 'UnitFileState=enabled' in output: self.listSystemd.CheckItem(index)
+		self.listSystemd.SetItem(index, 1, process)
+		self.listSystemd.SetItem(index, 2, self.aStatusList[('ActiveState=active' in output)*1])
+		self.listSystemd.SetItem(index, 3, self.bStatusList[('SubState=running' in output)*1])
+						
+	def onStart(self,e):
+		index = self.listSystemd.GetFirstSelected()
+		if index == -1: return
+		subprocess.call((self.platform.admin + ' systemctl start ' + self.process[index]).split())
+		self.set_listSystemd()
+
+	def onStop(self,e):
+		index = self.listSystemd.GetFirstSelected()
+		if index == -1: return
+		subprocess.call((self.platform.admin + ' systemctl stop ' + self.process[index]).split())
+		self.set_listSystemd()
+
+	def onRestart(self,e):
+		index = self.listSystemd.GetFirstSelected()
+		if index == -1: return
+		subprocess.call((self.platform.admin + ' systemctl restart ' + self.process[index]).split())
+		self.set_listSystemd()
+		
+	def OnCheckItem(self, index, flag):
+		if not self.started: return
+		if flag:
+			subprocess.call((self.platform.admin + ' systemctl enable ' + self.process[index]).split())
+		else:
+			subprocess.call((self.platform.admin + ' systemctl disable ' + self.process[index]).split())
+		#self.set_listSystemd()
+
+################################################################################
+		
 
 	def pageOutput(self):
 		self.logger = rt.RichTextCtrl(self.output, style=wx.TE_MULTILINE|wx.TE_READONLY|wx.TE_DONTWRAP|wx.LC_SORT_ASCENDING)
