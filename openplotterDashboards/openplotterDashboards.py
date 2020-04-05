@@ -213,6 +213,7 @@ class MyFrame(wx.Frame):
 		self.listApps.InsertColumn(1, _('status'), width=365)
 		self.listApps.Bind(wx.EVT_LIST_ITEM_SELECTED, self.onListAppsSelected)
 		self.listApps.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.onListAppsDeselected)
+		self.listApps.SetTextColour(wx.BLACK)
 
 		self.toolbar2 = wx.ToolBar(self.apps, style=wx.TB_TEXT | wx.TB_VERTICAL)
 		self.settingsButton = self.toolbar2.AddTool(204, _('Settings'), wx.Bitmap(self.currentdir+"/data/settings2.png"))
@@ -266,7 +267,7 @@ class MyFrame(wx.Frame):
 			dlg = wx.MessageDialog(None, msg, _('Question'), wx.YES_NO | wx.NO_DEFAULT | wx.ICON_EXCLAMATION)
 			if dlg.ShowModal() == wx.ID_YES:
 				self.logger.Clear()
-				self.notebook.ChangeSelection(1)
+				self.notebook.ChangeSelection(2)
 				popen = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, shell=True)
 				for line in popen.stdout:
 					if not 'Warning' in line and not 'WARNING' in line:
@@ -293,7 +294,7 @@ class MyFrame(wx.Frame):
 		dlg = wx.MessageDialog(None, msg, _('Question'), wx.YES_NO | wx.NO_DEFAULT | wx.ICON_EXCLAMATION)
 		if dlg.ShowModal() == wx.ID_YES:
 			self.logger.Clear()
-			self.notebook.ChangeSelection(1)
+			self.notebook.ChangeSelection(2)
 			popen = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, shell=True)
 			for line in popen.stdout:
 				if not 'Warning' in line and not 'WARNING' in line:
@@ -346,6 +347,8 @@ class MyFrame(wx.Frame):
 		self.listSystemd.InsertColumn(1, _('Process'), width=150)
 		self.listSystemd.InsertColumn(2, _('Status'), width=150)
 		self.listSystemd.InsertColumn(3, '  ', width=150)
+		self.listSystemd.SetTextColour(wx.BLACK)
+
 		
 		self.listSystemd.OnCheckItem = self.OnCheckItem
 
