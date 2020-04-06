@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2019-11-14 17:47+0100\n"
-"PO-Revision-Date: 2020-02-28 11:19+0100\n"
+"POT-Creation-Date: 2020-04-05 21:23+0200\n"
+"PO-Revision-Date: 2020-04-06 11:55+0200\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Language: pl\n"
@@ -18,113 +18,174 @@ msgstr ""
 "X-Crowdin-File: openplotter-dashboards.po\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: installInfluxdbGrafana.py:57 installKip.py:39 installNoderedDashboard.py:42
+#: installInfluxdbGrafana.py:57 installKip.py:39 installNoderedDashboard.py:40
 #: uninstallInfluxdbGrafana.py:48 uninstallKip.py:38
 #: uninstallNoderedDashboard.py:38
 msgid "DONE"
 msgstr "GOTOWE"
 
-#: installInfluxdbGrafana.py:58 installKip.py:40 installNoderedDashboard.py:43
+#: installInfluxdbGrafana.py:58 installKip.py:40 installNoderedDashboard.py:41
 #: uninstallInfluxdbGrafana.py:49 uninstallKip.py:39
 #: uninstallNoderedDashboard.py:39
 msgid "FAILED: "
 msgstr "WYSTĄPIŁ BŁĄD: "
 
-#: openplotterDashboards.py:95
+#: openplotterDashboards.py:132
 msgid "Dashboards"
 msgstr "Panele wskaźników"
 
-#: openplotterDashboards.py:105
+#: openplotterDashboards.py:142
 msgid "Help"
 msgstr "Pomoc"
 
-#: openplotterDashboards.py:108 openplotterDashboards.py:182
+#: openplotterDashboards.py:145 openplotterDashboards.py:220
 msgid "Settings"
 msgstr "Ustawienia"
 
-#: openplotterDashboards.py:111
-msgid "Install"
-msgstr "Zainstaluj"
-
-#: openplotterDashboards.py:113
-msgid "Uninstall"
-msgstr "Odinstaluj"
-
-#: openplotterDashboards.py:116
+#: openplotterDashboards.py:148
 msgid "Refresh"
 msgstr "Odśwież"
 
-#: openplotterDashboards.py:123
+#: openplotterDashboards.py:156
 msgid "Apps"
 msgstr "Aplikacje"
 
-#: openplotterDashboards.py:176
+#: openplotterDashboards.py:157
+msgid "Processes"
+msgstr ""
+
+#: openplotterDashboards.py:213
 msgid "Name"
 msgstr "Nazwa"
 
-#: openplotterDashboards.py:177
+#: openplotterDashboards.py:214
 msgid "status"
 msgstr "status"
 
-#: openplotterDashboards.py:184
+#: openplotterDashboards.py:222
 msgid "Edit"
 msgstr "Edytuj"
 
-#: openplotterDashboards.py:186
+#: openplotterDashboards.py:224
 msgid "Show"
 msgstr "Pokaż"
 
-#: openplotterDashboards.py:202 openplotterDashboards.py:203
+#: openplotterDashboards.py:227
+msgid "Install"
+msgstr "Zainstaluj"
+
+#: openplotterDashboards.py:229
+msgid "Uninstall"
+msgstr "Odinstaluj"
+
+#: openplotterDashboards.py:268 openplotterDashboards.py:269
 msgid "installed"
 msgstr "zainstalowane"
 
-#: openplotterDashboards.py:205 openplotterDashboards.py:208
+#: openplotterDashboards.py:271 openplotterDashboards.py:274
 msgid "not installed"
 msgstr "nie zainstalowane"
 
-#: openplotterDashboards.py:220
+#: openplotterDashboards.py:288
 msgid "This dashboard can not be installed"
 msgstr "Ten panel wskaźników nie może zostać zainstalowany"
 
-#: openplotterDashboards.py:222
+#: openplotterDashboards.py:290
 msgid "Are you sure you want to install "
 msgstr "Jesteś pewien ze chcesz zainstalować "
 
-#: openplotterDashboards.py:222 openplotterDashboards.py:249
+#: openplotterDashboards.py:290 openplotterDashboards.py:317
 msgid " and its dependencies?"
 msgstr " wraz z zależnościami?"
 
-#: openplotterDashboards.py:223 openplotterDashboards.py:250
+#: openplotterDashboards.py:291 openplotterDashboards.py:318
 msgid "Question"
 msgstr "Pytanie"
 
-#: openplotterDashboards.py:231
+#: openplotterDashboards.py:299
 msgid "Installing dashboard, please wait... "
 msgstr "Instalowanie panela wskaźników, proszę czekać... "
 
-#: openplotterDashboards.py:237
+#: openplotterDashboards.py:305
 msgid "Please install \"Signal K Installer\" OpenPlotter app"
 msgstr "Proszę zainstaluj komponent OpenPlotter \"Signal K Installer\""
 
-#: openplotterDashboards.py:247
+#: openplotterDashboards.py:315
 msgid "This dashboard can not be uninstalled"
 msgstr "Ten panel wskaźników nie może zostać odinstalowany"
 
-#: openplotterDashboards.py:249
+#: openplotterDashboards.py:317
 msgid "Are you sure you want to uninstall "
 msgstr "Czy na pewno chcesz odinstalować "
 
-#: openplotterDashboards.py:258
+#: openplotterDashboards.py:326
 msgid "Uninstalling dashboard, please wait... "
 msgstr "Odinstalowywanie panela wskaźników, proszę czekać... "
 
-#: openplotterDashboards.py:265
+#: openplotterDashboards.py:333
 msgid "Restarting Signal K server... "
 msgstr "Ponowne uruchamianie serwera Signal K... "
 
-#: openplotterDashboards.py:270
+#: openplotterDashboards.py:338
 msgid "Signal K server restarted"
 msgstr "Serwer Signal K został uruchomiony ponownie"
+
+#: openplotterDashboards.py:362
+msgid "inactive"
+msgstr ""
+
+#: openplotterDashboards.py:362
+msgid "active"
+msgstr ""
+
+#: openplotterDashboards.py:363
+msgid "dead"
+msgstr ""
+
+#: openplotterDashboards.py:363
+msgid "running"
+msgstr ""
+
+#: openplotterDashboards.py:366
+msgid "Autostart"
+msgstr ""
+
+#: openplotterDashboards.py:367
+msgid "Process"
+msgstr ""
+
+#: openplotterDashboards.py:368
+msgid "Status"
+msgstr ""
+
+#: openplotterDashboards.py:377
+msgid "Start"
+msgstr ""
+
+#: openplotterDashboards.py:379
+msgid "Stop"
+msgstr ""
+
+#: openplotterDashboards.py:381
+msgid "Restart"
+msgstr ""
+
+#: openplotterDashboards.py:429
+msgid "Starting process..."
+msgstr ""
+
+#: openplotterDashboards.py:432 openplotterDashboards.py:440
+#: openplotterDashboards.py:448
+msgid "Done"
+msgstr ""
+
+#: openplotterDashboards.py:437
+msgid "Stopping process..."
+msgstr ""
+
+#: openplotterDashboards.py:445
+msgid "Restarting process..."
+msgstr ""
 
 #: startup.py:45
 msgid "Checking Dashboards..."

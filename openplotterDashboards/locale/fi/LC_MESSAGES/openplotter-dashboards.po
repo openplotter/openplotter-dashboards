@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2019-11-14 17:47+0100\n"
-"PO-Revision-Date: 2020-02-28 11:18+0100\n"
+"POT-Creation-Date: 2020-04-05 21:23+0200\n"
+"PO-Revision-Date: 2020-04-06 11:55+0200\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Language: fi\n"
@@ -18,113 +18,174 @@ msgstr ""
 "X-Crowdin-File: openplotter-dashboards.po\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: installInfluxdbGrafana.py:57 installKip.py:39 installNoderedDashboard.py:42
+#: installInfluxdbGrafana.py:57 installKip.py:39 installNoderedDashboard.py:40
 #: uninstallInfluxdbGrafana.py:48 uninstallKip.py:38
 #: uninstallNoderedDashboard.py:38
 msgid "DONE"
 msgstr "VALMIS"
 
-#: installInfluxdbGrafana.py:58 installKip.py:40 installNoderedDashboard.py:43
+#: installInfluxdbGrafana.py:58 installKip.py:40 installNoderedDashboard.py:41
 #: uninstallInfluxdbGrafana.py:49 uninstallKip.py:39
 #: uninstallNoderedDashboard.py:39
 msgid "FAILED: "
 msgstr "EPÄONNISTUNUT: "
 
-#: openplotterDashboards.py:95
+#: openplotterDashboards.py:132
 msgid "Dashboards"
 msgstr "Hallintasivut"
 
-#: openplotterDashboards.py:105
+#: openplotterDashboards.py:142
 msgid "Help"
 msgstr "Ohje"
 
-#: openplotterDashboards.py:108 openplotterDashboards.py:182
+#: openplotterDashboards.py:145 openplotterDashboards.py:220
 msgid "Settings"
 msgstr "Asetukset"
 
-#: openplotterDashboards.py:111
-msgid "Install"
-msgstr "Asenna"
-
-#: openplotterDashboards.py:113
-msgid "Uninstall"
-msgstr "Poista"
-
-#: openplotterDashboards.py:116
+#: openplotterDashboards.py:148
 msgid "Refresh"
 msgstr "Virkistä"
 
-#: openplotterDashboards.py:123
+#: openplotterDashboards.py:156
 msgid "Apps"
 msgstr "Sovellukset"
 
-#: openplotterDashboards.py:176
+#: openplotterDashboards.py:157
+msgid "Processes"
+msgstr "Prosessit"
+
+#: openplotterDashboards.py:213
 msgid "Name"
 msgstr "Nimi"
 
-#: openplotterDashboards.py:177
+#: openplotterDashboards.py:214
 msgid "status"
 msgstr "tila"
 
-#: openplotterDashboards.py:184
+#: openplotterDashboards.py:222
 msgid "Edit"
 msgstr "Muokkaa"
 
-#: openplotterDashboards.py:186
+#: openplotterDashboards.py:224
 msgid "Show"
 msgstr "Näytä"
 
-#: openplotterDashboards.py:202 openplotterDashboards.py:203
+#: openplotterDashboards.py:227
+msgid "Install"
+msgstr "Asenna"
+
+#: openplotterDashboards.py:229
+msgid "Uninstall"
+msgstr "Poista"
+
+#: openplotterDashboards.py:268 openplotterDashboards.py:269
 msgid "installed"
 msgstr "asennettu"
 
-#: openplotterDashboards.py:205 openplotterDashboards.py:208
+#: openplotterDashboards.py:271 openplotterDashboards.py:274
 msgid "not installed"
 msgstr "ei asennettu"
 
-#: openplotterDashboards.py:220
+#: openplotterDashboards.py:288
 msgid "This dashboard can not be installed"
 msgstr "Tätä hallintasivua ei voi asentaa"
 
-#: openplotterDashboards.py:222
+#: openplotterDashboards.py:290
 msgid "Are you sure you want to install "
 msgstr "Haluatko varmasti asentaa "
 
-#: openplotterDashboards.py:222 openplotterDashboards.py:249
+#: openplotterDashboards.py:290 openplotterDashboards.py:317
 msgid " and its dependencies?"
 msgstr " ja sen riippuvuudet?"
 
-#: openplotterDashboards.py:223 openplotterDashboards.py:250
+#: openplotterDashboards.py:291 openplotterDashboards.py:318
 msgid "Question"
 msgstr "Kysymys"
 
-#: openplotterDashboards.py:231
+#: openplotterDashboards.py:299
 msgid "Installing dashboard, please wait... "
 msgstr "Hallintasivu asennetaan, odottele... "
 
-#: openplotterDashboards.py:237
+#: openplotterDashboards.py:305
 msgid "Please install \"Signal K Installer\" OpenPlotter app"
 msgstr "Asenna \"Signal K asennin\" OpenPlotter sovelma"
 
-#: openplotterDashboards.py:247
+#: openplotterDashboards.py:315
 msgid "This dashboard can not be uninstalled"
 msgstr "Tätä hallintasivua ei voi poistaa"
 
-#: openplotterDashboards.py:249
+#: openplotterDashboards.py:317
 msgid "Are you sure you want to uninstall "
 msgstr "Haluatko varmasti poistaa "
 
-#: openplotterDashboards.py:258
+#: openplotterDashboards.py:326
 msgid "Uninstalling dashboard, please wait... "
 msgstr "Hallintasivu poistetaan, odottele... "
 
-#: openplotterDashboards.py:265
+#: openplotterDashboards.py:333
 msgid "Restarting Signal K server... "
 msgstr "Käynnistetään Signal K palvelin... "
 
-#: openplotterDashboards.py:270
+#: openplotterDashboards.py:338
 msgid "Signal K server restarted"
 msgstr "Signal K palvelin käynnistetty"
+
+#: openplotterDashboards.py:362
+msgid "inactive"
+msgstr "ei aktiivinen"
+
+#: openplotterDashboards.py:362
+msgid "active"
+msgstr "aktiivinen"
+
+#: openplotterDashboards.py:363
+msgid "dead"
+msgstr "kuollut"
+
+#: openplotterDashboards.py:363
+msgid "running"
+msgstr "käynnissä"
+
+#: openplotterDashboards.py:366
+msgid "Autostart"
+msgstr "Autom. käynnistys"
+
+#: openplotterDashboards.py:367
+msgid "Process"
+msgstr "Prosessi"
+
+#: openplotterDashboards.py:368
+msgid "Status"
+msgstr "Tila"
+
+#: openplotterDashboards.py:377
+msgid "Start"
+msgstr "Aloita"
+
+#: openplotterDashboards.py:379
+msgid "Stop"
+msgstr "Pysäytä"
+
+#: openplotterDashboards.py:381
+msgid "Restart"
+msgstr "Käynn. uud."
+
+#: openplotterDashboards.py:429
+msgid "Starting process..."
+msgstr "Aloitetaan prosessi..."
+
+#: openplotterDashboards.py:432 openplotterDashboards.py:440
+#: openplotterDashboards.py:448
+msgid "Done"
+msgstr "Tehty"
+
+#: openplotterDashboards.py:437
+msgid "Stopping process..."
+msgstr "Pysäytetään prosessi..."
+
+#: openplotterDashboards.py:445
+msgid "Restarting process..."
+msgstr "Aloitetaan prosessi uudelleen..."
 
 #: startup.py:45
 msgid "Checking Dashboards..."
