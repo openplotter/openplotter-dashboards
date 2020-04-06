@@ -406,7 +406,7 @@ class MyFrame(wx.Frame):
 	def set_listSystemd(self):
 		self.process = []
 		if self.platform.isSKpluginInstalled('signalk-to-influxdb'):
-			self.process = ['influxdb', 'grafana-server', 'kapacitor']
+			self.process = ['influxdb', 'grafana-server', 'chronograf', 'kapacitor']
 		self.listSystemd.DeleteAllItems()
 		index = 1
 		for i in self.process:
