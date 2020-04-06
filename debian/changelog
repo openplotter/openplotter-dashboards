@@ -1,3 +1,10 @@
+openplotter-dashboards (2.2.0-stable) bionic; urgency=medium
+
+  * Add processes control
+  * Update translations
+
+ -- Sailoog <info@sailoog.com>  Mon, 06 Apr 2020 11:57:29 +0200
+
 openplotter-dashboards (2.1.0-stable) bionic; urgency=medium
 
   * Initial release
