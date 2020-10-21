@@ -59,7 +59,7 @@ class MyFrame(wx.Frame):
 		'plugin': 'signalk-to-influxdb',
 		'install': install,
 		'uninstall': uninstall,
-		'settings': 'http://localhost:8888',
+		'settings': 'http://localhost:8889',
 		}
 		self.appsDict.append(app)
 
@@ -406,7 +406,7 @@ class MyFrame(wx.Frame):
 	def set_listSystemd(self):
 		self.process = []
 		if self.platform.isSKpluginInstalled('signalk-to-influxdb'):
-			self.process = ['influxdb', 'grafana-server', 'kapacitor']
+			self.process = ['influxdb', 'grafana-server', 'kapacitor', 'chronograf']
 		self.listSystemd.DeleteAllItems()
 		index = 1
 		for i in self.process:

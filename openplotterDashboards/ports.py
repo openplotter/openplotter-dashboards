@@ -30,7 +30,7 @@ class Ports:
 	def usedPorts(self):
 		if self.platform.skPort:
 			if self.platform.isSKpluginInstalled('signalk-to-influxdb'):
-				self.connections.append({'id':'chronograf', 'description':'Chronograf', 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':'8888', 'editable':'0'})
+				self.connections.append({'id':'chronograf', 'description':'Chronograf', 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':'8889', 'editable':'0'})
 				try:
 					subprocess.check_output(['systemctl', 'is-active', 'grafana-server.service']).decode(sys.stdin.encoding)
 					self.connections.append({'id':'grafana', 'description':'Grafana', 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':'3001', 'editable':'0'})

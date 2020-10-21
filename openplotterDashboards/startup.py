@@ -96,5 +96,14 @@ class Check():
 				txt = _('Grafana is not running')
 				if not red: red = txt
 				else: red += '\n'+txt
+			try:
+				subprocess.check_output(['systemctl', 'is-active', 'chronograf.service']).decode(sys.stdin.encoding)
+				txt = 'Chronograf running'
+				if not black: black = txt
+				else: black += ' | '+txt
+			except:
+				txt = _('Chronograf is not running')
+				if not red: red = txt
+				else: red += '\n'+txt
 
 		return {'green': green,'black': black,'red': red}
