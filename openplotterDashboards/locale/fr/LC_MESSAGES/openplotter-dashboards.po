@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2020-04-05 21:23+0200\n"
-"PO-Revision-Date: 2020-04-06 11:55+0200\n"
+"PO-Revision-Date: 2020-10-21 18:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -14,8 +14,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Crowdin-Project: openplotter\n"
+"X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: fr\n"
 "X-Crowdin-File: openplotter-dashboards.po\n"
+"X-Crowdin-File-ID: 12\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: installInfluxdbGrafana.py:57 installKip.py:39 installNoderedDashboard.py:40
@@ -52,7 +54,7 @@ msgstr "Applis"
 
 #: openplotterDashboards.py:157
 msgid "Processes"
-msgstr ""
+msgstr "Processus"
 
 #: openplotterDashboards.py:213
 msgid "Name"
@@ -132,60 +134,60 @@ msgstr "Serveur Signal K redémarré"
 
 #: openplotterDashboards.py:362
 msgid "inactive"
-msgstr ""
+msgstr "inactif"
 
 #: openplotterDashboards.py:362
 msgid "active"
-msgstr ""
+msgstr "actif"
 
 #: openplotterDashboards.py:363
 msgid "dead"
-msgstr ""
+msgstr "inactif"
 
 #: openplotterDashboards.py:363
 msgid "running"
-msgstr ""
+msgstr "en cours d'exécution"
 
 #: openplotterDashboards.py:366
 msgid "Autostart"
-msgstr ""
+msgstr "Démarrage auto"
 
 #: openplotterDashboards.py:367
 msgid "Process"
-msgstr ""
+msgstr "Processus"
 
 #: openplotterDashboards.py:368
 msgid "Status"
-msgstr ""
+msgstr "Etat"
 
 #: openplotterDashboards.py:377
 msgid "Start"
-msgstr ""
+msgstr "Démarrage"
 
 #: openplotterDashboards.py:379
 msgid "Stop"
-msgstr ""
+msgstr "Arrêter"
 
 #: openplotterDashboards.py:381
 msgid "Restart"
-msgstr ""
+msgstr "Redémarrer"
 
 #: openplotterDashboards.py:429
 msgid "Starting process..."
-msgstr ""
+msgstr "Démarrage du processus..."
 
 #: openplotterDashboards.py:432 openplotterDashboards.py:440
 #: openplotterDashboards.py:448
 msgid "Done"
-msgstr ""
+msgstr "Terminé"
 
 #: openplotterDashboards.py:437
 msgid "Stopping process..."
-msgstr ""
+msgstr "Arrêt du processus..."
 
 #: openplotterDashboards.py:445
 msgid "Restarting process..."
-msgstr ""
+msgstr "Redémarrage du processus..."
 
 #: startup.py:45
 msgid "Checking Dashboards..."

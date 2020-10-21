@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2020-04-05 21:23+0200\n"
-"PO-Revision-Date: 2020-04-06 11:55+0200\n"
+"PO-Revision-Date: 2020-10-21 18:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: Danish\n"
 "Language: da\n"
@@ -14,8 +14,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Crowdin-Project: openplotter\n"
+"X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: da\n"
 "X-Crowdin-File: openplotter-dashboards.po\n"
+"X-Crowdin-File-ID: 12\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: installInfluxdbGrafana.py:57 installKip.py:39 installNoderedDashboard.py:40
@@ -52,7 +54,7 @@ msgstr "Apps"
 
 #: openplotterDashboards.py:157
 msgid "Processes"
-msgstr ""
+msgstr "Processer"
 
 #: openplotterDashboards.py:213
 msgid "Name"
@@ -132,60 +134,60 @@ msgstr "Signal K-serveren blev genstartet"
 
 #: openplotterDashboards.py:362
 msgid "inactive"
-msgstr ""
+msgstr "inaktiv"
 
 #: openplotterDashboards.py:362
 msgid "active"
-msgstr ""
+msgstr "aktive"
 
 #: openplotterDashboards.py:363
 msgid "dead"
-msgstr ""
+msgstr "død"
 
 #: openplotterDashboards.py:363
 msgid "running"
-msgstr ""
+msgstr "kører"
 
 #: openplotterDashboards.py:366
 msgid "Autostart"
-msgstr ""
+msgstr "Autostart"
 
 #: openplotterDashboards.py:367
 msgid "Process"
-msgstr ""
+msgstr "Proces"
 
 #: openplotterDashboards.py:368
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: openplotterDashboards.py:377
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 #: openplotterDashboards.py:379
 msgid "Stop"
-msgstr ""
+msgstr "Stop"
 
 #: openplotterDashboards.py:381
 msgid "Restart"
-msgstr ""
+msgstr "Genstart"
 
 #: openplotterDashboards.py:429
 msgid "Starting process..."
-msgstr ""
+msgstr "Starter proces..."
 
 #: openplotterDashboards.py:432 openplotterDashboards.py:440
 #: openplotterDashboards.py:448
 msgid "Done"
-msgstr ""
+msgstr "Udført"
 
 #: openplotterDashboards.py:437
 msgid "Stopping process..."
-msgstr ""
+msgstr "Stopper proces..."
 
 #: openplotterDashboards.py:445
 msgid "Restarting process..."
-msgstr ""
+msgstr "Genstarter proces..."
 
 #: startup.py:45
 msgid "Checking Dashboards..."

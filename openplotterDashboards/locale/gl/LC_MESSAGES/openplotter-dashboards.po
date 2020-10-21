@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2020-04-05 21:23+0200\n"
-"PO-Revision-Date: 2020-04-06 11:55+0200\n"
+"PO-Revision-Date: 2020-04-06 09:52\n"
 "Last-Translator: \n"
 "Language-Team: Galician\n"
 "Language: gl\n"
@@ -13,10 +13,10 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
 "X-Crowdin-Project: openplotter\n"
 "X-Crowdin-Language: gl\n"
 "X-Crowdin-File: openplotter-dashboards.po\n"
-"X-Poedit-SearchPath-0: .\n"
 
 #: installInfluxdbGrafana.py:57 installKip.py:39 installNoderedDashboard.py:40
 #: uninstallInfluxdbGrafana.py:48 uninstallKip.py:38
@@ -210,3 +210,4 @@ msgstr ""
 #: startup.py:96
 msgid "Grafana is not running"
 msgstr ""
+

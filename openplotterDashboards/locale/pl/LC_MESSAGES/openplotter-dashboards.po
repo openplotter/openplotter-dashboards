@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2020-04-05 21:23+0200\n"
-"PO-Revision-Date: 2020-04-06 11:55+0200\n"
+"PO-Revision-Date: 2020-10-21 18:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Language: pl\n"
@@ -14,8 +14,10 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Crowdin-Project: openplotter\n"
+"X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: pl\n"
 "X-Crowdin-File: openplotter-dashboards.po\n"
+"X-Crowdin-File-ID: 12\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: installInfluxdbGrafana.py:57 installKip.py:39 installNoderedDashboard.py:40
@@ -28,7 +30,7 @@ msgstr "GOTOWE"
 #: uninstallInfluxdbGrafana.py:49 uninstallKip.py:39
 #: uninstallNoderedDashboard.py:39
 msgid "FAILED: "
-msgstr "WYSTĄPIŁ BŁĄD: "
+msgstr "NIEPOWODZENIE: "
 
 #: openplotterDashboards.py:132
 msgid "Dashboards"
@@ -52,7 +54,7 @@ msgstr "Aplikacje"
 
 #: openplotterDashboards.py:157
 msgid "Processes"
-msgstr ""
+msgstr "Procesy"
 
 #: openplotterDashboards.py:213
 msgid "Name"
@@ -96,7 +98,7 @@ msgstr "Jesteś pewien ze chcesz zainstalować "
 
 #: openplotterDashboards.py:290 openplotterDashboards.py:317
 msgid " and its dependencies?"
-msgstr " wraz z zależnościami?"
+msgstr " wraz z niezbędnym oprogramowaniem?"
 
 #: openplotterDashboards.py:291 openplotterDashboards.py:318
 msgid "Question"
@@ -124,68 +126,68 @@ msgstr "Odinstalowywanie panela wskaźników, proszę czekać... "
 
 #: openplotterDashboards.py:333
 msgid "Restarting Signal K server... "
-msgstr "Ponowne uruchamianie serwera Signal K... "
+msgstr "Restartowanie serwera Signal K... "
 
 #: openplotterDashboards.py:338
 msgid "Signal K server restarted"
-msgstr "Serwer Signal K został uruchomiony ponownie"
+msgstr "Serwer Signal K został zrestartowany"
 
 #: openplotterDashboards.py:362
 msgid "inactive"
-msgstr ""
+msgstr "nieaktywny"
 
 #: openplotterDashboards.py:362
 msgid "active"
-msgstr ""
+msgstr "aktywny"
 
 #: openplotterDashboards.py:363
 msgid "dead"
-msgstr ""
+msgstr "martwy"
 
 #: openplotterDashboards.py:363
 msgid "running"
-msgstr ""
+msgstr "uruchomiony"
 
 #: openplotterDashboards.py:366
 msgid "Autostart"
-msgstr ""
+msgstr "Autostart"
 
 #: openplotterDashboards.py:367
 msgid "Process"
-msgstr ""
+msgstr "Procesy"
 
 #: openplotterDashboards.py:368
 msgid "Status"
-msgstr ""
+msgstr "Stan"
 
 #: openplotterDashboards.py:377
 msgid "Start"
-msgstr ""
+msgstr "Uruchom"
 
 #: openplotterDashboards.py:379
 msgid "Stop"
-msgstr ""
+msgstr "Zatrzymaj"
 
 #: openplotterDashboards.py:381
 msgid "Restart"
-msgstr ""
+msgstr "Restart"
 
 #: openplotterDashboards.py:429
 msgid "Starting process..."
-msgstr ""
+msgstr "Uruchamianie procesu..."
 
 #: openplotterDashboards.py:432 openplotterDashboards.py:440
 #: openplotterDashboards.py:448
 msgid "Done"
-msgstr ""
+msgstr "Gotowe"
 
 #: openplotterDashboards.py:437
 msgid "Stopping process..."
-msgstr ""
+msgstr "Zatrzymywanie procesu..."
 
 #: openplotterDashboards.py:445
 msgid "Restarting process..."
-msgstr ""
+msgstr "Restartowanie procesu..."
 
 #: startup.py:45
 msgid "Checking Dashboards..."
