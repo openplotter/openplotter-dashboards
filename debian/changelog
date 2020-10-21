@@ -1,3 +1,11 @@
+openplotter-dashboards (2.2.1-stable) bionic; urgency=medium
+
+  * Fix error checking nework conflicts
+  * Change Chronograf to port 8889
+  * Update translations
+
+ -- Sailoog <info@sailoog.com>  Wed, 21 Oct 2020 18:38:58 +0200
+
 openplotter-dashboards (2.2.0-stable) bionic; urgency=medium
 
   * Add processes control
