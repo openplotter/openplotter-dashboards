@@ -30,18 +30,18 @@ class Ports:
 	def usedPorts(self):
 		if self.platform.skPort:
 			if self.platform.isSKpluginInstalled('signalk-to-influxdb'):
-				self.connections.append({'id':'chronograf', 'description':'Chronograf', 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':8888, 'editable':'0'})
+				self.connections.append({'id':'chronograf', 'description':'Chronograf', 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':'8888', 'editable':'0'})
 				try:
 					subprocess.check_output(['systemctl', 'is-active', 'grafana-server.service']).decode(sys.stdin.encoding)
-					self.connections.append({'id':'grafana', 'description':'Grafana', 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':3001, 'editable':'0'})
+					self.connections.append({'id':'grafana', 'description':'Grafana', 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':'3001', 'editable':'0'})
 				except:pass
 				try:
 					subprocess.check_output(['systemctl', 'is-active', 'influxdb.service']).decode(sys.stdin.encoding)
-					self.connections.append({'id':'influxdb1', 'description':'Influxdb HTTP', 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':8086, 'editable':'0'})
-					self.connections.append({'id':'influxdb2', 'description':'Influxdb RPC', 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':8088, 'editable':'0'})
+					self.connections.append({'id':'influxdb1', 'description':'Influxdb HTTP', 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':'8086', 'editable':'0'})
+					self.connections.append({'id':'influxdb2', 'description':'Influxdb RPC', 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':'8088', 'editable':'0'})
 				except:pass
 				try:
 					subprocess.check_output(['systemctl', 'is-active', 'kapacitor.service']).decode(sys.stdin.encoding)
-					self.connections.append({'id':'kapacitor', 'description':'Kapacitor', 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':9092, 'editable':'0'})
+					self.connections.append({'id':'kapacitor', 'description':'Kapacitor', 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':'9092', 'editable':'0'})
 				except:pass
 		return self.connections
