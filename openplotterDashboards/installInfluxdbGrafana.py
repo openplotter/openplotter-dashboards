@@ -29,7 +29,7 @@ def main():
 	try:
 		platform2 = platform.Platform()
 
-		subprocess.call(['apt', '-y', 'install', 'grafana', 'influxdb', 'kapacitor', 'chronograf'])
+		subprocess.call(['apt', 'install', '-y', 'grafana', 'influxdb', 'kapacitor', 'chronograf'])
 
 		subprocess.call(['npm', 'i', '--verbose', 'signalk-to-influxdb'], cwd = platform2.skDir)
 		subprocess.call(['chown', '-R', conf2.user, platform2.skDir])

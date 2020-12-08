@@ -36,7 +36,7 @@ def main():
 		subprocess.call(['systemctl', 'disable', 'influxdb.service'])
 		subprocess.call(['systemctl', 'stop', 'influxdb'])
 
-		subprocess.call(['apt', '-y', 'autoremove', 'grafana', 'influxdb', 'kapacitor', 'chronograf'])
+		subprocess.call(['apt', 'autoremove', '-y', 'grafana', 'influxdb', 'kapacitor', 'chronograf'])
 
 		subprocess.call(['npm', 'uninstall', '--verbose', 'signalk-to-influxdb', '--save'], cwd = platform2.skDir)
 		
