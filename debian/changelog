@@ -1,3 +1,13 @@
+openplotter-dashboards (2.2.2-stable) bionic; urgency=medium
+
+  * Fix error installing apps in linux mint
+  * Set openplotter-signalk-installer as dependence
+  * Make Grafana standalone
+  * Remove settings button
+  * Update translations
+
+ -- Sailoog <info@sailoog.com>  Wed, 09 Dec 2020 21:26:11 +0100
+
 openplotter-dashboards (2.2.1-stable) bionic; urgency=medium
 
   * Fix error checking nework conflicts
