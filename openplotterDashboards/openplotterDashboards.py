@@ -54,7 +54,6 @@ class MyFrame(wx.Frame):
 		'plugin': '',
 		'install': self.platform.admin+' python3 '+self.currentdir+'/installGrafana.py',
 		'uninstall': self.platform.admin+' python3 '+self.currentdir+'/uninstallGrafana.py',
-		'settings': '',
 		}
 		self.appsDict.append(app)
 
@@ -73,7 +72,6 @@ class MyFrame(wx.Frame):
 		'plugin': 'signalk-to-influxdb',
 		'install': install,
 		'uninstall': uninstall,
-		'settings': '',
 		}
 		self.appsDict.append(app)
 
@@ -90,7 +88,6 @@ class MyFrame(wx.Frame):
 		'plugin': 'node-red-dashboard',
 		'install': self.platform.admin+' python3 '+self.currentdir+'/installNoderedDashboard.py',
 		'uninstall': self.platform.admin+' python3 '+self.currentdir+'/uninstallNoderedDashboard.py',
-		'settings': '',
 		}
 		self.appsDict.append(app)
 
@@ -105,7 +102,6 @@ class MyFrame(wx.Frame):
 		'plugin': '@mxtommy/kip',
 		'install': self.platform.admin+' python3 '+self.currentdir+'/installKip.py',
 		'uninstall': self.platform.admin+' python3 '+self.currentdir+'/uninstallKip.py',
-		'settings': '',
 		}
 		self.appsDict.append(app)
 
@@ -120,7 +116,6 @@ class MyFrame(wx.Frame):
 		'plugin': '',
 		'install': '',
 		'uninstall': '',
-		'settings': '',
 		}
 		self.appsDict.append(app)
 
@@ -135,7 +130,6 @@ class MyFrame(wx.Frame):
 		'plugin': '',
 		'install': '',
 		'uninstall': '',
-		'settings': '',
 		}
 		self.appsDict.append(app)
 
@@ -327,8 +321,6 @@ class MyFrame(wx.Frame):
 		self.listApps.SetTextColour(wx.BLACK)
 
 		self.toolbar2 = wx.ToolBar(self.apps, style=wx.TB_TEXT | wx.TB_VERTICAL)
-		self.settingsButton = self.toolbar2.AddTool(204, _('Settings'), wx.Bitmap(self.currentdir+"/data/settings2.png"))
-		self.Bind(wx.EVT_TOOL, self.OnSettingsButton, self.settingsButton)
 		self.editButton = self.toolbar2.AddTool(201, _('Edit'), wx.Bitmap(self.currentdir+"/data/edit.png"))
 		self.Bind(wx.EVT_TOOL, self.OnEditButton, self.editButton)
 		self.showButton = self.toolbar2.AddTool(202, _('Open'), wx.Bitmap(self.currentdir+"/data/show.png"))
@@ -356,7 +348,6 @@ class MyFrame(wx.Frame):
 			self.toolbar2.EnableTool(203,True)
 			self.toolbar2.EnableTool(205,True)
 			apps = list(reversed(self.appsDict))
-			if apps[i]['settings']: self.toolbar2.EnableTool(204,True)
 			if apps[i]['edit']: self.toolbar2.EnableTool(201,True)
 			if apps[i]['show']: self.toolbar2.EnableTool(202,True)
 		else: self.toolbar2.EnableTool(203,True)
@@ -364,7 +355,6 @@ class MyFrame(wx.Frame):
 	def onListAppsDeselected(self, event=0):
 		self.toolbar2.EnableTool(203,False)
 		self.toolbar2.EnableTool(205,False)
-		self.toolbar2.EnableTool(204,False)
 		self.toolbar2.EnableTool(201,False)
 		self.toolbar2.EnableTool(202,False)
 
@@ -453,12 +443,6 @@ class MyFrame(wx.Frame):
 			self.ShowStatusBarYELLOW(msg+str(i))
 			time.sleep(1)
 		self.ShowStatusBarGREEN(_('Signal K server restarted'))
-
-	def OnSettingsButton(self, e):
-		index = self.listApps.GetFirstSelected()
-		if index == -1: return
-		apps = list(reversed(self.appsDict))
-		webbrowser.open(apps[index]['settings'], new=2)
 
 	def OnEditButton(self, e):
 		index = self.listApps.GetFirstSelected()
