@@ -41,8 +41,10 @@ class Check():
 		self.platform = platform.Platform()
 		self.nodeRed = self.platform.isSKpluginInstalled('node-red-dashboard')
 		self.influx = self.platform.isSKpluginInstalled('signalk-to-influxdb')
+		if os.path.isfile('/usr/share/grafana/conf/defaults.ini'): self.grafana = True
+		else: self.grafana = False
 
-		if self.nodeRed or self.influx: self.initialMessage = _('Checking Dashboards...')
+		if self.nodeRed or self.influx or self.grafana: self.initialMessage = _('Checking Dashboards...')
 		else: self.initialMessage = ''
 
 	def check(self):
@@ -57,6 +59,17 @@ class Check():
 				else: black += ' | '+txt
 			else:
 				txt = _('Node-Red is disabled. Please enable it in Signal K -> Server -> Plugin Config -> Node Red -> Active')
+				if not red: red = txt
+				else: red += '\n'+txt
+
+		if self.grafana:
+			try:
+				subprocess.check_output(['systemctl', 'is-active', 'grafana-server.service']).decode(sys.stdin.encoding)
+				txt = 'Grafana running'
+				if not black: black = txt
+				else: black += ' | '+txt
+			except:
+				txt = _('Grafana is not running')
 				if not red: red = txt
 				else: red += '\n'+txt
 
@@ -85,15 +98,6 @@ class Check():
 				else: black += ' | '+txt
 			except:
 				txt = _('Kapacitor is not running')
-				if not red: red = txt
-				else: red += '\n'+txt
-			try:
-				subprocess.check_output(['systemctl', 'is-active', 'grafana-server.service']).decode(sys.stdin.encoding)
-				txt = 'Grafana running'
-				if not black: black = txt
-				else: black += ' | '+txt
-			except:
-				txt = _('Grafana is not running')
 				if not red: red = txt
 				else: red += '\n'+txt
 			try:

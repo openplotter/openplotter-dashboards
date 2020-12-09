@@ -31,12 +31,12 @@ def main():
 
 		subprocess.call(['systemctl', 'disable', 'kapacitor.service'])
 		subprocess.call(['systemctl', 'stop', 'kapacitor'])
-		subprocess.call(['systemctl', 'disable', 'grafana-server.service'])
-		subprocess.call(['systemctl', 'stop', 'grafana-server'])
 		subprocess.call(['systemctl', 'disable', 'influxdb.service'])
 		subprocess.call(['systemctl', 'stop', 'influxdb'])
+		subprocess.call(['systemctl', 'disable', 'chronograf.service'])
+		subprocess.call(['systemctl', 'stop', 'chronograf'])
 
-		subprocess.call(['apt', 'autoremove', '-y', 'grafana', 'influxdb', 'kapacitor', 'chronograf'])
+		subprocess.call(['apt', 'autoremove', '-y', 'influxdb', 'kapacitor', 'chronograf'])
 
 		subprocess.call(['npm', 'uninstall', '--verbose', 'signalk-to-influxdb', '--save'], cwd = platform2.skDir)
 		

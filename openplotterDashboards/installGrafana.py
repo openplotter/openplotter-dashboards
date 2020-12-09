@@ -29,36 +29,15 @@ def main():
 	try:
 		platform2 = platform.Platform()
 
-		subprocess.call(['apt', 'install', '-y', 'grafana', 'influxdb', 'kapacitor', 'chronograf'])
+		subprocess.call(['apt', 'install', '-y', 'grafana'])
 
-		subprocess.call(['npm', 'i', '--verbose', 'signalk-to-influxdb'], cwd = platform2.skDir)
-		subprocess.call(['chown', '-R', conf2.user, platform2.skDir])
-
-		subprocess.call(['systemctl', 'stop', 'chronograf'])
-		subprocess.call(['systemctl', 'stop', 'influxdb'])
-		subprocess.call(['systemctl', 'stop', 'kapacitor'])
 		subprocess.call(['systemctl', 'stop', 'grafana-server'])
 
 		subprocess.call(['sed', '-i', 's/http_port = 3000/http_port = 3001/g', '/usr/share/grafana/conf/defaults.ini'])
 		subprocess.call(['sed', '-i', 's/;http_port = 3000/http_port = 3001/g', '/etc/grafana/grafana.ini'])
 
-		fo = open('/etc/default/chronograf', "w")
-		fo.write( 'PORT=8889')
-		fo.close()
-
-		subprocess.call(['systemctl', 'unmask', 'influxdb.service'])
-		subprocess.call(['systemctl', 'enable', 'influxdb.service'])
-		subprocess.call(['systemctl', 'start', 'influxdb'])
-		subprocess.call(['systemctl', 'enable', 'kapacitor.service'])
-		subprocess.call(['systemctl', 'start', 'kapacitor'])
 		subprocess.call(['systemctl', 'enable', 'grafana-server.service'])
 		subprocess.call(['systemctl', 'start', 'grafana-server'])
-		subprocess.call(['systemctl', 'start', 'chronograf'])
-
-		subprocess.call(['systemctl', 'stop', 'signalk.service'])
-		subprocess.call(['systemctl', 'stop', 'signalk.socket'])
-		subprocess.call(['systemctl', 'start', 'signalk.socket'])
-		subprocess.call(['systemctl', 'start', 'signalk.service'])
 
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))

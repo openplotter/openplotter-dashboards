@@ -42,24 +42,38 @@ class MyFrame(wx.Frame):
 		currentLanguage = self.conf.get('GENERAL', 'lang')
 		self.language = language.Language(self.currentdir,'openplotter-dashboards',currentLanguage)
 
+		self.process = ['influxdb', 'kapacitor', 'chronograf', 'grafana-server']
+
 		self.appsDict = []
+		
+		app = {
+		'name': 'Grafana',
+		'show': "http://localhost:3001",
+		'edit': '',
+		'included': 'no',
+		'plugin': '',
+		'install': self.platform.admin+' python3 '+self.currentdir+'/installGrafana.py',
+		'uninstall': self.platform.admin+' python3 '+self.currentdir+'/uninstallGrafana.py',
+		'settings': '',
+		}
+		self.appsDict.append(app)
 
 		edit = ''
 		install = ''
 		uninstall = ''
 		if self.platform.skPort:
 			edit = self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/serverConfiguration/plugins/signalk-to-influxdb'
-			install = self.platform.admin+' python3 '+self.currentdir+'/installInfluxdbGrafana.py'
-			uninstall = self.platform.admin+' python3 '+self.currentdir+'/uninstallInfluxdbGrafana.py'			
+			install = self.platform.admin+' python3 '+self.currentdir+'/installInfluxdb1.py'
+			uninstall = self.platform.admin+' python3 '+self.currentdir+'/uninstallInfluxdb1.py'			
 		app = {
-		'name': 'Influxdb/Chronograf/Kapacitor/Grafana',
-		'show': "http://localhost:3001",
+		'name': 'Influxdb/Chronograf/Kapacitor',
+		'show': "http://localhost:8889",
 		'edit': edit,
 		'included': 'no',
 		'plugin': 'signalk-to-influxdb',
 		'install': install,
 		'uninstall': uninstall,
-		'settings': 'http://localhost:8889',
+		'settings': '',
 		}
 		self.appsDict.append(app)
 
@@ -170,8 +184,8 @@ class MyFrame(wx.Frame):
 		vbox.Add(self.notebook, 1, wx.EXPAND)
 		self.SetSizer(vbox)
 
+		self.pageSystemd()
 		self.pageApps()
-		self.pageSystemd()		
 		self.pageOutput()
 
 		maxi = self.conf.get('GENERAL', 'maximize')
@@ -208,159 +222,10 @@ class MyFrame(wx.Frame):
 		subprocess.call(['pkill', '-f', 'openplotter-settings'])
 		subprocess.Popen('openplotter-settings')
 
-	def pageApps(self):
-		self.listApps = wx.ListCtrl(self.apps, -1, style=wx.LC_REPORT | wx.LC_SINGLE_SEL | wx.LC_HRULES, size=(-1,200))
-		self.listApps.InsertColumn(0, _('Name'), width=320)
-		self.listApps.InsertColumn(1, _('status'), width=365)
-		self.listApps.Bind(wx.EVT_LIST_ITEM_SELECTED, self.onListAppsSelected)
-		self.listApps.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.onListAppsDeselected)
-		self.listApps.SetTextColour(wx.BLACK)
-
-		self.toolbar2 = wx.ToolBar(self.apps, style=wx.TB_TEXT | wx.TB_VERTICAL)
-		self.settingsButton = self.toolbar2.AddTool(204, _('Settings'), wx.Bitmap(self.currentdir+"/data/settings2.png"))
-		self.Bind(wx.EVT_TOOL, self.OnSettingsButton, self.settingsButton)
-		self.editButton = self.toolbar2.AddTool(201, _('Edit'), wx.Bitmap(self.currentdir+"/data/edit.png"))
-		self.Bind(wx.EVT_TOOL, self.OnEditButton, self.editButton)
-		self.showButton = self.toolbar2.AddTool(202, _('Show'), wx.Bitmap(self.currentdir+"/data/show.png"))
-		self.Bind(wx.EVT_TOOL, self.OnShowButton, self.showButton)
-		self.toolbar2.AddSeparator()
-		toolInstall= self.toolbar2.AddTool(203, _('Install'), wx.Bitmap(self.currentdir+"/data/install.png"))
-		self.Bind(wx.EVT_TOOL, self.OnToolInstall, toolInstall)
-		toolUninstall= self.toolbar2.AddTool(205, _('Uninstall'), wx.Bitmap(self.currentdir+"/data/uninstall.png"))
-		self.Bind(wx.EVT_TOOL, self.OnToolUninstall, toolUninstall)
-
-		self.toolbar3 = wx.ToolBar(self.apps, style=wx.TB_TEXT | wx.TB_VERTICAL)
-
-		sizer = wx.BoxSizer(wx.HORIZONTAL)
-		sizer.Add(self.listApps, 1, wx.EXPAND, 0)
-		sizer.Add(self.toolbar2, 0)
-		self.apps.SetSizer(sizer)
-
-		self.OnRefreshButton()
-
-	def onListAppsSelected(self, e):
-		i = e.GetIndex()
-		valid = e and i >= 0
-		if not valid: return
-		self.onListAppsDeselected()
-		if self.listApps.GetItemBackgroundColour(i) != (200,200,200):
-			self.toolbar2.EnableTool(203,True)
-			self.toolbar2.EnableTool(205,True)
-			apps = list(reversed(self.appsDict))
-			if apps[i]['settings']: self.toolbar2.EnableTool(204,True)
-			if apps[i]['edit']: self.toolbar2.EnableTool(201,True)
-			if apps[i]['show']: self.toolbar2.EnableTool(202,True)
-		else: self.toolbar2.EnableTool(203,True)
-
-	def onListAppsDeselected(self, event=0):
-		self.toolbar2.EnableTool(203,False)
-		self.toolbar2.EnableTool(205,False)
-		self.toolbar2.EnableTool(204,False)
-		self.toolbar2.EnableTool(201,False)
-		self.toolbar2.EnableTool(202,False)
-
-	def OnRefreshButton(self, event=0):
-		self.notebook.ChangeSelection(0)
-		self.listApps.DeleteAllItems()
-		for i in self.appsDict:
-			item = self.listApps.InsertItem(0, i['name'])
-			if self.platform.skPort:
-				if i['included'] == 'yes': self.listApps.SetItem(item, 1, _('installed'))
-				elif self.platform.isSKpluginInstalled(i['plugin']): self.listApps.SetItem(item, 1, _('installed'))
-				else:
-					self.listApps.SetItem(item, 1, _('not installed'))
-					self.listApps.SetItemBackgroundColour(item,(200,200,200))
-			else:
-				self.listApps.SetItem(item, 1, _('not installed'))
-				self.listApps.SetItemBackgroundColour(item,(200,200,200))
-		self.onListAppsDeselected()
-		try: self.set_listSystemd()
-		except: pass
-
-	def OnToolInstall(self, e):
-		if self.platform.skPort: 
-			index = self.listApps.GetFirstSelected()
-			if index == -1: return
-			apps = list(reversed(self.appsDict))
-			name = apps[index]['name']
-			command = apps[index]['install']
-			if not command:
-				self.ShowStatusBarRED(_('This dashboard can not be installed'))
-				return
-			msg = _('Are you sure you want to install ')+name+_(' and its dependencies?')
-			dlg = wx.MessageDialog(None, msg, _('Question'), wx.YES_NO | wx.NO_DEFAULT | wx.ICON_EXCLAMATION)
-			if dlg.ShowModal() == wx.ID_YES:
-				self.logger.Clear()
-				self.notebook.ChangeSelection(2)
-				popen = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, shell=True)
-				for line in popen.stdout:
-					if not 'Warning' in line and not 'WARNING' in line:
-						self.logger.WriteText(line)
-						self.ShowStatusBarYELLOW(_('Installing dashboard, please wait... ')+line)
-						self.logger.ShowPosition(self.logger.GetLastPosition())
-				self.OnRefreshButton()
-				self.restart_SK(0)
-			dlg.Destroy()
-		else: 
-			self.ShowStatusBarRED(_('Please install "Signal K Installer" OpenPlotter app'))
-			self.OnToolSettings()
-
-	def OnToolUninstall(self, e):
-		index = self.listApps.GetFirstSelected()
-		if index == -1: return
-		apps = list(reversed(self.appsDict))
-		name = apps[index]['name']
-		command = apps[index]['uninstall']
-		if not command:
-			self.ShowStatusBarRED(_('This dashboard can not be uninstalled'))
-			return
-		msg = _('Are you sure you want to uninstall ')+name+_(' and its dependencies?')
-		dlg = wx.MessageDialog(None, msg, _('Question'), wx.YES_NO | wx.NO_DEFAULT | wx.ICON_EXCLAMATION)
-		if dlg.ShowModal() == wx.ID_YES:
-			self.logger.Clear()
-			self.notebook.ChangeSelection(2)
-			popen = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, shell=True)
-			for line in popen.stdout:
-				if not 'Warning' in line and not 'WARNING' in line:
-					self.logger.WriteText(line)
-					self.ShowStatusBarYELLOW(_('Uninstalling dashboard, please wait... ')+line)
-					self.logger.ShowPosition(self.logger.GetLastPosition())
-			self.OnRefreshButton()
-			self.restart_SK(0)
-		dlg.Destroy()
-
-	def restart_SK(self, msg):
-		if msg == 0: msg = _('Restarting Signal K server... ')
-		seconds = 12
-		for i in range(seconds, 0, -1):
-			self.ShowStatusBarYELLOW(msg+str(i))
-			time.sleep(1)
-		self.ShowStatusBarGREEN(_('Signal K server restarted'))
-
-	def OnSettingsButton(self, e):
-		index = self.listApps.GetFirstSelected()
-		if index == -1: return
-		apps = list(reversed(self.appsDict))
-		webbrowser.open(apps[index]['settings'], new=2)
-
-	def OnEditButton(self, e):
-		index = self.listApps.GetFirstSelected()
-		if index == -1: return
-		apps = list(reversed(self.appsDict))
-		webbrowser.open(apps[index]['edit'], new=2)
-
-	def OnShowButton(self, e):
-		index = self.listApps.GetFirstSelected()
-		if index == -1: return
-		apps = list(reversed(self.appsDict))
-		webbrowser.open(apps[index]['show'], new=2)
-		
 ################################################################################
 
 	def pageSystemd(self):
 		self.started = False
-		self.aStatusList = [_('inactive'),_('active')]
-		self.bStatusList = [_('dead'),_('running')] 
 
 		self.listSystemd = CheckListCtrl(self.systemd, 152)
 		self.listSystemd.InsertColumn(0, _('Autostart'), width=90)
@@ -387,7 +252,6 @@ class MyFrame(wx.Frame):
 
 		self.systemd.SetSizer(sizer)
 
-		self.set_listSystemd()
 		self.started = True
 
 	def onListSystemdSelected(self, e):
@@ -404,25 +268,23 @@ class MyFrame(wx.Frame):
 		self.toolbar3.EnableTool(303,False)
 
 	def set_listSystemd(self):
-		self.process = []
-		if self.platform.isSKpluginInstalled('signalk-to-influxdb'):
-			self.process = ['influxdb', 'grafana-server', 'kapacitor', 'chronograf']
 		self.listSystemd.DeleteAllItems()
-		index = 1
-		for i in self.process:
-			if i:
-				index = self.listSystemd.InsertItem(sys.maxsize, '')
-				self.statusUpdate(i,index)
+		for process in self.process:
+			command = 'systemctl show ' + process + ' --no-page'
+			output = subprocess.check_output(command.split(),universal_newlines=True)
+			item = self.listSystemd.InsertItem(sys.maxsize, '')
+			self.listSystemd.SetItem(item, 1, process)
+			if 'ActiveState=active' in output: self.listSystemd.SetItem(item, 2, _('active'))
+			else: self.listSystemd.SetItem(item, 2, _('inactive'))
+			if 'SubState=running' in output: 
+				self.listSystemd.SetItem(item, 3, _('running'))
+				self.listSystemd.SetItemBackgroundColour(item,(0,255,0))
+			else: 
+				self.listSystemd.SetItem(item, 3, _('dead'))
+				self.listSystemd.SetItemBackgroundColour(item,(-1,-1,-1))
+			if 'UnitFileState=enabled' in output: self.listSystemd.CheckItem(item)
 		self.onListSystemdDeselected()
-
-	def statusUpdate(self, process, index): 
-		command = 'systemctl show ' + process + ' --no-page'
-		output = subprocess.check_output(command.split(),universal_newlines=True)
-		if 'UnitFileState=enabled' in output: self.listSystemd.CheckItem(index)
-		self.listSystemd.SetItem(index, 1, process)
-		self.listSystemd.SetItem(index, 2, self.aStatusList[('ActiveState=active' in output)*1])
-		self.listSystemd.SetItem(index, 3, self.bStatusList[('SubState=running' in output)*1])
-						
+		
 	def onStart(self,e):
 		index = self.listSystemd.GetFirstSelected()
 		if index == -1: return
@@ -454,6 +316,162 @@ class MyFrame(wx.Frame):
 		else:
 			subprocess.call((self.platform.admin + ' systemctl disable ' + self.process[index]).split())
 
+################################################################################
+
+	def pageApps(self):
+		self.listApps = wx.ListCtrl(self.apps, -1, style=wx.LC_REPORT | wx.LC_SINGLE_SEL | wx.LC_HRULES, size=(-1,200))
+		self.listApps.InsertColumn(0, _('Name'), width=320)
+		self.listApps.InsertColumn(1, _('status'), width=365)
+		self.listApps.Bind(wx.EVT_LIST_ITEM_SELECTED, self.onListAppsSelected)
+		self.listApps.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.onListAppsDeselected)
+		self.listApps.SetTextColour(wx.BLACK)
+
+		self.toolbar2 = wx.ToolBar(self.apps, style=wx.TB_TEXT | wx.TB_VERTICAL)
+		self.settingsButton = self.toolbar2.AddTool(204, _('Settings'), wx.Bitmap(self.currentdir+"/data/settings2.png"))
+		self.Bind(wx.EVT_TOOL, self.OnSettingsButton, self.settingsButton)
+		self.editButton = self.toolbar2.AddTool(201, _('Edit'), wx.Bitmap(self.currentdir+"/data/edit.png"))
+		self.Bind(wx.EVT_TOOL, self.OnEditButton, self.editButton)
+		self.showButton = self.toolbar2.AddTool(202, _('Open'), wx.Bitmap(self.currentdir+"/data/show.png"))
+		self.Bind(wx.EVT_TOOL, self.OnShowButton, self.showButton)
+		self.toolbar2.AddSeparator()
+		toolInstall= self.toolbar2.AddTool(203, _('Install'), wx.Bitmap(self.currentdir+"/data/install.png"))
+		self.Bind(wx.EVT_TOOL, self.OnToolInstall, toolInstall)
+		toolUninstall= self.toolbar2.AddTool(205, _('Uninstall'), wx.Bitmap(self.currentdir+"/data/uninstall.png"))
+		self.Bind(wx.EVT_TOOL, self.OnToolUninstall, toolUninstall)
+
+		sizer = wx.BoxSizer(wx.HORIZONTAL)
+		sizer.Add(self.listApps, 1, wx.EXPAND, 0)
+		sizer.Add(self.toolbar2, 0)
+		self.apps.SetSizer(sizer)
+
+		self.OnRefreshButton()
+
+	def onListAppsSelected(self, e):
+		self.SetStatusText('')
+		i = e.GetIndex()
+		valid = e and i >= 0
+		if not valid: return
+		self.onListAppsDeselected()
+		if self.listApps.GetItemBackgroundColour(i) != (200,200,200):
+			self.toolbar2.EnableTool(203,True)
+			self.toolbar2.EnableTool(205,True)
+			apps = list(reversed(self.appsDict))
+			if apps[i]['settings']: self.toolbar2.EnableTool(204,True)
+			if apps[i]['edit']: self.toolbar2.EnableTool(201,True)
+			if apps[i]['show']: self.toolbar2.EnableTool(202,True)
+		else: self.toolbar2.EnableTool(203,True)
+
+	def onListAppsDeselected(self, event=0):
+		self.toolbar2.EnableTool(203,False)
+		self.toolbar2.EnableTool(205,False)
+		self.toolbar2.EnableTool(204,False)
+		self.toolbar2.EnableTool(201,False)
+		self.toolbar2.EnableTool(202,False)
+
+	def OnRefreshButton(self, event=0):
+		self.listApps.DeleteAllItems()
+		for i in self.appsDict:
+			item = self.listApps.InsertItem(0, i['name'])
+
+			if i['included'] == 'yes' and self.platform.skPort: self.listApps.SetItem(item, 1, _('installed'))
+			elif i['plugin'] and self.platform.skPort:
+				if self.platform.isSKpluginInstalled(i['plugin']): 
+					self.listApps.SetItem(item, 1, _('installed'))
+				else:
+					self.listApps.SetItem(item, 1, _('not installed'))
+					self.listApps.SetItemBackgroundColour(item,(200,200,200))
+			elif not i['plugin']:
+				if i['name'] == 'Grafana':
+					if os.path.isfile('/usr/share/grafana/conf/defaults.ini'): self.listApps.SetItem(item, 1, _('installed'))
+					else:
+						self.listApps.SetItem(item, 1, _('not installed'))
+						self.listApps.SetItemBackgroundColour(item,(200,200,200))
+			else:
+				self.listApps.SetItem(item, 1, _('not installed'))
+				self.listApps.SetItemBackgroundColour(item,(200,200,200))
+		self.onListAppsDeselected()
+		self.set_listSystemd()
+
+	def OnToolInstall(self, e):
+		index = self.listApps.GetFirstSelected()
+		if index == -1: return
+		apps = list(reversed(self.appsDict))
+		name = apps[index]['name']
+		command = apps[index]['install']
+		plugin = apps[index]['plugin']
+		if plugin and not self.platform.skPort: 
+			self.ShowStatusBarRED(_('Please install "Signal K Installer" OpenPlotter app'))
+			self.OnToolSettings()
+		else: 
+			if not command:
+				self.ShowStatusBarRED(_('This dashboard can not be installed'))
+				return
+			msg = _('Are you sure you want to install ')+name+_(' and its dependencies?')
+			dlg = wx.MessageDialog(None, msg, _('Question'), wx.YES_NO | wx.NO_DEFAULT | wx.ICON_EXCLAMATION)
+			if dlg.ShowModal() == wx.ID_YES:
+				self.logger.Clear()
+				self.notebook.ChangeSelection(2)
+				popen = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, shell=True)
+				for line in popen.stdout:
+					if not 'Warning' in line and not 'WARNING' in line:
+						self.logger.WriteText(line)
+						self.ShowStatusBarYELLOW(_('Installing dashboard, please wait... ')+line)
+						self.logger.ShowPosition(self.logger.GetLastPosition())
+				self.OnRefreshButton()
+				if plugin: self.restart_SK(0)
+			dlg.Destroy()
+
+	def OnToolUninstall(self, e):
+		index = self.listApps.GetFirstSelected()
+		if index == -1: return
+		apps = list(reversed(self.appsDict))
+		name = apps[index]['name']
+		command = apps[index]['uninstall']
+		plugin = apps[index]['plugin']
+		if not command:
+			self.ShowStatusBarRED(_('This dashboard can not be uninstalled'))
+			return
+		msg = _('Are you sure you want to uninstall ')+name+_(' and its dependencies?')
+		dlg = wx.MessageDialog(None, msg, _('Question'), wx.YES_NO | wx.NO_DEFAULT | wx.ICON_EXCLAMATION)
+		if dlg.ShowModal() == wx.ID_YES:
+			self.logger.Clear()
+			self.notebook.ChangeSelection(2)
+			popen = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, shell=True)
+			for line in popen.stdout:
+				if not 'Warning' in line and not 'WARNING' in line:
+					self.logger.WriteText(line)
+					self.ShowStatusBarYELLOW(_('Uninstalling dashboard, please wait... ')+line)
+					self.logger.ShowPosition(self.logger.GetLastPosition())
+			self.OnRefreshButton()
+			if plugin: self.restart_SK(0)
+		dlg.Destroy()
+
+	def restart_SK(self, msg):
+		if msg == 0: msg = _('Restarting Signal K server... ')
+		seconds = 12
+		for i in range(seconds, 0, -1):
+			self.ShowStatusBarYELLOW(msg+str(i))
+			time.sleep(1)
+		self.ShowStatusBarGREEN(_('Signal K server restarted'))
+
+	def OnSettingsButton(self, e):
+		index = self.listApps.GetFirstSelected()
+		if index == -1: return
+		apps = list(reversed(self.appsDict))
+		webbrowser.open(apps[index]['settings'], new=2)
+
+	def OnEditButton(self, e):
+		index = self.listApps.GetFirstSelected()
+		if index == -1: return
+		apps = list(reversed(self.appsDict))
+		webbrowser.open(apps[index]['edit'], new=2)
+
+	def OnShowButton(self, e):
+		index = self.listApps.GetFirstSelected()
+		if index == -1: return
+		apps = list(reversed(self.appsDict))
+		webbrowser.open(apps[index]['show'], new=2)
+		
 ################################################################################
 
 	def pageOutput(self):
