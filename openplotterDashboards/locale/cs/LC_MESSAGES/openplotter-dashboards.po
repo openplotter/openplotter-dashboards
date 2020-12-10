@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2020-04-05 21:23+0200\n"
-"PO-Revision-Date: 2020-10-21 18:36+0200\n"
+"POT-Creation-Date: 2020-12-09 21:24+0100\n"
+"PO-Revision-Date: 2020-12-10 18:48+0100\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Language: cs\n"
@@ -20,195 +20,201 @@ msgstr ""
 "X-Crowdin-File-ID: 12\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: installInfluxdbGrafana.py:57 installKip.py:39 installNoderedDashboard.py:40
-#: uninstallInfluxdbGrafana.py:48 uninstallKip.py:38
-#: uninstallNoderedDashboard.py:38
+#: installGrafana.py:42 installInfluxdb1.py:58 installKip.py:39
+#: installNoderedDashboard.py:40 uninstallGrafana.py:37
+#: uninstallInfluxdb1.py:48 uninstallKip.py:38 uninstallNoderedDashboard.py:38
 msgid "DONE"
 msgstr "Hotovo"
 
-#: installInfluxdbGrafana.py:58 installKip.py:40 installNoderedDashboard.py:41
-#: uninstallInfluxdbGrafana.py:49 uninstallKip.py:39
-#: uninstallNoderedDashboard.py:39
+#: installGrafana.py:43 installInfluxdb1.py:59 installKip.py:40
+#: installNoderedDashboard.py:41 uninstallGrafana.py:38
+#: uninstallInfluxdb1.py:49 uninstallKip.py:39 uninstallNoderedDashboard.py:39
 msgid "FAILED: "
 msgstr "Chyba: "
 
-#: openplotterDashboards.py:132
+#: openplotterDashboards.py:140
 msgid "Dashboards"
 msgstr "Řídicí panely"
 
-#: openplotterDashboards.py:142
+#: openplotterDashboards.py:150
 msgid "Help"
 msgstr "Nápověda"
 
-#: openplotterDashboards.py:145 openplotterDashboards.py:220
+#: openplotterDashboards.py:153
 msgid "Settings"
 msgstr "Nastavení"
 
-#: openplotterDashboards.py:148
+#: openplotterDashboards.py:156
 msgid "Refresh"
 msgstr "Obnovit"
 
-#: openplotterDashboards.py:156
+#: openplotterDashboards.py:164
 msgid "Apps"
 msgstr "Aplikace"
 
-#: openplotterDashboards.py:157
+#: openplotterDashboards.py:165
 msgid "Processes"
 msgstr "Procesy"
 
-#: openplotterDashboards.py:213
-msgid "Name"
-msgstr "Název"
-
-#: openplotterDashboards.py:214
-msgid "status"
-msgstr "stav"
-
-#: openplotterDashboards.py:222
-msgid "Edit"
-msgstr "Upravit"
-
-#: openplotterDashboards.py:224
-msgid "Show"
-msgstr "Zobrazit"
-
-#: openplotterDashboards.py:227
-msgid "Install"
-msgstr "Instalovat"
-
-#: openplotterDashboards.py:229
-msgid "Uninstall"
-msgstr "Odinstalovat"
-
-#: openplotterDashboards.py:268 openplotterDashboards.py:269
-msgid "installed"
-msgstr "instalováno"
-
-#: openplotterDashboards.py:271 openplotterDashboards.py:274
-msgid "not installed"
-msgstr "není nainstalováno"
-
-#: openplotterDashboards.py:288
-msgid "This dashboard can not be installed"
-msgstr "Tento řídící panel nelze nainstalovat"
-
-#: openplotterDashboards.py:290
-msgid "Are you sure you want to install "
-msgstr "Opravdu chcete nainstalovat "
-
-#: openplotterDashboards.py:290 openplotterDashboards.py:317
-msgid " and its dependencies?"
-msgstr " a všechny závislé balíčky?"
-
-#: openplotterDashboards.py:291 openplotterDashboards.py:318
-msgid "Question"
-msgstr "Otázka"
-
-#: openplotterDashboards.py:299
-msgid "Installing dashboard, please wait... "
-msgstr "Instalace řídicího panelu, čekejte prosím... "
-
-#: openplotterDashboards.py:305
-msgid "Please install \"Signal K Installer\" OpenPlotter app"
-msgstr "Prosím, nainstalujte OpenPlotter aplikaci \"Instalátor Signal K\""
-
-#: openplotterDashboards.py:315
-msgid "This dashboard can not be uninstalled"
-msgstr "Tento řídící panel nelze nainstalovat"
-
-#: openplotterDashboards.py:317
-msgid "Are you sure you want to uninstall "
-msgstr "Opravdu chcete odinstalovat "
-
-#: openplotterDashboards.py:326
-msgid "Uninstalling dashboard, please wait... "
-msgstr "Odebírám řídící panel, prosím čekejte... "
-
-#: openplotterDashboards.py:333
-msgid "Restarting Signal K server... "
-msgstr "Restartuji Signal K server... "
-
-#: openplotterDashboards.py:338
-msgid "Signal K server restarted"
-msgstr "Signal K server byl restartován"
-
-#: openplotterDashboards.py:362
-msgid "inactive"
-msgstr "neaktivní"
-
-#: openplotterDashboards.py:362
-msgid "active"
-msgstr "aktivní"
-
-#: openplotterDashboards.py:363
-msgid "dead"
-msgstr "mrtvý"
-
-#: openplotterDashboards.py:363
-msgid "running"
-msgstr "běží"
-
-#: openplotterDashboards.py:366
+#: openplotterDashboards.py:225
 msgid "Autostart"
 msgstr "Autom. spuštění"
 
-#: openplotterDashboards.py:367
+#: openplotterDashboards.py:226
 msgid "Process"
 msgstr "Proces"
 
-#: openplotterDashboards.py:368
+#: openplotterDashboards.py:227
 msgid "Status"
 msgstr "Stav"
 
-#: openplotterDashboards.py:377
+#: openplotterDashboards.py:236
 msgid "Start"
 msgstr "Spustit"
 
-#: openplotterDashboards.py:379
+#: openplotterDashboards.py:238
 msgid "Stop"
 msgstr "Zastavit"
 
-#: openplotterDashboards.py:381
+#: openplotterDashboards.py:240
 msgid "Restart"
 msgstr "Restartovat"
 
-#: openplotterDashboards.py:429
+#: openplotterDashboards.py:271
+msgid "active"
+msgstr "aktivní"
+
+#: openplotterDashboards.py:272
+msgid "inactive"
+msgstr "neaktivní"
+
+#: openplotterDashboards.py:274
+msgid "running"
+msgstr "běží"
+
+#: openplotterDashboards.py:277
+msgid "dead"
+msgstr "mrtvý"
+
+#: openplotterDashboards.py:285
 msgid "Starting process..."
 msgstr "Spouštění procesu..."
 
-#: openplotterDashboards.py:432 openplotterDashboards.py:440
-#: openplotterDashboards.py:448
+#: openplotterDashboards.py:288 openplotterDashboards.py:296
+#: openplotterDashboards.py:304
 msgid "Done"
 msgstr "Hotovo"
 
-#: openplotterDashboards.py:437
+#: openplotterDashboards.py:293
 msgid "Stopping process..."
 msgstr "Zastavuji proces..."
 
-#: openplotterDashboards.py:445
+#: openplotterDashboards.py:301
 msgid "Restarting process..."
 msgstr "Restartuji proces..."
 
-#: startup.py:45
+#: openplotterDashboards.py:317
+msgid "Name"
+msgstr "Název"
+
+#: openplotterDashboards.py:318
+msgid "status"
+msgstr "stav"
+
+#: openplotterDashboards.py:324
+msgid "Edit"
+msgstr "Upravit"
+
+#: openplotterDashboards.py:326
+msgid "Open"
+msgstr ""
+
+#: openplotterDashboards.py:329
+msgid "Install"
+msgstr "Instalovat"
+
+#: openplotterDashboards.py:331
+msgid "Uninstall"
+msgstr "Odinstalovat"
+
+#: openplotterDashboards.py:366 openplotterDashboards.py:369
+#: openplotterDashboards.py:375
+msgid "installed"
+msgstr "instalováno"
+
+#: openplotterDashboards.py:371 openplotterDashboards.py:377
+#: openplotterDashboards.py:380
+msgid "not installed"
+msgstr "není nainstalováno"
+
+#: openplotterDashboards.py:393
+msgid "Please install \"Signal K Installer\" OpenPlotter app"
+msgstr "Prosím, nainstalujte OpenPlotter aplikaci \"Instalátor Signal K\""
+
+#: openplotterDashboards.py:397
+msgid "This dashboard can not be installed"
+msgstr "Tento řídící panel nelze nainstalovat"
+
+#: openplotterDashboards.py:399
+msgid "Are you sure you want to install "
+msgstr "Opravdu chcete nainstalovat "
+
+#: openplotterDashboards.py:399 openplotterDashboards.py:424
+msgid " and its dependencies?"
+msgstr " a všechny závislé balíčky?"
+
+#: openplotterDashboards.py:400 openplotterDashboards.py:425
+msgid "Question"
+msgstr "Otázka"
+
+#: openplotterDashboards.py:408
+msgid "Installing dashboard, please wait... "
+msgstr "Instalace řídicího panelu, čekejte prosím... "
+
+#: openplotterDashboards.py:422
+msgid "This dashboard can not be uninstalled"
+msgstr "Tento řídící panel nelze nainstalovat"
+
+#: openplotterDashboards.py:424
+msgid "Are you sure you want to uninstall "
+msgstr "Opravdu chcete odinstalovat "
+
+#: openplotterDashboards.py:433
+msgid "Uninstalling dashboard, please wait... "
+msgstr "Odebírám řídící panel, prosím čekejte... "
+
+#: openplotterDashboards.py:440
+msgid "Restarting Signal K server... "
+msgstr "Restartuji Signal K server... "
+
+#: openplotterDashboards.py:445
+msgid "Signal K server restarted"
+msgstr "Signal K server byl restartován"
+
+#: startup.py:47
 msgid "Checking Dashboards..."
 msgstr "Kontroluji řídící panely..."
 
-#: startup.py:59
+#: startup.py:61
 msgid "Node-Red is disabled. Please enable it in Signal K -> Server -> Plugin Config -> Node Red -> Active"
 msgstr "Node-Red je vypnutý. Prosím povolte jej v nastavení Signal K -> Server -> Plugin Config -> Node Red -> Active"
 
-#: startup.py:69
+#: startup.py:72
+msgid "Grafana is not running"
+msgstr "Grafana není spuštěna"
+
+#: startup.py:82
 msgid "signalk-to-influxdb plugin is disabled. Please enable it in Signal K -> Server -> Plugin Config -> InfluxDb writer -> Active"
 msgstr "signalk-to-influxdb plugin je zakázán. Prosím povolte jej v Signal K -> Server -> Plugin Config -> InfluxDb writer -> Active"
 
-#: startup.py:78
+#: startup.py:91
 msgid "Influxdb is not running"
 msgstr "Influxdb není spuštěna"
 
-#: startup.py:87
+#: startup.py:100
 msgid "Kapacitor is not running"
 msgstr "Kapacitor není spuštěn"
 
-#: startup.py:96
-msgid "Grafana is not running"
-msgstr "Grafana není spuštěna"
+#: startup.py:109
+msgid "Chronograf is not running"
+msgstr ""
