@@ -1,4 +1,4 @@
-openplotter-dashboards (2.2.2-stable) bionic; urgency=medium
+openplotter-dashboards (2.2.3-stable) bionic; urgency=medium
 
   * Fix error installing apps in linux mint
   * Set openplotter-signalk-installer as dependence
