@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2020-12-09 21:24+0100\n"
-"PO-Revision-Date: 2020-12-10 18:48+0100\n"
+"PO-Revision-Date: 2021-11-25 18:05\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "Language: ca\n"
@@ -13,12 +13,12 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
 "X-Crowdin-Project: openplotter\n"
 "X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: ca\n"
 "X-Crowdin-File: openplotter-dashboards.po\n"
 "X-Crowdin-File-ID: 12\n"
-"X-Poedit-SearchPath-0: .\n"
 
 #: installGrafana.py:42 installInfluxdb1.py:58 installKip.py:39
 #: installNoderedDashboard.py:40 uninstallGrafana.py:37
@@ -127,7 +127,7 @@ msgstr "Edita"
 
 #: openplotterDashboards.py:326
 msgid "Open"
-msgstr ""
+msgstr "Obre"
 
 #: openplotterDashboards.py:329
 msgid "Install"
@@ -197,7 +197,7 @@ msgstr "Comprovant taulers d'instruments..."
 
 #: startup.py:61
 msgid "Node-Red is disabled. Please enable it in Signal K -> Server -> Plugin Config -> Node Red -> Active"
-msgstr ""
+msgstr "Node-Red està desactivat. Si us plau activa'l a Signal K -> Servidor -> Configuració de plugins -> Node Red -> Activar"
 
 #: startup.py:72
 msgid "Grafana is not running"
@@ -205,7 +205,7 @@ msgstr "Grafana no s'està executant"
 
 #: startup.py:82
 msgid "signalk-to-influxdb plugin is disabled. Please enable it in Signal K -> Server -> Plugin Config -> InfluxDb writer -> Active"
-msgstr ""
+msgstr "El plugin signalk-to-influxdb està desactivat. Si us plau activa'l a Signal K -> Servidor -> Configuració de plugins -> signalk-to-influxdb -> Activar"
 
 #: startup.py:91
 msgid "Influxdb is not running"
@@ -217,4 +217,5 @@ msgstr "Kapacitor no s'està executant"
 
 #: startup.py:109
 msgid "Chronograf is not running"
-msgstr ""
+msgstr "Chronograf no està en funcionament"
+
