@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-# This file is part of Openplotter.
-# Copyright (C) 2019 by Sailoog <https://github.com/openplotter/openplotter-dashboards>
+# This file is part of OpenPlotter.
+# Copyright (C) 2022 by Sailoog <https://github.com/openplotter/openplotter-dashboards>
 #                  
 # Openplotter is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,7 +26,8 @@ class Ports:
 		language.Language(currentdir,'openplotter-dashboards',currentLanguage)
 		self.platform = platform.Platform()
 		self.connections = []
-
+		
+	#TODO influxbd2
 	def usedPorts(self):
 		try:
 			subprocess.check_output(['systemctl', 'is-active', 'chronograf.service']).decode(sys.stdin.encoding)

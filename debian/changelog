@@ -1,3 +1,9 @@
+openplotter-dashboards (3.0.0-beta) bullseye; urgency=medium
+
+  * Beta
+
+ -- Sailoog <info@sailoog.com>  Thu, 28 Apr 2022 20:19:06 +0200
+
 openplotter-dashboards (2.2.3-stable) bionic; urgency=medium
 
   * Fix error installing apps in linux mint

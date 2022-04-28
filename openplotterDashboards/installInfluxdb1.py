@@ -20,6 +20,8 @@ from openplotterSettings import conf
 from openplotterSettings import language
 from openplotterSettings import platform
 
+#TODO influxbd2
+
 def main():
 	conf2 = conf.Conf()
 	currentdir = os.path.dirname(os.path.abspath(__file__))

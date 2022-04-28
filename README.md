@@ -4,13 +4,13 @@ OpenPltter app to manage dashboards.
 
 ### Installing
 
+Install [openplotter-settings](https://github.com/openplotter/openplotter-settings) for **production**.
+
 #### For production
 
-Install [openplotter-settings](https://github.com/openplotter/openplotter-settings) for **production** and just install this app from *OpenPlotter Apps* tab.
+Install Dashboards from openplotter-settings app.
 
 #### For development
-
-Install [openplotter-settings](https://github.com/openplotter/openplotter-settings) for **development**.
 
 Clone the repository:
 
@@ -34,7 +34,7 @@ Run:
 
 `openplotter-dashboards`
 
-Make your changes and repeat package and installation steps to test. Pull request your changes to github and we will check and add them to the next version of the [Debian package](https://launchpad.net/~openplotter/+archive/ubuntu/openplotter).
+Pull request your changes to github and we will check and add them to the next version of the [Debian package](https://cloudsmith.io/~openplotter/repos/openplotter/packages/).
 
 ### Documentation
 

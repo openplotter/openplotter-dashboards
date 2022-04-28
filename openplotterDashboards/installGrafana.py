@@ -26,6 +26,7 @@ def main():
 	currentLanguage = conf2.get('GENERAL', 'lang')
 	language.Language(currentdir,'openplotter-dashboards',currentLanguage)
 
+	#TODO install sources
 	try:
 		platform2 = platform.Platform()
 
