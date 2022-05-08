@@ -18,9 +18,6 @@
 import os, subprocess
 from openplotterSettings import conf
 from openplotterSettings import language
-from openplotterSettings import platform
-
-#TODO uninstall influxbd2
 
 def main():
 	conf2 = conf.Conf()
@@ -28,25 +25,18 @@ def main():
 	currentLanguage = conf2.get('GENERAL', 'lang')
 	language.Language(currentdir,'openplotter-dashboards',currentLanguage)
 
+	print(_('Uninstalling InfluxDB OSS 2.x...'))
 	try:
-		platform2 = platform.Platform()
-
-		subprocess.call(['systemctl', 'disable', 'kapacitor.service'])
-		subprocess.call(['systemctl', 'stop', 'kapacitor'])
-		subprocess.call(['systemctl', 'disable', 'influxdb.service'])
+		subprocess.call(['systemctl', 'disable', 'influxdb'])
+		subprocess.call(['systemctl', 'disable', 'telegraf'])
+		subprocess.call(['systemctl', 'stop', 'telegraf'])
+		subprocess.call(['pkill','-15','telegraf'])
 		subprocess.call(['systemctl', 'stop', 'influxdb'])
-		subprocess.call(['systemctl', 'disable', 'chronograf.service'])
-		subprocess.call(['systemctl', 'stop', 'chronograf'])
-
-		subprocess.call(['apt', 'autoremove', '-y', 'influxdb', 'kapacitor', 'chronograf'])
-
-		subprocess.call(['npm', 'uninstall', '--verbose', 'signalk-to-influxdb', '--save'], cwd = platform2.skDir)
-		
-		subprocess.call(['systemctl', 'stop', 'signalk.service'])
-		subprocess.call(['systemctl', 'stop', 'signalk.socket'])
-		subprocess.call(['systemctl', 'start', 'signalk.socket'])
-		subprocess.call(['systemctl', 'start', 'signalk.service'])
-		
+		os.system('rm -rf '+conf2.home+'/.openplotter/telegraf')
+		subprocess.call(['apt', 'autoremove', '-y', 'influxdb2', 'telegraf'])
+		subprocess.call(['systemctl', 'daemon-reload'])
+		os.system('rm -f /etc/apt/sources.list.d/influxdb.list')
+		os.system('apt update')
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 

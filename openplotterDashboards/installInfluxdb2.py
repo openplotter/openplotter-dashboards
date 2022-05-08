@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-# This file is part of OpenPlotter.
-# Copyright (C) 2022 by Sailoog <https://github.com/openplotter/openplotter-dashboards>
+# This file is part of Openplotter.
+# Copyright (C) 2019 by Sailoog <https://github.com/openplotter/openplotter-dashboards>
 #                  
 # Openplotter is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,29 +26,47 @@ def main():
 	language.Language(currentdir,'openplotter-dashboards',currentLanguage)
 
 	print(_('Checking sources...'))
+	codename_debian = conf2.get('GENERAL', 'debianCodeName')
 	try:
-		deb = 'deb https://packages.grafana.com/oss/deb stable main'
+		deb = 'deb https://repos.influxdata.com/debian '+codename_debian+' stable'
 		sources = subprocess.check_output('apt-cache policy', shell=True).decode(sys.stdin.encoding)
-		if not 'https://packages.grafana.com/oss/deb stable' in sources:
-			fo = open('/etc/apt/sources.list.d/grafana.list', "w")
+		if not 'https://repos.influxdata.com/debian '+codename_debian in sources:
+			fo = open('/etc/apt/sources.list.d/influxdb.list', "w")
 			fo.write(deb)
 			fo.close()
-			os.system('cat '+currentdir+'/data/sources/grafana.gpg.key | gpg --dearmor > "/etc/apt/trusted.gpg.d/grafana.gpg"')
+			os.system('cat '+currentdir+'/data/sources/influxdb.gpg.key | gpg --dearmor > "/etc/apt/trusted.gpg.d/influxdb.gpg"')
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
-	print(_('Installing/Updating Grafana...'))
+	print(_('Installing/Updating InfluxDB OSS 2.x...'))
 	try:
 		os.system('apt update')
-		subprocess.call(['apt', 'install', '-y', 'grafana'])
-		subprocess.call(['grafana-cli', 'plugins', 'install', 'golioth-websocket-datasource'])
-		subprocess.call(['sed', '-i', 's/http_port = 3000/http_port = 3001/g', '/usr/share/grafana/conf/defaults.ini'])
-		subprocess.call(['sed', '-i', 's/;http_port = 3000/http_port = 3001/g', '/etc/grafana/grafana.ini'])
+		subprocess.call(['apt', 'install', '-y', 'influxdb2', 'telegraf'])
 		subprocess.call(['systemctl', 'daemon-reload'])
-		subprocess.call(['systemctl', 'enable', 'grafana-server.service'])
-		subprocess.call(['systemctl', 'restart', 'grafana-server'])
+		subprocess.call(['systemctl', 'disable', 'telegraf'])
+		subprocess.call(['systemctl', 'stop', 'telegraf'])
+		telegrafConf = '''[agent]
+  interval = "10s"
+  round_interval = false
+  metric_batch_size = 1000
+  metric_buffer_limit = 10000
+  collection_jitter = "2s"
+  collection_offset = "0s"
+  flush_interval = "10s"
+  flush_jitter = "2s"
+  precision = "1s"
+  omit_hostname = true'''
+		fo = open('/etc/telegraf/telegraf.conf', "w")
+		fo.write(telegrafConf)
+		fo.close()
+		subprocess.call(['systemctl', 'enable', 'influxdb'])
+		subprocess.call(['systemctl', 'restart', 'influxdb'])
+
 		print(_('DONE'))
-	except Exception as e: print(_('FAILED: ')+str(e))
+	except Exception as e: 
+		os.system('rm -f /etc/apt/sources.list.d/influxdb.list')
+		print(_('FAILED: ')+str(e))
+
 
 if __name__ == '__main__':
 	main()

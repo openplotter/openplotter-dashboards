@@ -15,9 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 
-import os, subprocess, sys
+import os, subprocess
 from openplotterSettings import conf
 from openplotterSettings import language
+from openplotterSettings import platform
 
 def main():
 	conf2 = conf.Conf()
@@ -25,28 +26,17 @@ def main():
 	currentLanguage = conf2.get('GENERAL', 'lang')
 	language.Language(currentdir,'openplotter-dashboards',currentLanguage)
 
-	print(_('Checking sources...'))
+	print(_('Installing/Updating Sail Gauge...'))
 	try:
-		deb = 'deb https://packages.grafana.com/oss/deb stable main'
-		sources = subprocess.check_output('apt-cache policy', shell=True).decode(sys.stdin.encoding)
-		if not 'https://packages.grafana.com/oss/deb stable' in sources:
-			fo = open('/etc/apt/sources.list.d/grafana.list', "w")
-			fo.write(deb)
-			fo.close()
-			os.system('cat '+currentdir+'/data/sources/grafana.gpg.key | gpg --dearmor > "/etc/apt/trusted.gpg.d/grafana.gpg"')
-		print(_('DONE'))
-	except Exception as e: print(_('FAILED: ')+str(e))
+		platform2 = platform.Platform()
+		subprocess.call(['npm', 'i', '--verbose', '@signalk/sailgauge'], cwd = platform2.skDir)
+		subprocess.call(['chown', '-R', conf2.user, platform2.skDir])
 
-	print(_('Installing/Updating Grafana...'))
-	try:
-		os.system('apt update')
-		subprocess.call(['apt', 'install', '-y', 'grafana'])
-		subprocess.call(['grafana-cli', 'plugins', 'install', 'golioth-websocket-datasource'])
-		subprocess.call(['sed', '-i', 's/http_port = 3000/http_port = 3001/g', '/usr/share/grafana/conf/defaults.ini'])
-		subprocess.call(['sed', '-i', 's/;http_port = 3000/http_port = 3001/g', '/etc/grafana/grafana.ini'])
-		subprocess.call(['systemctl', 'daemon-reload'])
-		subprocess.call(['systemctl', 'enable', 'grafana-server.service'])
-		subprocess.call(['systemctl', 'restart', 'grafana-server'])
+		subprocess.call(['systemctl', 'stop', 'signalk.service'])
+		subprocess.call(['systemctl', 'stop', 'signalk.socket'])
+		subprocess.call(['systemctl', 'start', 'signalk.socket'])
+		subprocess.call(['systemctl', 'start', 'signalk.service'])
+
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 

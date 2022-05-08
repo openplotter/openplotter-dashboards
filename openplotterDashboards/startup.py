@@ -24,13 +24,20 @@ class Start():
 		self.conf = conf
 		currentdir = os.path.dirname(os.path.abspath(__file__))
 		language.Language(currentdir,'openplotter-dashboards',currentLanguage)
-		self.initialMessage = ''
+		self.initialMessage = _('Starting Dashboards...')
 
 	def start(self):
 		green = ''
 		black = ''
 		red = ''
 
+		if os.path.isdir(self.conf.home+'/.openplotter/telegraf'):
+			arr = os.listdir(self.conf.home+'/.openplotter/telegraf')
+			if arr:
+				subprocess.call(['pkill', '-15', 'telegraf'])
+				subprocess.Popen(['telegraf','--config-directory',self.conf.home+'/.openplotter/telegraf'])
+				time.sleep(1)
+				black = _('Telegraf started')
 		return {'green': green,'black': black,'red': red}
 
 class Check():
@@ -39,12 +46,15 @@ class Check():
 		currentdir = os.path.dirname(os.path.abspath(__file__))
 		language.Language(currentdir,'openplotter-dashboards',currentLanguage)
 		self.platform = platform.Platform()
+		self.sailgauge = self.platform.isSKpluginInstalled('@signalk/sailgauge')
+		self.kip = self.platform.isSKpluginInstalled('@mxtommy/kip')
 		self.nodeRed = self.platform.isSKpluginInstalled('node-red-dashboard')
-		self.influx = self.platform.isSKpluginInstalled('signalk-to-influxdb')
+		if os.path.isfile('/etc/apt/sources.list.d/influxdb.list'): self.influx = True
+		else: self.influx = False
 		if os.path.isfile('/usr/share/grafana/conf/defaults.ini'): self.grafana = True
 		else: self.grafana = False
 
-		if self.nodeRed or self.influx or self.grafana: self.initialMessage = _('Checking Dashboards...')
+		if self.sailgauge or self.kip or self.nodeRed or self.influx or self.grafana: self.initialMessage = _('Checking Dashboards...')
 		else: self.initialMessage = ''
 
 	def check(self):
@@ -52,9 +62,19 @@ class Check():
 		black = ''
 		red = ''
 
+		if self.sailgauge:
+				txt = _('Sailgauge enabled')
+				if not black: black = txt
+				else: black += ' | '+txt
+
+		if self.kip:
+				txt = _('Kip enabled')
+				if not black: black = txt
+				else: black += ' | '+txt
+
 		if self.nodeRed:
 			if self.platform.isSKpluginEnabled('signalk-node-red') or not os.path.exists(self.platform.skDir+'/plugin-config-data/signalk-node-red.json'):
-				txt = 'Node-Red enabled'
+				txt = _('Node-Red enabled')
 				if not black: black = txt
 				else: black += ' | '+txt
 			else:
@@ -65,50 +85,44 @@ class Check():
 		if self.grafana:
 			try:
 				subprocess.check_output(['systemctl', 'is-active', 'grafana-server.service']).decode(sys.stdin.encoding)
-				txt = 'Grafana running'
-				if not black: black = txt
-				else: black += ' | '+txt
+				txt = _('Grafana running')
+				if not green: green = txt
+				else: green += ' | '+txt
 			except:
 				txt = _('Grafana is not running')
 				if not red: red = txt
-				else: red += '\n'+txt
-				
-		#TODO influxbd2
+				else: red += '\n'+txt		
+
 		if self.influx:
-			if self.platform.isSKpluginEnabled('signalk-to-influxdb'):
-				txt = 'signalk-to-influxdb plugin enabled'
-				if not black: black = txt
-				else: black += ' | '+txt
-			else:
-				txt = _('signalk-to-influxdb plugin is disabled. Please enable it in Signal K -> Server -> Plugin Config -> InfluxDb writer -> Active')
-				if not red: red = txt
-				else: red += '\n'+txt
 			try:
 				subprocess.check_output(['systemctl', 'is-active', 'influxdb.service']).decode(sys.stdin.encoding)
-				txt = 'Influxdb running'
-				if not black: black = txt
-				else: black += ' | '+txt
+				txt = _('Influxdb running')
+				if not green: green = txt
+				else: green += ' | '+txt
 			except:
 				txt = _('Influxdb is not running')
 				if not red: red = txt
 				else: red += '\n'+txt
-			try:
-				subprocess.check_output(['systemctl', 'is-active', 'kapacitor.service']).decode(sys.stdin.encoding)
-				txt = 'Kapacitor running'
-				if not black: black = txt
-				else: black += ' | '+txt
-			except:
-				txt = _('Kapacitor is not running')
-				if not red: red = txt
-				else: red += '\n'+txt
-			try:
-				subprocess.check_output(['systemctl', 'is-active', 'chronograf.service']).decode(sys.stdin.encoding)
-				txt = 'Chronograf running'
-				if not black: black = txt
-				else: black += ' | '+txt
-			except:
-				txt = _('Chronograf is not running')
-				if not red: red = txt
-				else: red += '\n'+txt
+
+			if os.path.isdir(self.conf.home+'/.openplotter/telegraf'):
+				arr = os.listdir(self.conf.home+'/.openplotter/telegraf')
+				if arr:
+					test = subprocess.check_output(['ps','aux']).decode(sys.stdin.encoding)
+					if 'telegraf' in test: 
+						txt = _('Telegraf running')
+						if not green: green = txt
+						else: green += ' | '+txt
+					else:
+						subprocess.Popen(['telegraf','--config-directory',self.conf.home+'/.openplotter/telegraf'])
+						time.sleep(2)
+						test = subprocess.check_output(['ps','aux']).decode(sys.stdin.encoding)
+						if 'telegraf' in test:
+							txt = _('Telegraf running')
+							if not green: green = txt
+							else: green += ' | '+txt
+						else:
+							msg = _('Telegraf not running')
+							if red: red += '\n   '+msg
+							else: red = msg
 
 		return {'green': green,'black': black,'red': red}
