@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter-dashboards\n"
-"POT-Creation-Date: 2022-05-21 11:08+0200\n"
-"PO-Revision-Date: 2022-05-21 11:08+0200\n"
+"POT-Creation-Date: 2022-05-21 20:49+0200\n"
+"PO-Revision-Date: 2022-05-21 20:49+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -27,15 +27,15 @@ msgstr ""
 msgid "Checking sources..."
 msgstr ""
 
-#: installGrafana.py:37 installGrafana.py:50 installInfluxdb2.py:38
-#: installInfluxdb2.py:65 installKip.py:39 installNoderedDashboard.py:40
+#: installGrafana.py:37 installGrafana.py:50 installInfluxdb2.py:39
+#: installInfluxdb2.py:66 installKip.py:39 installNoderedDashboard.py:40
 #: installSailgauge.py:40 uninstallGrafana.py:37 uninstallInfluxdb2.py:40
 #: uninstallKip.py:38 uninstallNoderedDashboard.py:38 uninstallSailgauge.py:39
 msgid "DONE"
 msgstr ""
 
-#: installGrafana.py:38 installGrafana.py:51 installInfluxdb2.py:39
-#: installInfluxdb2.py:68 installKip.py:40 installNoderedDashboard.py:41
+#: installGrafana.py:38 installGrafana.py:51 installInfluxdb2.py:40
+#: installInfluxdb2.py:69 installKip.py:40 installNoderedDashboard.py:41
 #: installSailgauge.py:41 uninstallGrafana.py:38 uninstallInfluxdb2.py:41
 #: uninstallKip.py:39 uninstallNoderedDashboard.py:39 uninstallSailgauge.py:40
 msgid "FAILED: "
@@ -45,7 +45,7 @@ msgstr ""
 msgid "Installing/Updating Grafana..."
 msgstr ""
 
-#: installInfluxdb2.py:41
+#: installInfluxdb2.py:42
 msgid "Installing/Updating InfluxDB OSS 2.x..."
 msgstr ""
 

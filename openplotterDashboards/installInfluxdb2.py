@@ -27,10 +27,11 @@ def main():
 
 	print(_('Checking sources...'))
 	codeName = conf2.get('GENERAL', 'codeName')
+	dist = conf2.get('GENERAL', 'hostID')
 	try:
-		deb = 'deb https://repos.influxdata.com/debian '+codeName+' stable'
+		deb = 'deb https://repos.influxdata.com/'+dist+' '+codeName+' stable'
 		sources = subprocess.check_output('apt-cache policy', shell=True).decode(sys.stdin.encoding)
-		if not 'https://repos.influxdata.com/debian '+codeName in sources:
+		if not 'https://repos.influxdata.com/'+dist+' '+codeName in sources:
 			fo = open('/etc/apt/sources.list.d/influxdb.list', "w")
 			fo.write(deb)
 			fo.close()
