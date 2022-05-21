@@ -26,11 +26,11 @@ def main():
 	language.Language(currentdir,'openplotter-dashboards',currentLanguage)
 
 	print(_('Checking sources...'))
-	codename_debian = conf2.get('GENERAL', 'debianCodeName')
+	codeName = conf2.get('GENERAL', 'codeName')
 	try:
-		deb = 'deb https://repos.influxdata.com/debian '+codename_debian+' stable'
+		deb = 'deb https://repos.influxdata.com/debian '+codeName+' stable'
 		sources = subprocess.check_output('apt-cache policy', shell=True).decode(sys.stdin.encoding)
-		if not 'https://repos.influxdata.com/debian '+codename_debian in sources:
+		if not 'https://repos.influxdata.com/debian '+codeName in sources:
 			fo = open('/etc/apt/sources.list.d/influxdb.list', "w")
 			fo.write(deb)
 			fo.close()
