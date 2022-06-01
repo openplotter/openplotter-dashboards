@@ -103,7 +103,7 @@ class MyFrame(wx.Frame):
 		if self.platform.skPort:
 			show = self.platform.http+'localhost:'+self.platform.skPort+'/@signalk/sailgauge/'
 		app = {
-		'name': 'Sail Gauge',
+		'name': 'SailGauge',
 		'show': show,
 		'edit': '',
 		'included': 'no',

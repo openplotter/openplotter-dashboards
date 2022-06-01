@@ -26,7 +26,7 @@ def main():
 	currentLanguage = conf2.get('GENERAL', 'lang')
 	language.Language(currentdir,'openplotter-dashboards',currentLanguage)
 
-	print(_('Installing/Updating Sail Gauge...'))
+	print(_('Installing/Updating SailGauge...'))
 	try:
 		platform2 = platform.Platform()
 		subprocess.call(['npm', 'i', '--verbose', '@signalk/sailgauge'], cwd = platform2.skDir)

@@ -63,7 +63,7 @@ class Check():
 		red = ''
 
 		if self.sailgauge:
-				txt = _('Sailgauge enabled')
+				txt = _('SailGauge enabled')
 				if not black: black = txt
 				else: black += ' | '+txt
 

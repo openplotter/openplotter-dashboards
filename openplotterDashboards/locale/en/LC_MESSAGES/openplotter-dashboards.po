@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter-dashboards\n"
-"POT-Creation-Date: 2022-05-21 20:49+0200\n"
-"PO-Revision-Date: 2022-05-21 20:49+0200\n"
+"POT-Creation-Date: 2022-05-25 18:48+0200\n"
+"PO-Revision-Date: 2022-06-01 21:19+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -50,7 +50,7 @@ msgid "Installing/Updating InfluxDB OSS 2.x..."
 msgstr ""
 
 #: installSailgauge.py:29
-msgid "Installing/Updating Sail Gauge..."
+msgid "Installing/Updating SailGauge..."
 msgstr ""
 
 #: openplotterDashboards.py:144
@@ -283,7 +283,7 @@ msgid "Checking Dashboards..."
 msgstr ""
 
 #: startup.py:66
-msgid "Sailgauge enabled"
+msgid "SailGauge enabled"
 msgstr ""
 
 #: startup.py:71
@@ -333,5 +333,5 @@ msgid "Uninstalling InfluxDB OSS 2.x..."
 msgstr ""
 
 #: uninstallSailgauge.py:29
-msgid "Uninstalling Sail Gauge..."
+msgid "Uninstalling SailGauge..."
 msgstr ""

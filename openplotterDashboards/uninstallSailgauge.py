@@ -26,7 +26,7 @@ def main():
 	currentLanguage = conf2.get('GENERAL', 'lang')
 	language.Language(currentdir,'openplotter-dashboards',currentLanguage)
 
-	print(_('Uninstalling Sail Gauge...'))
+	print(_('Uninstalling SailGauge...'))
 	try:
 		platform2 = platform.Platform()
 		subprocess.call(['npm', 'uninstall', '--verbose', '@signalk/sailgauge', '--save'], cwd = platform2.skDir)
