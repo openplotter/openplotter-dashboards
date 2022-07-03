@@ -617,7 +617,11 @@ class editInfluxDB(wx.Dialog):
 		selected = self.listKeys.GetFirstSelected()
 		if selected == -1: return
 		if self.onValidate():
-			self.inputs[selected] = {'enabled':self.listKeys.IsChecked(selected),'key':self.SK.GetValue(),'interval':self.interval.GetValue(),'org':self.org.GetValue(),'bucket':self.bucket.GetValue(),'token':self.token.GetValue()}
+			items = self.SK.GetValue().split('.')
+			if items[0] == 'vessels': del items[0]
+			if items[0] != 'self' and items[0][0:12] != 'urn:mrn:imo:' and items[0][0:16] != 'urn:mrn:signalk:': items.insert(0, 'self')
+			key = '.'.join(items)
+			self.inputs[selected] = {'enabled':self.listKeys.IsChecked(selected),'key':key,'interval':self.interval.GetValue(),'org':self.org.GetValue(),'bucket':self.bucket.GetValue(),'token':self.token.GetValue()}
 			self.onFill()
 
 	def onDeleteInput(self, e):
