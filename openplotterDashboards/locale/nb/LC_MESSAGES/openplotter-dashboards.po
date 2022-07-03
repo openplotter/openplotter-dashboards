@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2022-05-25 18:48+0200\n"
-"PO-Revision-Date: 2022-06-01 21:19+0200\n"
+"PO-Revision-Date: 2022-07-03 11:05+0200\n"
 "Last-Translator: \n"
 "Language-Team: Norwegian Bokmal\n"
 "Language: nb_NO\n"
@@ -26,11 +26,11 @@ msgstr "Kontrollpanel"
 
 #: data/openplotter-dashboards.desktop:5
 msgid "openplotter-dashboards"
-msgstr ""
+msgstr "openplotter-dashbord"
 
 #: installGrafana.py:28 installInfluxdb2.py:28
 msgid "Checking sources..."
-msgstr ""
+msgstr "Sjekker kilder..."
 
 #: installGrafana.py:37 installGrafana.py:50 installInfluxdb2.py:39
 #: installInfluxdb2.py:66 installKip.py:39 installNoderedDashboard.py:40
@@ -48,15 +48,15 @@ msgstr "MISLYKKET: "
 
 #: installGrafana.py:40
 msgid "Installing/Updating Grafana..."
-msgstr ""
+msgstr "Installerer / oppdaterer Grafana..."
 
 #: installInfluxdb2.py:42
 msgid "Installing/Updating InfluxDB OSS 2.x..."
-msgstr ""
+msgstr "Installer / oppdaterer InfluxDB OSS 2.x..."
 
 #: installSailgauge.py:29
 msgid "Installing/Updating SailGauge..."
-msgstr ""
+msgstr "Installerer / oppdaterer SailGauge..."
 
 #: openplotterDashboards.py:144
 msgid "Help"
@@ -171,7 +171,7 @@ msgstr "ikke installert"
 
 #: openplotterDashboards.py:376
 msgid "not installed (only for 64bit)"
-msgstr ""
+msgstr "ikke installert (kun for 64bit)"
 
 #: openplotterDashboards.py:392
 msgid "Please install \"Signal K Installer\" OpenPlotter app"
@@ -219,27 +219,27 @@ msgstr "Signal K-server startet på nytt"
 
 #: openplotterDashboards.py:456
 msgid "Telegraf restarted"
-msgstr ""
+msgstr "Telegraf startet"
 
 #: openplotterDashboards.py:488
 msgid "Data to store in InfluxDB 2.x"
-msgstr ""
+msgstr "Data for lagring i InfluxDB 2.x"
 
 #: openplotterDashboards.py:496 openplotterDashboards.py:511
 msgid "Interval"
-msgstr ""
+msgstr "Intervall"
 
 #: openplotterDashboards.py:499
 msgid "Organization"
-msgstr ""
+msgstr "Organisasjon"
 
 #: openplotterDashboards.py:509
 msgid "Enabled"
-msgstr ""
+msgstr "Aktivert"
 
 #: openplotterDashboards.py:521
 msgid "Add"
-msgstr ""
+msgstr "Legg til"
 
 #: openplotterDashboards.py:524
 msgid "Save"
@@ -289,7 +289,7 @@ msgstr "Kontrollerer kontrollpanel..."
 
 #: startup.py:66
 msgid "SailGauge enabled"
-msgstr ""
+msgstr "SailGauge aktivert"
 
 #: startup.py:71
 msgid "Kip enabled"
@@ -313,7 +313,7 @@ msgstr "Grafana kjører ikke"
 
 #: startup.py:99
 msgid "Influxdb running"
-msgstr ""
+msgstr "Influxdb kjører"
 
 #: startup.py:103
 msgid "Influxdb is not running"
@@ -321,20 +321,20 @@ msgstr "Influxdb kjører ikke"
 
 #: startup.py:112 startup.py:120
 msgid "Telegraf running"
-msgstr ""
+msgstr "Telegraf kjører"
 
 #: startup.py:124
 msgid "Telegraf not running"
-msgstr ""
+msgstr "Telegraf kjører ikke"
 
 #: uninstallGrafana.py:28
 msgid "Uninstalling Grafana..."
-msgstr ""
+msgstr "Avinstallerer Grafana..."
 
 #: uninstallInfluxdb2.py:28
 msgid "Uninstalling InfluxDB OSS 2.x..."
-msgstr ""
+msgstr "Avinstallerer InfluxDB OSS 2.x..."
 
 #: uninstallSailgauge.py:29
 msgid "Uninstalling SailGauge..."
-msgstr ""
+msgstr "Avinstallerer SailGauge..."
