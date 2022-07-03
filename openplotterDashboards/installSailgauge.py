@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-# This file is part of Openplotter.
-# Copyright (C) 2019 by Sailoog <https://github.com/openplotter/openplotter-dashboards>
+# This file is part of OpenPlotter.
+# Copyright (C) 2022 by Sailoog <https://github.com/openplotter/openplotter-dashboards>
 #                  
 # Openplotter is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,25 +26,17 @@ def main():
 	currentLanguage = conf2.get('GENERAL', 'lang')
 	language.Language(currentdir,'openplotter-dashboards',currentLanguage)
 
+	print(_('Installing/Updating SailGauge...'))
 	try:
 		platform2 = platform.Platform()
+		subprocess.call(['npm', 'i', '--verbose', '@signalk/sailgauge'], cwd = platform2.skDir)
+		subprocess.call(['chown', '-R', conf2.user, platform2.skDir])
 
-		subprocess.call(['systemctl', 'disable', 'kapacitor.service'])
-		subprocess.call(['systemctl', 'stop', 'kapacitor'])
-		subprocess.call(['systemctl', 'disable', 'influxdb.service'])
-		subprocess.call(['systemctl', 'stop', 'influxdb'])
-		subprocess.call(['systemctl', 'disable', 'chronograf.service'])
-		subprocess.call(['systemctl', 'stop', 'chronograf'])
-
-		subprocess.call(['apt', 'autoremove', '-y', 'influxdb', 'kapacitor', 'chronograf'])
-
-		subprocess.call(['npm', 'uninstall', '--verbose', 'signalk-to-influxdb', '--save'], cwd = platform2.skDir)
-		
 		subprocess.call(['systemctl', 'stop', 'signalk.service'])
 		subprocess.call(['systemctl', 'stop', 'signalk.socket'])
 		subprocess.call(['systemctl', 'start', 'signalk.socket'])
 		subprocess.call(['systemctl', 'start', 'signalk.service'])
-		
+
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 

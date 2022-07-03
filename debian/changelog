@@ -1,3 +1,19 @@
+openplotter-dashboards (3.0.8-stable) bullseye; urgency=medium
+
+  * Update to InfluxDB OSS 2.x
+  * Add telegraf editor to InfluxDB
+  * Add Grafana websocket plugin
+  * Install sorces with this app instead of settings app
+  * Update translations
+
+ -- Sailoog <info@sailoog.com>  Sun, 03 Jul 2022 11:06:44 +0200
+
+openplotter-dashboards (3.0.7-beta) bullseye; urgency=medium
+
+  * Beta
+
+ -- Sailoog <info@sailoog.com>  Thu, 28 Apr 2022 20:19:06 +0200
+
 openplotter-dashboards (2.2.3-stable) bionic; urgency=medium
 
   * Fix error installing apps in linux mint

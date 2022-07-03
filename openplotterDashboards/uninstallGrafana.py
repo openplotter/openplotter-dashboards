@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-# This file is part of Openplotter.
-# Copyright (C) 2019 by Sailoog <https://github.com/openplotter/openplotter-dashboards>
+# This file is part of OpenPlotter.
+# Copyright (C) 2022 by Sailoog <https://github.com/openplotter/openplotter-dashboards>
 #                  
 # Openplotter is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,6 @@
 import os, subprocess
 from openplotterSettings import conf
 from openplotterSettings import language
-from openplotterSettings import platform
 
 def main():
 	conf2 = conf.Conf()
@@ -26,14 +25,15 @@ def main():
 	currentLanguage = conf2.get('GENERAL', 'lang')
 	language.Language(currentdir,'openplotter-dashboards',currentLanguage)
 
+	print(_('Uninstalling Grafana...'))
 	try:
-		platform2 = platform.Platform()
-
+		subprocess.call(['grafana-cli', 'plugins', 'uninstall', 'golioth-websocket-datasource'])
+		subprocess.call(['apt', 'autoremove', '-y', 'grafana'])
 		subprocess.call(['systemctl', 'disable', 'grafana-server.service'])
 		subprocess.call(['systemctl', 'stop', 'grafana-server'])
-
-		subprocess.call(['apt', 'autoremove', '-y', 'grafana'])
-		
+		subprocess.call(['systemctl', 'daemon-reload'])
+		os.system('rm -f /etc/apt/sources.list.d/grafana.list')
+		os.system('apt update')
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-# This file is part of Openplotter.
-# Copyright (C) 2019 by Sailoog <https://github.com/openplotter/openplotter-dashboards>
+# This file is part of OpenPlotter.
+# Copyright (C) 2022 by Sailoog <https://github.com/openplotter/openplotter-dashboards>
 #                  
 # Openplotter is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,10 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 
-import os, subprocess
+import os, subprocess, sys
 from openplotterSettings import conf
 from openplotterSettings import language
-from openplotterSettings import platform
 
 def main():
 	conf2 = conf.Conf()
@@ -26,19 +25,28 @@ def main():
 	currentLanguage = conf2.get('GENERAL', 'lang')
 	language.Language(currentdir,'openplotter-dashboards',currentLanguage)
 
+	print(_('Checking sources...'))
 	try:
-		platform2 = platform.Platform()
+		deb = 'deb https://packages.grafana.com/oss/deb stable main'
+		sources = subprocess.check_output('apt-cache policy', shell=True).decode(sys.stdin.encoding)
+		if not 'https://packages.grafana.com/oss/deb stable' in sources:
+			fo = open('/etc/apt/sources.list.d/grafana.list', "w")
+			fo.write(deb)
+			fo.close()
+			os.system('cat '+currentdir+'/data/sources/grafana.gpg.key | gpg --dearmor > "/etc/apt/trusted.gpg.d/grafana.gpg"')
+		print(_('DONE'))
+	except Exception as e: print(_('FAILED: ')+str(e))
 
+	print(_('Installing/Updating Grafana...'))
+	try:
+		os.system('apt update')
 		subprocess.call(['apt', 'install', '-y', 'grafana'])
-
-		subprocess.call(['systemctl', 'stop', 'grafana-server'])
-
+		subprocess.call(['grafana-cli', 'plugins', 'install', 'golioth-websocket-datasource'])
 		subprocess.call(['sed', '-i', 's/http_port = 3000/http_port = 3001/g', '/usr/share/grafana/conf/defaults.ini'])
 		subprocess.call(['sed', '-i', 's/;http_port = 3000/http_port = 3001/g', '/etc/grafana/grafana.ini'])
-
+		subprocess.call(['systemctl', 'daemon-reload'])
 		subprocess.call(['systemctl', 'enable', 'grafana-server.service'])
-		subprocess.call(['systemctl', 'start', 'grafana-server'])
-
+		subprocess.call(['systemctl', 'restart', 'grafana-server'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
