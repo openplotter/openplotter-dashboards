@@ -27,9 +27,9 @@ def main():
 
 	print(_('Checking sources...'))
 	try:
-		deb = 'deb https://packages.grafana.com/oss/deb stable main'
+		deb = 'deb https://apt.grafana.com stable main'
 		sources = subprocess.check_output('apt-cache policy', shell=True).decode(sys.stdin.encoding)
-		if not 'https://packages.grafana.com/oss/deb stable' in sources:
+		if not 'https://apt.grafana.com stable' in sources:
 			fo = open('/etc/apt/sources.list.d/grafana.list', "w")
 			fo.write(deb)
 			fo.close()
