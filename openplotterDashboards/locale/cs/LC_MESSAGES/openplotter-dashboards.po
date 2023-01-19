@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2022-05-25 18:48+0200\n"
-"PO-Revision-Date: 2022-07-03 11:05+0200\n"
+"PO-Revision-Date: 2023-01-19 16:19+0100\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Language: cs\n"
@@ -26,11 +26,11 @@ msgstr "Řídicí panely"
 
 #: data/openplotter-dashboards.desktop:5
 msgid "openplotter-dashboards"
-msgstr ""
+msgstr "openplotter-dashboards"
 
 #: installGrafana.py:28 installInfluxdb2.py:28
 msgid "Checking sources..."
-msgstr ""
+msgstr "Kontrola zdrojů..."
 
 #: installGrafana.py:37 installGrafana.py:50 installInfluxdb2.py:39
 #: installInfluxdb2.py:66 installKip.py:39 installNoderedDashboard.py:40
@@ -48,15 +48,15 @@ msgstr "Chyba: "
 
 #: installGrafana.py:40
 msgid "Installing/Updating Grafana..."
-msgstr ""
+msgstr "Instalace/aktualizace Grafany..."
 
 #: installInfluxdb2.py:42
 msgid "Installing/Updating InfluxDB OSS 2.x..."
-msgstr ""
+msgstr "Instalace/aktualizace InfluxDB OSS 2.x..."
 
 #: installSailgauge.py:29
 msgid "Installing/Updating SailGauge..."
-msgstr ""
+msgstr "Instalace/aktualizace SailGauge..."
 
 #: openplotterDashboards.py:144
 msgid "Help"
@@ -171,7 +171,7 @@ msgstr "není nainstalováno"
 
 #: openplotterDashboards.py:376
 msgid "not installed (only for 64bit)"
-msgstr ""
+msgstr "není nainstalováno (pouze pro 64bit)"
 
 #: openplotterDashboards.py:392
 msgid "Please install \"Signal K Installer\" OpenPlotter app"
@@ -219,69 +219,69 @@ msgstr "Signal K server byl restartován"
 
 #: openplotterDashboards.py:456
 msgid "Telegraf restarted"
-msgstr ""
+msgstr "Telegraf restartován"
 
 #: openplotterDashboards.py:488
 msgid "Data to store in InfluxDB 2.x"
-msgstr ""
+msgstr "Data k ukládání v InfluxDB 2.x"
 
 #: openplotterDashboards.py:496 openplotterDashboards.py:511
 msgid "Interval"
-msgstr ""
+msgstr "Interval"
 
 #: openplotterDashboards.py:499
 msgid "Organization"
-msgstr ""
+msgstr "Organizace"
 
 #: openplotterDashboards.py:509
 msgid "Enabled"
-msgstr ""
+msgstr "Povoleno"
 
 #: openplotterDashboards.py:521
 msgid "Add"
-msgstr ""
+msgstr "Přidat"
 
 #: openplotterDashboards.py:524
 msgid "Save"
-msgstr ""
+msgstr "Uložit"
 
 #: openplotterDashboards.py:527
 msgid "Delete"
-msgstr ""
+msgstr "Smazat"
 
 #: openplotterDashboards.py:595
 msgid "Wrong Signal K key: characters not allowed."
-msgstr ""
+msgstr "Chybný název hodnoty v Signal K: znaky nejsou povoleny."
 
 #: openplotterDashboards.py:595 openplotterDashboards.py:598
 #: openplotterDashboards.py:601 openplotterDashboards.py:604
 #: openplotterDashboards.py:607
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: openplotterDashboards.py:598
 msgid "Wrong Interval."
-msgstr ""
+msgstr "Špatný interval."
 
 #: openplotterDashboards.py:601
 msgid "Wrong Organization."
-msgstr ""
+msgstr "Špatná organizace."
 
 #: openplotterDashboards.py:604
 msgid "Wrong Bucket."
-msgstr ""
+msgstr "Špatná databáze."
 
 #: openplotterDashboards.py:607
 msgid "Wrong token."
-msgstr ""
+msgstr "Chybný token."
 
 #: startup.py:27
 msgid "Starting Dashboards..."
-msgstr ""
+msgstr "Spouštění řídících panelů..."
 
 #: startup.py:40
 msgid "Telegraf started"
-msgstr ""
+msgstr "Telegraf spuštěn"
 
 #: startup.py:57
 msgid "Checking Dashboards..."
@@ -289,15 +289,15 @@ msgstr "Kontroluji řídící panely..."
 
 #: startup.py:66
 msgid "SailGauge enabled"
-msgstr ""
+msgstr "SailGauge povolen"
 
 #: startup.py:71
 msgid "Kip enabled"
-msgstr ""
+msgstr "Kip povolen"
 
 #: startup.py:77
 msgid "Node-Red enabled"
-msgstr ""
+msgstr "Node-Red povoleno"
 
 #: startup.py:81
 msgid "Node-Red is disabled. Please enable it in Signal K -> Server -> Plugin Config -> Node Red -> Active"
@@ -305,7 +305,7 @@ msgstr "Node-Red je vypnutý. Prosím povolte jej v nastavení Signal K -> Serve
 
 #: startup.py:88
 msgid "Grafana running"
-msgstr ""
+msgstr "Grafana běží"
 
 #: startup.py:92
 msgid "Grafana is not running"
@@ -313,7 +313,7 @@ msgstr "Grafana není spuštěna"
 
 #: startup.py:99
 msgid "Influxdb running"
-msgstr ""
+msgstr "Influxdb běží"
 
 #: startup.py:103
 msgid "Influxdb is not running"
@@ -321,20 +321,20 @@ msgstr "Influxdb není spuštěna"
 
 #: startup.py:112 startup.py:120
 msgid "Telegraf running"
-msgstr ""
+msgstr "Telegraf běží"
 
 #: startup.py:124
 msgid "Telegraf not running"
-msgstr ""
+msgstr "Telegraf není spuštěn"
 
 #: uninstallGrafana.py:28
 msgid "Uninstalling Grafana..."
-msgstr ""
+msgstr "Odinstalace Grafany..."
 
 #: uninstallInfluxdb2.py:28
 msgid "Uninstalling InfluxDB OSS 2.x..."
-msgstr ""
+msgstr "Odinstalace InfluxDB OSS 2.x..."
 
 #: uninstallSailgauge.py:29
 msgid "Uninstalling SailGauge..."
-msgstr ""
+msgstr "Odinstalace SailGauge..."

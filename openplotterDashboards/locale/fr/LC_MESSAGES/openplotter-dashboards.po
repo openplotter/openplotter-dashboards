@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2022-05-25 18:48+0200\n"
-"PO-Revision-Date: 2022-07-03 11:05+0200\n"
+"PO-Revision-Date: 2023-01-19 16:19+0100\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -277,7 +277,7 @@ msgstr "Erreur sur token."
 
 #: startup.py:27
 msgid "Starting Dashboards..."
-msgstr "Démarrage de Tableaux de bord..."
+msgstr "Démarrage des tableaux de bord..."
 
 #: startup.py:40
 msgid "Telegraf started"

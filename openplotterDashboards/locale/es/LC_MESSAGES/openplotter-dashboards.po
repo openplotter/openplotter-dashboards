@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2022-05-25 18:48+0200\n"
-"PO-Revision-Date: 2022-07-03 11:05+0200\n"
+"PO-Revision-Date: 2023-01-19 16:19+0100\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/openplotter-dashboards.desktop:3 openplotterDashboards.py:134
 msgid "Dashboards"
-msgstr "Cuadros de instrumentos"
+msgstr "Cuadro de mandos"
 
 #: data/openplotter-dashboards.desktop:5
 msgid "openplotter-dashboards"
