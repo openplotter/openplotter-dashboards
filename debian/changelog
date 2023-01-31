@@ -1,3 +1,10 @@
+openplotter-dashboards (3.0.12-stable) bullseye; urgency=medium
+
+  * Update Influxdb gpg key
+  * Update translations
+
+ -- Sailoog <info@sailoog.com>  Tue, 31 Jan 2023 18:51:27 +0100
+
 openplotter-dashboards (3.0.10-stable) bullseye; urgency=medium
 
   * Fix Grafana repository and key
