@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2022-05-25 18:48+0200\n"
-"PO-Revision-Date: 2023-01-31 19:05+0100\n"
+"PO-Revision-Date: 2023-11-08 12:22+0100\n"
 "Last-Translator: \n"
 "Language-Team: Danish\n"
 "Language: da\n"
@@ -30,7 +30,7 @@ msgstr ""
 
 #: installGrafana.py:28 installInfluxdb2.py:28
 msgid "Checking sources..."
-msgstr ""
+msgstr "Kontrollerer kilder..."
 
 #: installGrafana.py:37 installGrafana.py:50 installInfluxdb2.py:39
 #: installInfluxdb2.py:66 installKip.py:39 installNoderedDashboard.py:40
@@ -48,11 +48,11 @@ msgstr "Mislykket: "
 
 #: installGrafana.py:40
 msgid "Installing/Updating Grafana..."
-msgstr ""
+msgstr "Installér/Opdaterer Grafana..."
 
 #: installInfluxdb2.py:42
 msgid "Installing/Updating InfluxDB OSS 2.x..."
-msgstr ""
+msgstr "Installér/Opdaterer InfluxDB OSS 2.x..."
 
 #: installSailgauge.py:29
 msgid "Installing/Updating SailGauge..."
@@ -171,7 +171,7 @@ msgstr "ikke installeret"
 
 #: openplotterDashboards.py:376
 msgid "not installed (only for 64bit)"
-msgstr ""
+msgstr "ikke installeret (kun for 64bit)"
 
 #: openplotterDashboards.py:392
 msgid "Please install \"Signal K Installer\" OpenPlotter app"
@@ -227,7 +227,7 @@ msgstr ""
 
 #: openplotterDashboards.py:496 openplotterDashboards.py:511
 msgid "Interval"
-msgstr ""
+msgstr "Interval"
 
 #: openplotterDashboards.py:499
 msgid "Organization"
@@ -235,19 +235,19 @@ msgstr ""
 
 #: openplotterDashboards.py:509
 msgid "Enabled"
-msgstr ""
+msgstr "Aktiveret"
 
 #: openplotterDashboards.py:521
 msgid "Add"
-msgstr ""
+msgstr "Tilføj"
 
 #: openplotterDashboards.py:524
 msgid "Save"
-msgstr ""
+msgstr "Gem"
 
 #: openplotterDashboards.py:527
 msgid "Delete"
-msgstr ""
+msgstr "Slet"
 
 #: openplotterDashboards.py:595
 msgid "Wrong Signal K key: characters not allowed."
@@ -257,15 +257,15 @@ msgstr ""
 #: openplotterDashboards.py:601 openplotterDashboards.py:604
 #: openplotterDashboards.py:607
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: openplotterDashboards.py:598
 msgid "Wrong Interval."
-msgstr ""
+msgstr "Forkert Interval."
 
 #: openplotterDashboards.py:601
 msgid "Wrong Organization."
-msgstr ""
+msgstr "Forkert Organisation."
 
 #: openplotterDashboards.py:604
 msgid "Wrong Bucket."
@@ -273,7 +273,7 @@ msgstr ""
 
 #: openplotterDashboards.py:607
 msgid "Wrong token."
-msgstr ""
+msgstr "Forkert token."
 
 #: startup.py:27
 msgid "Starting Dashboards..."
@@ -297,7 +297,7 @@ msgstr ""
 
 #: startup.py:77
 msgid "Node-Red enabled"
-msgstr ""
+msgstr "Node-Red aktiveret"
 
 #: startup.py:81
 msgid "Node-Red is disabled. Please enable it in Signal K -> Server -> Plugin Config -> Node Red -> Active"
@@ -305,7 +305,7 @@ msgstr "Node-red er deaktiveret. Aktivér det i signal-K -> Server -> Plugin Con
 
 #: startup.py:88
 msgid "Grafana running"
-msgstr ""
+msgstr "Grafana kører"
 
 #: startup.py:92
 msgid "Grafana is not running"
@@ -313,7 +313,7 @@ msgstr "Grafana kører ikke"
 
 #: startup.py:99
 msgid "Influxdb running"
-msgstr ""
+msgstr "Influxdb kører"
 
 #: startup.py:103
 msgid "Influxdb is not running"
@@ -321,11 +321,11 @@ msgstr "Influxdb kører ikke"
 
 #: startup.py:112 startup.py:120
 msgid "Telegraf running"
-msgstr ""
+msgstr "Telegraf kører"
 
 #: startup.py:124
 msgid "Telegraf not running"
-msgstr ""
+msgstr "Telegraf kører ikke"
 
 #: uninstallGrafana.py:28
 msgid "Uninstalling Grafana..."
