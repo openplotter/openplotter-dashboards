@@ -22,18 +22,11 @@ from openplotterSettings import conf
 from openplotterSettings import language
 from openplotterSettings import platform
 from openplotterSettings import selectKey
-from wx.lib.mixins.listctrl import CheckListCtrlMixin, ListCtrlAutoWidthMixin
 
 if os.path.dirname(os.path.abspath(__file__))[0:4] == '/usr':
 	from .version import version
 else:
 	import version
-
-class CheckListCtrl(wx.ListCtrl, CheckListCtrlMixin, ListCtrlAutoWidthMixin):
-	def __init__(self, parent, height):
-		wx.ListCtrl.__init__(self, parent, -1, style=wx.LC_REPORT | wx.SUNKEN_BORDER, size=(650, height))
-		CheckListCtrlMixin.__init__(self)
-		ListCtrlAutoWidthMixin.__init__(self)
 
 class MyFrame(wx.Frame):
 	def __init__(self):
@@ -213,9 +206,8 @@ class MyFrame(wx.Frame):
 	################################################################################
 
 	def pageSystemd(self):
-		self.started = False
 
-		self.listSystemd = CheckListCtrl(self.systemd, 152)
+		self.listSystemd = wx.ListCtrl(self.systemd, 152, style=wx.LC_REPORT | wx.LC_SINGLE_SEL)
 		self.listSystemd.InsertColumn(0, _('Autostart'), width=90)
 		self.listSystemd.InsertColumn(1, _('Process'), width=150)
 		self.listSystemd.InsertColumn(2, _('Status'), width=150)
@@ -223,8 +215,9 @@ class MyFrame(wx.Frame):
 		self.listSystemd.Bind(wx.EVT_LIST_ITEM_SELECTED, self.onListSystemdSelected)
 		self.listSystemd.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.onListSystemdDeselected)
 		self.listSystemd.SetTextColour(wx.BLACK)
-
-		self.listSystemd.OnCheckItem = self.OnCheckItem
+		self.listSystemd.EnableCheckBoxes(True)
+		self.listSystemd.Bind(wx.EVT_LIST_ITEM_CHECKED, self.OnCheckItem)
+		self.listSystemd.Bind(wx.EVT_LIST_ITEM_UNCHECKED, self.OnUnCheckItem)
 
 		self.toolbar3 = wx.ToolBar(self.systemd, style=wx.TB_TEXT | wx.TB_VERTICAL)
 		self.start = self.toolbar3.AddTool(301, _('Start'), wx.Bitmap(self.currentdir+"/data/start.png"))
@@ -239,8 +232,6 @@ class MyFrame(wx.Frame):
 		sizer.Add(self.toolbar3, 0)
 
 		self.systemd.SetSizer(sizer)
-
-		self.started = True
 
 	def onListSystemdSelected(self, e):
 		i = e.GetIndex()
@@ -297,12 +288,15 @@ class MyFrame(wx.Frame):
 		self.set_listSystemd()
 		self.ShowStatusBarGREEN(_('Done'))
 		
-	def OnCheckItem(self, index, flag):
+	def OnCheckItem(self, index):
 		if not self.started: return
-		if flag:
-			subprocess.call((self.platform.admin + ' systemctl enable ' + self.process[index]).split())
-		else:
-			subprocess.call((self.platform.admin + ' systemctl disable ' + self.process[index]).split())
+		i = index.GetIndex()
+		subprocess.call((self.platform.admin + ' systemctl enable ' + self.process[i]).split())
+
+	def OnUnCheckItem(self, index):
+		if not self.started: return
+		i = index.GetIndex()
+		subprocess.call((self.platform.admin + ' systemctl disable ' + self.process[i]).split())
 
 	################################################################################
 
@@ -353,6 +347,7 @@ class MyFrame(wx.Frame):
 		self.toolbar2.EnableTool(202,False)
 
 	def OnRefreshButton(self, event=0):
+		self.started = False
 		self.listApps.DeleteAllItems()
 		for i in self.appsDict:
 			item = self.listApps.InsertItem(0, i['name'])
@@ -373,13 +368,14 @@ class MyFrame(wx.Frame):
 				elif i['name'] == 'InfluxDB OSS 2.x':
 					if os.path.isfile('/etc/apt/sources.list.d/influxdb.list'): self.listApps.SetItem(item, 1, _('installed'))
 					else:
-						self.listApps.SetItem(item, 1, _('not installed (only for 64bit)'))
+						self.listApps.SetItem(item, 1, _('not installed'))
 						self.listApps.SetItemBackgroundColour(item,(200,200,200))
 			else:
 				self.listApps.SetItem(item, 1, _('not installed'))
 				self.listApps.SetItemBackgroundColour(item,(200,200,200))
 		self.onListAppsDeselected()
 		self.set_listSystemd()
+		self.started = True
 
 	def OnToolInstall(self, e):
 		index = self.listApps.GetFirstSelected()
@@ -400,13 +396,15 @@ class MyFrame(wx.Frame):
 			if dlg.ShowModal() == wx.ID_YES:
 				self.logger.Clear()
 				self.notebook.ChangeSelection(2)
+				self.ShowStatusBarYELLOW(_('Installing dashboard, please wait... '))
 				popen = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, shell=True)
 				for line in popen.stdout:
 					if not 'Warning' in line and not 'WARNING' in line:
 						self.logger.WriteText(line)
-						self.ShowStatusBarYELLOW(_('Installing dashboard, please wait... ')+line)
 						self.logger.ShowPosition(self.logger.GetLastPosition())
+						wx.GetApp().Yield()
 				self.OnRefreshButton()
+				self.ShowStatusBarGREEN(_('Done'))
 				if plugin: self.restart_SK(0)
 			dlg.Destroy()
 
@@ -425,13 +423,15 @@ class MyFrame(wx.Frame):
 		if dlg.ShowModal() == wx.ID_YES:
 			self.logger.Clear()
 			self.notebook.ChangeSelection(2)
+			self.ShowStatusBarYELLOW(_('Uninstalling dashboard, please wait... '))
 			popen = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, shell=True)
 			for line in popen.stdout:
 				if not 'Warning' in line and not 'WARNING' in line:
 					self.logger.WriteText(line)
-					self.ShowStatusBarYELLOW(_('Uninstalling dashboard, please wait... ')+line)
 					self.logger.ShowPosition(self.logger.GetLastPosition())
+					wx.GetApp().Yield()
 			self.OnRefreshButton()
+			self.ShowStatusBarGREEN(_('Done'))
 			if plugin: self.restart_SK(0)
 		dlg.Destroy()
 
@@ -505,14 +505,16 @@ class editInfluxDB(wx.Dialog):
 		tokenLabel= wx.StaticText(panel, label = 'Token')
 		self.token = wx.TextCtrl(panel)
 
-		self.listKeys = CheckListCtrl(panel, -1)
+		self.listKeys = wx.ListCtrl(panel, -1, style=wx.LC_REPORT | wx.LC_SINGLE_SEL)
 		self.listKeys.InsertColumn(0, _('Enabled'), width=70)
 		self.listKeys.InsertColumn(1, 'Signal K key', width=350)
 		self.listKeys.InsertColumn(2, _('Interval'), width=100)
 		self.listKeys.InsertColumn(3, 'Bucket', width=100)
 		self.listKeys.Bind(wx.EVT_LIST_ITEM_SELECTED, self.onListKeysSelected)
 		self.listKeys.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.onListKeysDeselected)
-		self.listKeys.OnCheckItem = self.OnCheckItem
+		self.listKeys.EnableCheckBoxes(True)
+		self.listKeys.Bind(wx.EVT_LIST_ITEM_CHECKED, self.OnCheckItem)
+		self.listKeys.Bind(wx.EVT_LIST_ITEM_UNCHECKED, self.OnUnCheckItem)
 		self.checking = False
 		self.listKeys.SetTextColour(wx.BLACK)
 
@@ -650,10 +652,16 @@ class editInfluxDB(wx.Dialog):
 		self.bucket.SetValue('')
 		self.token.SetValue('')
 
-	def OnCheckItem(self, index, flag):
+	def OnCheckItem(self, index):
 		if self.checking:
-			if flag: self.inputs[index]['enabled'] = True
-			else: self.inputs[index]['enabled'] = False
+			i = index.GetIndex()
+			self.inputs[i]['enabled'] = True
+			self.onFill()
+
+	def OnUnCheckItem(self, index):
+		if self.checking:
+			i = index.GetIndex()
+			self.inputs[i]['enabled'] = False
 			self.onFill()
 
 	def onSKedit(self,e):

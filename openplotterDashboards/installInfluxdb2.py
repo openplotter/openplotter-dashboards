@@ -26,12 +26,11 @@ def main():
 	language.Language(currentdir,'openplotter-dashboards',currentLanguage)
 
 	print(_('Checking sources...'))
-	codeName = conf2.get('GENERAL', 'codeName')
 	dist = conf2.get('GENERAL', 'hostID')
 	try:
-		deb = 'deb https://repos.influxdata.com/'+dist+' '+codeName+' stable'
+		deb = 'deb https://repos.influxdata.com/'+dist+' stable main'
 		sources = subprocess.check_output('apt-cache policy', shell=True).decode(sys.stdin.encoding)
-		if not 'https://repos.influxdata.com/'+dist+' '+codeName in sources:
+		if not 'https://repos.influxdata.com/'+dist in sources:
 			fo = open('/etc/apt/sources.list.d/influxdb.list', "w")
 			fo.write(deb)
 			fo.close()
@@ -65,7 +64,6 @@ def main():
 
 		print(_('DONE'))
 	except Exception as e: 
-		os.system('rm -f /etc/apt/sources.list.d/influxdb.list')
 		print(_('FAILED: ')+str(e))
 
 
