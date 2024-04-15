@@ -85,24 +85,10 @@ class MyFrame(wx.Frame):
 		'name': 'Kip',
 		'show': show,
 		'edit': '',
-		'included': 'no',
-		'plugin': '@mxtommy/kip',
-		'install': self.platform.admin+' python3 '+self.currentdir+'/installKip.py',
-		'uninstall': self.platform.admin+' python3 '+self.currentdir+'/uninstallKip.py',
-		}
-		self.appsDict.append(app)
-
-		show = ''
-		if self.platform.skPort:
-			show = self.platform.http+'localhost:'+self.platform.skPort+'/@signalk/sailgauge/'
-		app = {
-		'name': 'SailGauge',
-		'show': show,
-		'edit': '',
-		'included': 'no',
-		'plugin': '@signalk/sailgauge',
-		'install': self.platform.admin+' python3 '+self.currentdir+'/installSailgauge.py',
-		'uninstall': self.platform.admin+' python3 '+self.currentdir+'/uninstallSailgauge.py',
+		'included': 'yes',
+		'plugin': '',
+		'install': '',
+		'uninstall': '',
 		}
 		self.appsDict.append(app)
 
@@ -485,25 +471,25 @@ class editInfluxDB(wx.Dialog):
 		if self.conf.get('GENERAL', 'debug') == 'yes': self.debug = True
 		else: self.debug = False
 
-		wx.Dialog.__init__(self, None, title=_('Data to store in InfluxDB 2.x'), size=(750, 445))
+		wx.Dialog.__init__(self, None, title=_('Data to store in InfluxDB 2.x'), size=(750, 400))
 		self.SetFont(wx.Font(10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL))
 		panel = wx.Panel(self)
 
-		self.SK = wx.TextCtrl(panel)
+		self.SK = wx.TextCtrl(panel,size=(-1, 25))
 		SKedit = wx.Button(panel, label='Signal K key')
 		SKedit.Bind(wx.EVT_BUTTON, self.onSKedit)
 
 		intervalLabel= wx.StaticText(panel, label = _('Interval'))
-		self.interval = wx.ComboBox(panel, choices = ['','5s','10s','15s','30s','45s','1m','5m','10m','15m','30m','45m','1h','5h','12h','24h'], style=wx.CB_READONLY)
+		self.interval = wx.ComboBox(panel, choices = ['','5s','10s','15s','30s','45s','1m','5m','10m','15m','30m','45m','1h','5h','12h','24h'], style=wx.CB_READONLY,size=(-1, 25))
 
 		orgLabel= wx.StaticText(panel, label = _('Organization'))
-		self.org = wx.TextCtrl(panel)
+		self.org = wx.TextCtrl(panel,size=(-1, 25))
 
 		bucketLabel= wx.StaticText(panel, label = 'Bucket')
-		self.bucket = wx.TextCtrl(panel)
+		self.bucket = wx.TextCtrl(panel,size=(-1, 25))
 
 		tokenLabel= wx.StaticText(panel, label = 'Token')
-		self.token = wx.TextCtrl(panel)
+		self.token = wx.TextCtrl(panel,size=(-1, 25))
 
 		self.listKeys = wx.ListCtrl(panel, -1, style=wx.LC_REPORT | wx.LC_SINGLE_SEL)
 		self.listKeys.InsertColumn(0, _('Enabled'), width=70)
@@ -623,7 +609,7 @@ class editInfluxDB(wx.Dialog):
 			if items[0] == 'vessels': del items[0]
 			if items[0] != 'self' and items[0][0:12] != 'urn:mrn:imo:' and items[0][0:16] != 'urn:mrn:signalk:': items.insert(0, 'self')
 			key = '.'.join(items)
-			self.inputs[selected] = {'enabled':self.listKeys.IsChecked(selected),'key':key,'interval':self.interval.GetValue(),'org':self.org.GetValue(),'bucket':self.bucket.GetValue(),'token':self.token.GetValue()}
+			self.inputs[selected] = {'enabled':self.listKeys.IsItemChecked(selected),'key':key,'interval':self.interval.GetValue(),'org':self.org.GetValue(),'bucket':self.bucket.GetValue(),'token':self.token.GetValue()}
 			self.onFill()
 
 	def onDeleteInput(self, e):
