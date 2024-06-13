@@ -46,31 +46,23 @@ class Check():
 		currentdir = os.path.dirname(os.path.abspath(__file__))
 		language.Language(currentdir,'openplotter-dashboards',currentLanguage)
 		self.platform = platform.Platform()
-		self.sailgauge = self.platform.isSKpluginInstalled('@signalk/sailgauge')
-		self.kip = self.platform.isSKpluginInstalled('@mxtommy/kip')
 		self.nodeRed = self.platform.isSKpluginInstalled('node-red-dashboard')
-		if os.path.isfile('/etc/apt/sources.list.d/influxdb.list'): self.influx = True
-		else: self.influx = False
-		if os.path.isfile('/usr/share/grafana/conf/defaults.ini'): self.grafana = True
-		else: self.grafana = False
+		try:
+			subprocess.check_output(['systemctl', 'is-enabled', 'influxdb.service']).decode(sys.stdin.encoding)
+			self.influx = True
+		except: self.influx = False
+		try:
+			subprocess.check_output(['systemctl', 'is-enabled', 'grafana-server.service']).decode(sys.stdin.encoding)
+			self.grafana = True
+		except: self.grafana = False
 
-		if self.sailgauge or self.kip or self.nodeRed or self.influx or self.grafana: self.initialMessage = _('Checking Dashboards...')
+		if self.nodeRed or self.influx or self.grafana: self.initialMessage = _('Checking Dashboards...')
 		else: self.initialMessage = ''
 
 	def check(self):
 		green = ''
 		black = ''
 		red = ''
-
-		if self.sailgauge:
-				txt = _('SailGauge enabled')
-				if not black: black = txt
-				else: black += ' | '+txt
-
-		if self.kip:
-				txt = _('Kip enabled')
-				if not black: black = txt
-				else: black += ' | '+txt
 
 		if self.nodeRed:
 			if self.platform.isSKpluginEnabled('signalk-node-red') or not os.path.exists(self.platform.skDir+'/plugin-config-data/signalk-node-red.json'):
@@ -80,7 +72,11 @@ class Check():
 			else:
 				txt = _('Node-Red is disabled. Please enable it in Signal K -> Server -> Plugin Config -> Node Red -> Active')
 				if not red: red = txt
-				else: red += '\n'+txt
+				else: red += '\n   '+txt
+		else:
+			txt = _('Node-Red not enabled')
+			if not black: black = txt
+			else: black += ' | '+txt
 
 		if self.grafana:
 			try:
@@ -89,9 +85,13 @@ class Check():
 				if not green: green = txt
 				else: green += ' | '+txt
 			except:
-				txt = _('Grafana is not running')
-				if not red: red = txt
-				else: red += '\n'+txt		
+				txt = _('Grafana still not running, try later')
+				if not black: black = txt
+				else: black += ' | '+txt
+		else:
+			txt = _('Grafana not enabled')
+			if not black: black = txt
+			else: black += ' | '+txt
 
 		if self.influx:
 			try:
@@ -100,9 +100,9 @@ class Check():
 				if not green: green = txt
 				else: green += ' | '+txt
 			except:
-				txt = _('Influxdb is not running')
-				if not red: red = txt
-				else: red += '\n'+txt
+				txt = _('Influxdb still not running, try later')
+				if not black: black = txt
+				else: black += ' | '+txt
 
 			if os.path.isdir(self.conf.home+'/.openplotter/telegraf'):
 				arr = os.listdir(self.conf.home+'/.openplotter/telegraf')
@@ -124,5 +124,9 @@ class Check():
 							msg = _('Telegraf not running')
 							if red: red += '\n   '+msg
 							else: red = msg
+		else:
+			txt = _('Influxdb not enabled')
+			if not black: black = txt
+			else: black += ' | '+txt
 
 		return {'green': green,'black': black,'red': red}

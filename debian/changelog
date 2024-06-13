@@ -1,3 +1,15 @@
+openplotter-dashboards (4.1.0-stable) bookworm; urgency=medium
+
+  * stable
+
+ -- Sailoog <info@sailoog.com>  Thu, 13 Jun 2024 13:15:24 +0200
+
+openplotter-dashboards (4.0.20-beta) bookworm; urgency=medium
+
+  * beta
+
+ -- Sailoog <info@sailoog.com>  Sat, 14 Oct 2023 13:24:20 +0200
+
 openplotter-dashboards (3.0.14-stable) bullseye; urgency=medium
 
   * Update Grafana gpg key

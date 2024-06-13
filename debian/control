@@ -10,6 +10,6 @@ X-Python3-Version: >= 3.2
 Package: openplotter-dashboards
 Architecture: all
 Multi-Arch: foreign
-Depends: ${misc:Depends}, ${python3:Depends}, openplotter-settings, openplotter-signalk-installer (>=2.3.0)
+Depends: ${misc:Depends}, ${python3:Depends}, openplotter-settings, openplotter-signalk-installer
 Description: OpenPltter app to manage dashboards
  OpenPltter app to manage dashboards

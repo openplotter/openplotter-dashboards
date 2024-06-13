@@ -12,6 +12,10 @@ Install Dashboards from openplotter-settings app.
 
 #### For development
 
+Install dependencies:
+
+`sudo apt install openplotter-settings openplotter-signalk-installer`
+
 Clone the repository:
 
 `git clone https://github.com/openplotter/openplotter-dashboards`
