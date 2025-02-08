@@ -106,6 +106,18 @@ class MyFrame(wx.Frame):
 		}
 		self.appsDict.append(app)
 
+		show = ''
+		app = {
+		'name': 'SKipper app',
+		'show': show,
+		'edit': '',
+		'included': 'yes',
+		'plugin': '',
+		'install': self.platform.admin+' python3 '+self.currentdir+'/installskipper.py',
+		'uninstall': self.platform.admin+' python3 '+self.currentdir+'/uninstallskipper.py',
+		}
+		self.appsDict.append(app)
+
 		if os.path.dirname(os.path.abspath(__file__))[0:4] == '/usr': 
 			v = version
 		else: v = version.version
