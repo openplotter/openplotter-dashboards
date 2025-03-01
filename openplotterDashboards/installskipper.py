@@ -27,20 +27,22 @@ def main():
 
 	print(_('Checking sources...'))
 	try:
-		# 
+		# https://docs.skipperapp.net/install-skipper.sh
 		deb = 'deb [arch=any signed-by=/usr/share/keyrings/openrepo-skipperapp.gpg] http://packages.skipperapp.net/skipperapp/ stable main'
 		sources = subprocess.check_output('apt-cache policy', shell=True).decode(sys.stdin.encoding)
 		if not 'http://packages.skipperapp.net/skipperapp/' in sources:
-			fo = open('/etc/apt/sources.list.d/openrepo-skipperapp.list', "w")
-			fo.write(deb)
+			fo = open('/tmp/install-skipper.sh', "w")
+			fo.write('apt update && apt install -y curl gnupg\n')
+			fo.write('curl http://packages.skipperapp.net/skipperapp/public.gpg | gpg --yes --dearmor -o /usr/share/keyrings/openrepo-skipperapp.gpg\n')
+			fo.write('echo "deb [arch=any signed-by=/usr/share/keyrings/openrepo-skipperapp.gpg] http://packages.skipperapp.net/skipperapp/ stable main" > /etc/apt/sources.list.d/openrepo-skipperapp.list\n')
+			fo.write('apt update\n')
 			fo.close()
-			os.system('cat '+currentdir+'/data/sources/skipper.gpg.key | gpg --dearmor > "/etc/apt/trusted.gpg.d/skipper.gpg"')
+			os.system('sudo bash /tmp/install-skipper.sh')
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
 	print(_('Installing/Updating SKipper app...'))
 	try:
-		os.system('apt update')
 		subprocess.call(['apt', 'install', '-y', 'skipperapp'])
 		print(_('DONE'))
 	except Exception as e: 
