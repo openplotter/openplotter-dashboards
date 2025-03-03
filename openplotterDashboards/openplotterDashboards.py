@@ -109,9 +109,9 @@ class MyFrame(wx.Frame):
 		show = ''
 		app = {
 		'name': 'SKipper app',
-		'show': show,
+		'show': '/usr/local/bin/skipper/SkipperApp',
 		'edit': '',
-		'included': 'yes',
+		'included': 'no',
 		'plugin': '',
 		'install': self.platform.admin+' python3 '+self.currentdir+'/installskipper.py',
 		'uninstall': self.platform.admin+' python3 '+self.currentdir+'/uninstallskipper.py',
@@ -368,6 +368,11 @@ class MyFrame(wx.Frame):
 					else:
 						self.listApps.SetItem(item, 1, _('not installed'))
 						self.listApps.SetItemBackgroundColour(item,(200,200,200))
+				elif i['name'] == 'SKipper app':
+					if os.path.isfile('/etc/apt/sources.list.d/openrepo-skipperapp.list'): self.listApps.SetItem(item, 1, _('installed'))
+					else:
+						self.listApps.SetItem(item, 1, _('not installed'))
+						self.listApps.SetItemBackgroundColour(item,(200,200,200))
 			else:
 				self.listApps.SetItem(item, 1, _('not installed'))
 				self.listApps.SetItemBackgroundColour(item,(200,200,200))
@@ -459,7 +464,12 @@ class MyFrame(wx.Frame):
 		index = self.listApps.GetFirstSelected()
 		if index == -1: return
 		apps = list(reversed(self.appsDict))
-		webbrowser.open(apps[index]['show'], new=2)
+		url = apps[index]['show']
+
+		if url.startswith("http"):
+			webbrowser.open(url, new=2)
+		else:
+			os.system(url)
 		
 	################################################################################
 
