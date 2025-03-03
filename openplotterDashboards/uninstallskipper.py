@@ -27,7 +27,7 @@ def main():
 
 	print(_('Uninstalling SKipper app...'))
 	try:
-		subprocess.call(['pkill','-15','skipper'])
+		subprocess.call(['pkill','-15','SkipperApp'])
 		subprocess.call(['apt', 'autoremove', '-y', 'skipperapp'])
 		subprocess.call(['systemctl', 'daemon-reload'])
 		os.system('rm -f /etc/apt/sources.list.d/openrepo-skipperapp.list')
