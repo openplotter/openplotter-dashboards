@@ -1,3 +1,10 @@
+openplotter-dashboards (4.2.0-stable) bookworm; urgency=medium
+
+  * Add Ocean Robot UI
+  * Update translations
+
+ -- Sailoog <info@sailoog.com>  Sat, 26 Apr 2025 14:01:18 +0200
+
 openplotter-dashboards (4.1.0-stable) bookworm; urgency=medium
 
   * stable
