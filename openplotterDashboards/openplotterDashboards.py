@@ -106,6 +106,21 @@ class MyFrame(wx.Frame):
 		}
 		self.appsDict.append(app)
 
+		show = ''
+		if self.platform.skPort:
+			show = self.platform.http+'localhost:'+self.platform.skPort+'/ocearo-ui/'
+		app = {
+		'name': 'Ocean Robot UI',
+		'show': show,
+		'edit': '',
+		'included': 'no',
+		'plugin': 'ocearo-ui',
+		'install': self.platform.admin+' python3 '+self.currentdir+'/installOcearoUi.py',
+		'uninstall': self.platform.admin+' python3 '+self.currentdir+'/uninstallOcearoUi.py',
+		}
+		self.appsDict.append(app)
+
+
 		if os.path.dirname(os.path.abspath(__file__))[0:4] == '/usr': 
 			v = version
 		else: v = version.version
