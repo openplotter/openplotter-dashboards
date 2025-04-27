@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2024-05-20 11:43+0200\n"
-"PO-Revision-Date: 2024-06-13 13:14+0200\n"
+"PO-Revision-Date: 2025-04-27 18:57+0200\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -288,7 +288,7 @@ msgstr "Knoten-Rot ist deaktiviert. Bitte aktivieren Sie es unter Signal K -> Se
 
 #: startup.py:77
 msgid "Node-Red not enabled"
-msgstr ""
+msgstr "Node-Red nicht aktiviert"
 
 #: startup.py:84
 msgid "Grafana running"
@@ -300,7 +300,7 @@ msgstr ""
 
 #: startup.py:92
 msgid "Grafana not enabled"
-msgstr ""
+msgstr "Grafana nicht aktiviert"
 
 #: startup.py:99
 msgid "Influxdb running"
@@ -320,7 +320,7 @@ msgstr "Telegraf läuft nicht"
 
 #: startup.py:128
 msgid "Influxdb not enabled"
-msgstr ""
+msgstr "Influxdb nicht aktiviert"
 
 #: uninstallGrafana.py:28
 msgid "Uninstalling Grafana..."

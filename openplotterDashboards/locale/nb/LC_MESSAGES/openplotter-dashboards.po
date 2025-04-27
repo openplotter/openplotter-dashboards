@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2024-05-20 11:43+0200\n"
-"PO-Revision-Date: 2024-06-13 13:13+0200\n"
+"PO-Revision-Date: 2025-04-27 18:56+0200\n"
 "Last-Translator: \n"
 "Language-Team: Norwegian Bokmal\n"
 "Language: nb_NO\n"
@@ -288,7 +288,7 @@ msgstr "Node-Red er deaktivert. Vennligst aktiver den i Signal K -> Server -> Pl
 
 #: startup.py:77
 msgid "Node-Red not enabled"
-msgstr ""
+msgstr "Node-Red er ikke aktivert"
 
 #: startup.py:84
 msgid "Grafana running"
@@ -296,11 +296,11 @@ msgstr "Grafana kjører"
 
 #: startup.py:88
 msgid "Grafana still not running, try later"
-msgstr ""
+msgstr "Grafana kjører fremdeles ikke, prøv senere"
 
 #: startup.py:92
 msgid "Grafana not enabled"
-msgstr ""
+msgstr "Grafana ikke aktivert"
 
 #: startup.py:99
 msgid "Influxdb running"
@@ -308,7 +308,7 @@ msgstr "Influxdb kjører"
 
 #: startup.py:103
 msgid "Influxdb still not running, try later"
-msgstr ""
+msgstr "Grafana kjører fremdeles ikke, prøv senere"
 
 #: startup.py:112 startup.py:120
 msgid "Telegraf running"
@@ -320,7 +320,7 @@ msgstr "Telegraf kjører ikke"
 
 #: startup.py:128
 msgid "Influxdb not enabled"
-msgstr ""
+msgstr "Influxdb ikke aktivert"
 
 #: uninstallGrafana.py:28
 msgid "Uninstalling Grafana..."

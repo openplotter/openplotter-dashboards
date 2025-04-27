@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter-dashboards\n"
-"POT-Creation-Date: 2024-05-20 11:43+0200\n"
-"PO-Revision-Date: 2024-06-13 13:13+0200\n"
+"POT-Creation-Date: 2025-04-27 18:54+0200\n"
+"PO-Revision-Date: 2025-04-27 18:56+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: data/openplotter-dashboards.desktop:3 openplotterDashboards.py:113
+#: data/openplotter-dashboards.desktop:3 openplotterDashboards.py:128
 msgid "Dashboards"
 msgstr ""
 
@@ -28,14 +28,16 @@ msgid "Checking sources..."
 msgstr ""
 
 #: installGrafana.py:37 installGrafana.py:50 installInfluxdb2.py:38
-#: installInfluxdb2.py:65 installNoderedDashboard.py:40 uninstallGrafana.py:37
-#: uninstallInfluxdb2.py:40 uninstallNoderedDashboard.py:38
+#: installInfluxdb2.py:65 installNoderedDashboard.py:40 installOcearoUi.py:39
+#: uninstallGrafana.py:37 uninstallInfluxdb2.py:40
+#: uninstallNoderedDashboard.py:38 uninstallOcearoUi.py:38
 msgid "DONE"
 msgstr ""
 
 #: installGrafana.py:38 installGrafana.py:51 installInfluxdb2.py:39
-#: installInfluxdb2.py:67 installNoderedDashboard.py:41 uninstallGrafana.py:38
-#: uninstallInfluxdb2.py:41 uninstallNoderedDashboard.py:39
+#: installInfluxdb2.py:67 installNoderedDashboard.py:41 installOcearoUi.py:40
+#: uninstallGrafana.py:38 uninstallInfluxdb2.py:41
+#: uninstallNoderedDashboard.py:39 uninstallOcearoUi.py:39
 msgid "FAILED: "
 msgstr ""
 
@@ -47,217 +49,217 @@ msgstr ""
 msgid "Installing/Updating InfluxDB OSS 2.x..."
 msgstr ""
 
-#: openplotterDashboards.py:123
+#: openplotterDashboards.py:138
 msgid "Help"
 msgstr ""
 
-#: openplotterDashboards.py:126
+#: openplotterDashboards.py:141
 msgid "Settings"
 msgstr ""
 
-#: openplotterDashboards.py:129
+#: openplotterDashboards.py:144
 msgid "Refresh"
 msgstr ""
 
-#: openplotterDashboards.py:137
+#: openplotterDashboards.py:152
 msgid "Apps"
 msgstr ""
 
-#: openplotterDashboards.py:138
+#: openplotterDashboards.py:153
 msgid "Processes"
 msgstr ""
 
-#: openplotterDashboards.py:197
+#: openplotterDashboards.py:212
 msgid "Autostart"
 msgstr ""
 
-#: openplotterDashboards.py:198
+#: openplotterDashboards.py:213
 msgid "Process"
 msgstr ""
 
-#: openplotterDashboards.py:199
+#: openplotterDashboards.py:214
 msgid "Status"
 msgstr ""
 
-#: openplotterDashboards.py:209
+#: openplotterDashboards.py:224
 msgid "Start"
 msgstr ""
 
-#: openplotterDashboards.py:211
+#: openplotterDashboards.py:226
 msgid "Stop"
 msgstr ""
 
-#: openplotterDashboards.py:213
+#: openplotterDashboards.py:228
 msgid "Restart"
 msgstr ""
 
-#: openplotterDashboards.py:242
+#: openplotterDashboards.py:257
 msgid "active"
 msgstr ""
 
-#: openplotterDashboards.py:243
+#: openplotterDashboards.py:258
 msgid "inactive"
 msgstr ""
 
-#: openplotterDashboards.py:245
+#: openplotterDashboards.py:260
 msgid "running"
 msgstr ""
 
-#: openplotterDashboards.py:248
+#: openplotterDashboards.py:263
 msgid "dead"
 msgstr ""
 
-#: openplotterDashboards.py:256
+#: openplotterDashboards.py:271
 msgid "Starting process..."
 msgstr ""
 
-#: openplotterDashboards.py:259 openplotterDashboards.py:267
-#: openplotterDashboards.py:275 openplotterDashboards.py:393
-#: openplotterDashboards.py:420
+#: openplotterDashboards.py:274 openplotterDashboards.py:282
+#: openplotterDashboards.py:290 openplotterDashboards.py:408
+#: openplotterDashboards.py:435
 msgid "Done"
 msgstr ""
 
-#: openplotterDashboards.py:264
+#: openplotterDashboards.py:279
 msgid "Stopping process..."
 msgstr ""
 
-#: openplotterDashboards.py:272
+#: openplotterDashboards.py:287
 msgid "Restarting process..."
 msgstr ""
 
-#: openplotterDashboards.py:291
+#: openplotterDashboards.py:306
 msgid "Name"
 msgstr ""
 
-#: openplotterDashboards.py:292
+#: openplotterDashboards.py:307
 msgid "status"
 msgstr ""
 
-#: openplotterDashboards.py:298
+#: openplotterDashboards.py:313
 msgid "Edit"
 msgstr ""
 
-#: openplotterDashboards.py:300
+#: openplotterDashboards.py:315
 msgid "Open"
 msgstr ""
 
-#: openplotterDashboards.py:303
+#: openplotterDashboards.py:318
 msgid "Install"
 msgstr ""
 
-#: openplotterDashboards.py:305
+#: openplotterDashboards.py:320
 msgid "Uninstall"
 msgstr ""
 
-#: openplotterDashboards.py:341 openplotterDashboards.py:344
-#: openplotterDashboards.py:350 openplotterDashboards.py:355
+#: openplotterDashboards.py:356 openplotterDashboards.py:359
+#: openplotterDashboards.py:365 openplotterDashboards.py:370
 msgid "installed"
 msgstr ""
 
-#: openplotterDashboards.py:346 openplotterDashboards.py:352
-#: openplotterDashboards.py:357 openplotterDashboards.py:360
+#: openplotterDashboards.py:361 openplotterDashboards.py:367
+#: openplotterDashboards.py:372 openplotterDashboards.py:375
 msgid "not installed"
 msgstr ""
 
-#: openplotterDashboards.py:374
+#: openplotterDashboards.py:389
 msgid "Please install \"Signal K Installer\" OpenPlotter app"
 msgstr ""
 
-#: openplotterDashboards.py:378
+#: openplotterDashboards.py:393
 msgid "This dashboard can not be installed"
 msgstr ""
 
-#: openplotterDashboards.py:380
+#: openplotterDashboards.py:395
 msgid "Are you sure you want to install "
 msgstr ""
 
-#: openplotterDashboards.py:380 openplotterDashboards.py:407
+#: openplotterDashboards.py:395 openplotterDashboards.py:422
 msgid " and its dependencies?"
 msgstr ""
 
-#: openplotterDashboards.py:381 openplotterDashboards.py:408
+#: openplotterDashboards.py:396 openplotterDashboards.py:423
 msgid "Question"
 msgstr ""
 
-#: openplotterDashboards.py:385
+#: openplotterDashboards.py:400
 msgid "Installing dashboard, please wait... "
 msgstr ""
 
-#: openplotterDashboards.py:405
+#: openplotterDashboards.py:420
 msgid "This dashboard can not be uninstalled"
 msgstr ""
 
-#: openplotterDashboards.py:407
+#: openplotterDashboards.py:422
 msgid "Are you sure you want to uninstall "
 msgstr ""
 
-#: openplotterDashboards.py:412
+#: openplotterDashboards.py:427
 msgid "Uninstalling dashboard, please wait... "
 msgstr ""
 
-#: openplotterDashboards.py:425
+#: openplotterDashboards.py:440
 msgid "Restarting Signal K server... "
 msgstr ""
 
-#: openplotterDashboards.py:430
+#: openplotterDashboards.py:445
 msgid "Signal K server restarted"
 msgstr ""
 
-#: openplotterDashboards.py:442
+#: openplotterDashboards.py:457
 msgid "Telegraf restarted"
 msgstr ""
 
-#: openplotterDashboards.py:474
+#: openplotterDashboards.py:489
 msgid "Data to store in InfluxDB 2.x"
 msgstr ""
 
-#: openplotterDashboards.py:482 openplotterDashboards.py:497
+#: openplotterDashboards.py:497 openplotterDashboards.py:512
 msgid "Interval"
 msgstr ""
 
-#: openplotterDashboards.py:485
+#: openplotterDashboards.py:500
 msgid "Organization"
 msgstr ""
 
-#: openplotterDashboards.py:495
+#: openplotterDashboards.py:510
 msgid "Enabled"
 msgstr ""
 
-#: openplotterDashboards.py:509
+#: openplotterDashboards.py:524
 msgid "Add"
 msgstr ""
 
-#: openplotterDashboards.py:512
+#: openplotterDashboards.py:527
 msgid "Save"
 msgstr ""
 
-#: openplotterDashboards.py:515
+#: openplotterDashboards.py:530
 msgid "Delete"
 msgstr ""
 
-#: openplotterDashboards.py:583
+#: openplotterDashboards.py:598
 msgid "Wrong Signal K key: characters not allowed."
 msgstr ""
 
-#: openplotterDashboards.py:583 openplotterDashboards.py:586
-#: openplotterDashboards.py:589 openplotterDashboards.py:592
-#: openplotterDashboards.py:595
+#: openplotterDashboards.py:598 openplotterDashboards.py:601
+#: openplotterDashboards.py:604 openplotterDashboards.py:607
+#: openplotterDashboards.py:610
 msgid "Info"
 msgstr ""
 
-#: openplotterDashboards.py:586
+#: openplotterDashboards.py:601
 msgid "Wrong Interval."
 msgstr ""
 
-#: openplotterDashboards.py:589
+#: openplotterDashboards.py:604
 msgid "Wrong Organization."
 msgstr ""
 
-#: openplotterDashboards.py:592
+#: openplotterDashboards.py:607
 msgid "Wrong Bucket."
 msgstr ""
 
-#: openplotterDashboards.py:595
+#: openplotterDashboards.py:610
 msgid "Wrong token."
 msgstr ""
 
