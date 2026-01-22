@@ -1,3 +1,11 @@
+openplotter-dashboards (4.2.1-stable) bookworm; urgency=medium
+
+  * Update Grafana gpg key
+  * Update Influxdb gpg key
+  * Update translations
+
+ -- Sailoog <info@sailoog.com>  Thu, 22 Jan 2026 17:48:00 +0100
+
 openplotter-dashboards (4.2.0-stable) bookworm; urgency=medium
 
   * Add Ocean Robot UI
