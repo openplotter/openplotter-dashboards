@@ -28,6 +28,7 @@ class Ports:
 		self.connections = []
 		
 	def usedPorts(self):
+		self.connections = []
 
 		try:
 			subprocess.check_output(['systemctl', 'is-active', 'grafana-server.service']).decode(sys.stdin.encoding)
